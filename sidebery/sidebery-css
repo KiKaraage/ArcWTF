@@ -1,0 +1,29 @@
+#root.root {--nav-btn-fg: #c0c0c0ff;}
+#root.root {--tabs-height: 37px;}
+#root.root {--toolbar-bg: transparent;}
+#root.root {--general-border-radius: 6px;}
+#root.root {--general-margin: 1px;}
+#root.root {--nav-btn-height: 25px;}
+#root.root {--nav-btn-width: 25px;}
+#root.root {--ntb-padding: 10px;}
+#root.root {--ntb-btn-height: 25px;}
+#root.root {--tabs-pinned-width: 55.3px;}
+#root.root {--tabs-pinned-height: 42px;}
+#root.root {--tabs-close-btn-margin: 5px;}
+#root.root {--tabs-inner-gap: 10px;}
+#root.root {--nav-btn-margin: 8px;}
+#root.root {--tabs-margin: 8px;}
+
+.Tab[data-pin="true"] .body {
+	border: 0px solid #00000030;
+	box-shadow: 0px 2px 1px #00000000;
+  background: #ffffff50;
+  padding: -10px;
+  color: #ffffff20;
+}
+
+.Tab .title {
+	background: linear-gradient(90deg, var(--tabs-normal-fg) 70%, #f1f1f100 95%);
+	background-clip: text;
+	color: transparent;
+}
