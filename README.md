@@ -8,7 +8,18 @@ Based on [edge-frfox theme by bmFtZQ](https://github.com/bmFtZQ/edge-frfox) | Ve
 
 ## Compability
 I modify, made and test this theme on Firefox 122, Windows 10. Based on edge-frfox's compability, it should work on Linux (especially if your window toolbar is on right side) and MacOS.
-Floorp....
+For Floorp, there's several incompability I currently have since it might clashed with several parts of the built-in theme they had, like:
+* I haven't been able to modify URL font size
+* Userchrome Toggle hasn't working yet, so the vertical tab sidebar is either a) autohidden but you can't toggle it to be in fixed position, or b) can be switched on to be shown/hidden, but it can't be automated.
+* Advanced configurations from this theme in about:config doesn't worked, so the sidebar tab (either in Sidebery, TST or their default vertical tab) tend to mimic the window background instead of mimicking tab/toolbar background to blend with the toolbar and browser border. So far I can only fix this in Sidebery - you will have to grab toolbar's hex/RGB color and apply it to `--frame-bg` parameter, as shown in screenshots below.
+* Hiding tabs bar, turning on browser border frame is applicable only through Floorp's settings instead of through the theme + about:config configurations.
+* Otherwise, the theme are working quite well! Split view is available too, but since the devs haven't put the option in right-click context menu, you will have to use their default vertical tab to do it. Though it doesn't look as good as Sidebery.
+
+![gambar](https://github.com/KiKaraage/ArcWTF/assets/10529881/8ce5ccc4-cb52-4f48-ac75-4e2c5d699074)
+![gambar](https://github.com/KiKaraage/ArcWTF/assets/10529881/ac47a984-d892-481f-97c2-9fb58407f8be)
+![gambar](https://github.com/KiKaraage/ArcWTF/assets/10529881/1ca4cadb-146d-499d-9d1c-8d77e50183aa)
+
+
 
 ## Applying the theme
 <b>Installing extensions and choosing theme</b>
