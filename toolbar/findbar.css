@@ -1,0 +1,68 @@
+/* ArcWTF - findbar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+/* Findbar text input box. */
+.findbar-textbox {
+  border: 0 !important;
+  border-radius: var(--toolbarbutton-border-radius) !important;
+  background-color: var(--toolbar-field-background-color) !important;
+
+  /* Add shadow when in light mode with no theme applied, like the URL bar. */
+  &:not(:-moz-lwtheme) {
+    box-shadow: 0 0 4px light-dark(rgb(0 0 0 / .1), transparent) !important;
+  }
+
+  &:focus {
+    outline-width: 2px !important;
+    outline-offset: -1px !important;
+  }
+
+  &[status="notfound"] {
+    outline: 2px solid var(--input-error-border-color, #E22850) !important;
+    outline-offset: -1px !important;
+  }
+}
+
+/* Prevent focus outline from being cut off on the findbar textbox. */
+.findbar-container {
+  overflow-inline: visible !important;
+  background-color:  var(--browser-frame-bgcolor, var(--lwt-accent-color)) !important;
+
+  /* Add ability to drag window from empty space in the findbar. */
+  &::after {
+    content: "";
+    flex: 1;
+    align-self: stretch;
+    margin-block: -6px;
+    -moz-window-dragging: drag;
+  }
+}
+
+/* Findbar buttons. */
+.findbar-find-previous,
+.findbar-find-next,
+findbar .close-icon {
+  border-radius: var(--toolbarbutton-border-radius) !important;
+
+  &:not([disabled]):hover {
+    background-color: var(--toolbarbutton-hover-background, rgb(190 190 190 / .2)) !important;
+
+    &:active {
+      background-color: var(--toolbarbutton-active-background, rgb(190 190 190 / .4)) !important;
+    }
+  }
+}
+
+/* Rounded corners optimisations. */
+@media (-moz-bool-pref: "uc.tweak.rounded-corners") {
+  findbar {
+    border: none !important;
+    margin-bottom: var(--uc-tweak-rounded-corners-padding, 0px) !important;
+    background-color: transparent !important;
+    padding-inline: var(--uc-tweak-rounded-corners-padding, 0px) !important;
+
+    &[hidden] {
+      margin-bottom: calc(var(--uc-tweak-rounded-corners-padding, 0px) - 40px) !important;
+    }
+  }
+}

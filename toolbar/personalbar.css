@@ -1,0 +1,77 @@
+/* ArcWTF - personalbar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+:root {
+  --bookmark-block-padding: 6px !important;
+  --bookmark-inline-padding: 6px !important;
+  --bookmark-block-margin: 2px !important;
+  --bookmark-inline-margin: 2px !important;
+  --uc-bookmark-toolbar-padding-bottom: 2px;
+  --bookmarks-toolbar-overlapping-browser-height: calc(var(--uc-bookmark-toolbar-padding-bottom) + 16px + (var(--bookmark-block-margin) + var(--bookmark-block-padding)) * 2) !important;
+}
+
+#PersonalToolbar {
+  padding-bottom: var(--uc-bookmark-toolbar-padding-bottom) !important;
+}
+
+/* Bookmarks bar item sizing */
+#personal-toolbar-empty-description,
+#PersonalToolbar .toolbarbutton-1,
+toolbarbutton.bookmark-item:not(.subviewbutton) {
+  margin-block: var(--bookmark-block-margin) !important;
+  margin-inline: var(--bookmark-inline-margin) !important;
+  padding-block: var(--bookmark-block-padding) !important;
+  padding-inline: var(--bookmark-inline-padding) !important;
+  font-size: 12px !important;
+
+  /* Adjust vertical label position on Windows */
+  @media (-moz-platform: windows) {
+    & .toolbarbutton-text {
+      margin-block: -1px 0 !important;
+    }
+  }
+}
+
+#PersonalToolbar .toolbarbutton-1 {
+  padding: 0 !important;
+}
+
+/* Bookmarks bar separators */
+#PlacesToolbarItems > toolbarseparator {
+  padding-inline: calc(3px - var(--bookmark-inline-margin)) !important;
+  align-items: center !important;
+
+  &::before {
+    content: "";
+    border-inline-start: 1px solid var(--toolbarseparator-color) !important;
+    height: 16px !important;
+    border-image: none !important;
+  }
+
+  /* Fractional scaling adjustments (150%, 175%, etc.) */
+  @media (1dppx < resolution < 2dppx) {
+    &::before {
+      border-inline-start-width: 1.5px !important;
+    }
+  }
+}
+
+/* Left and Right padding of bookmarks bar */
+#PersonalToolbar {
+  padding-inline: calc(var(--toolbar-start-end-padding) - 2px) calc(var(--toolbar-start-end-padding) + 4px) !important;
+}
+
+/* Spacing between icon and label for bookmarks bar items */
+#managed-bookmarks>.toolbarbutton-icon,
+#bookmarks-toolbar-placeholder>.toolbarbutton-icon,
+#PlacesToolbarItems>.bookmark-item>.toolbarbutton-icon[label]:not([label=""]),
+#OtherBookmarks.bookmark-item[container]>.toolbarbutton-icon {
+  margin-inline-end: 8px !important;
+}
+
+/* Sizing for bookmarks bar icons */
+#PersonalToolbar .toolbarbutton-1>.toolbarbutton-icon {
+  width: calc(2 * var(--bookmark-block-padding) + 16px) !important;
+  height: calc(2 * var(--bookmark-block-padding) + 16px) !important;
+  padding: var(--bookmark-block-padding) !important;
+}
