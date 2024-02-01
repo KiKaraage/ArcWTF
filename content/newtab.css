@@ -1,0 +1,380 @@
+/* Edge-Frfox - content/newtab.css */
+
+/* colours */
+@-moz-document url-prefix("about:newtab"),
+url-prefix("about:home"),
+url-prefix("about:firefoxview") {
+  :root:not([lwt-newtab], [lwt-newtab-brighttext]) {
+    --newtab-background-color: #F7F7F7 !important;
+    --newtab-background-color-secondary: #fff !important;
+    --newtab-text-primary-color: #252525 !important;
+    --newtab-primary-action-background: #0078D4 !important;
+    --newtab-text-secondary-color: color-mix(in srgb, var(--newtab-text-primary-color) 80%, transparent) !important;
+    --newtab-element-hover-color: color-mix(in srgb, var(--newtab-background-color) 95%, #000) !important;
+    --newtab-element-active-color: color-mix(in srgb, var(--newtab-background-color) 90%, #000) !important;
+    --newtab-element-secondary-color: color-mix(in srgb, currentColor 5%, transparent) !important;
+    --newtab-element-secondary-hover-color: color-mix(in srgb, currentColor 12%, transparent) !important;
+    --newtab-element-secondary-active-color: color-mix(in srgb, currentColor 25%, transparent) !important;
+    --newtab-primary-element-hover-color: color-mix(in srgb, var(--newtab-primary-action-background) 90%, #000) !important;
+    --newtab-primary-element-active-color: color-mix(in srgb, var(--newtab-primary-action-background) 80%, #000) !important;
+    --newtab-primary-element-text-color: #fff !important;
+    --newtab-primary-action-background-dimmed: color-mix(in srgb, var(--newtab-primary-action-background) 25%, transparent) !important;
+    --newtab-border-color: color-mix(in srgb, var(--newtab-background-color) 75%, #000) !important;
+    --newtab-wordmark-color: #737373 !important;
+    --newtab-status-success: #50B080 !important;
+    --newtab-status-error: #FF848A !important;
+    --newtab-inner-box-shadow-color: rgb(0 0 0 / .1) !important;
+    --newtab-overlay-color: color-mix(in srgb, var(--newtab-background-color) 85%, transparent) !important;
+    --newtab-text-emphasis-background: #FFED32 !important;
+    --newtab-text-emphasis-text-color: #000 !important;
+    --newtab-textbox-focus-color: var(--newtab-primary-action-background) !important;
+    --newtab-textbox-focus-boxshadow: 0 0 0 1px var(--newtab-primary-action-background), 0 0 0 4px rgba(var(--newtab-primary-action-background), 0.3) !important;
+    --newtab-button-secondary-color: inherit !important;
+  }
+
+  :root:not([style*="color"])[lwt-newtab-brighttext] {
+    --newtab-background-color: #252525 !important;
+    --newtab-background-color-secondary: #4A4A4A !important;
+    --newtab-text-primary-color: #fff !important;
+    --newtab-primary-action-background: #75B6E8 !important;
+    --newtab-element-hover-color: color-mix(in srgb, var(--newtab-background-color) 95%, #FFF) !important;
+    --newtab-element-active-color: color-mix(in srgb, var(--newtab-background-color) 90%, #FFF) !important;
+    --newtab-element-secondary-color: color-mix(in srgb, currentColor 10%, transparent) !important;
+    --newtab-element-secondary-hover-color: color-mix(in srgb, currentColor 17%, transparent) !important;
+    --newtab-element-secondary-active-color: color-mix(in srgb, currentColor 30%, transparent) !important;
+    --newtab-border-color: color-mix(in srgb, var(--newtab-background-color) 75%, #FFF) !important;
+    --newtab-primary-element-text-color: #252525 !important;
+    --newtab-wordmark-color: #fff !important;
+    --newtab-status-success: #50B080 !important;
+  }
+
+  /* Custom GTK colours. */
+  @media (-moz-gtk-csd-available) {
+    :root:not([lwt-newtab]):not([style*="color"]) {
+      /* Colour adjusted for readability. */
+      --uc-accent-adjusted: light-dark(
+        color-mix(in oklch, AccentColor 92%, black),
+        color-mix(in oklch, AccentColor 60%, white)
+      );
+      --newtab-background-color: light-dark(-moz-dialog, color-mix(in srgb, -moz-dialog 82%, black)) !important;
+      --newtab-background-color-secondary: light-dark(Field, color-mix(in srgb, -moz-dialog 86%, white)) !important;
+      --newtab-text-primary-color: -moz-dialogtext !important;
+      --newtab-wordmark-color: light-dark(color-mix(in srgb, -moz-dialogtext 65%, transparent), -moz-dialogtext) !important;
+      --newtab-primary-action-background: var(--uc-accent-adjusted) !important;
+    }
+  }
+
+  /* Adjustments for themes. */
+  :root[style*="--newtab-background-color"] {
+    /* Make the Firefox logo workmark follow text colour. */
+    --newtab-wordmark-color: color-mix(in srgb, var(--newtab-text-primary-color) 60%, var(--newtab-background-color)) !important;
+
+    /* If there is no secondary background, create one from other colours. */
+    &:not([style*="--newtab-background-color-secondary"]) {
+      --newtab-background-color-secondary: color-mix(in srgb, var(--newtab-background-color) 15%, white) !important;
+    }
+
+    /* Dark adjustments for themes. */
+    &[lwt-newtab-brighttext] {
+      /* Make the Firefox logo workmark follow text colour. */
+      --newtab-wordmark-color: var(--newtab-text-primary-color) !important;
+
+      /* If there is no secondary background, create one from other colours. */
+      &:not([style*="--newtab-background-color-secondary"]) {
+        --newtab-background-color-secondary: color-mix(in srgb, var(--newtab-text-primary-color) 15%, var(--newtab-background-color)) !important;
+      }
+    }
+  }
+}
+
+@-moz-document url-prefix("about:newtab"),
+url-prefix("about:home") {
+  /* Enforce system font selection. */
+  body {
+    font-family: system-ui !important;
+  }
+
+  /* hide pin */
+  .icon.icon-pin-small {
+    display: none !important;
+  }
+
+  /* unpinned sites have lower opacity title */
+  .top-site-button .title:not(.pinned) {
+    opacity: 0.7 !important;
+  }
+
+  /* search bar */
+  .search-wrapper .search-inner-wrapper {
+    min-height: 44px !important;
+  }
+
+  .search-handoff-button {
+    border-radius: 99px !important;
+    background-position: 12px !important;
+    padding-inline-start: 48px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    --elevation: 4;
+    box-shadow: 0 0 calc((var(--elevation) * 0.225px) + 2px) rgb(0 0 0 / .11), 0 calc(var(--elevation) * 0.4px) calc((var(--elevation) * 0.9px)) rgb(0 0 0 / .13) !important;
+  }
+
+  .search-handoff-button:hover {
+    --elevation: 6;
+  }
+
+  .search-wrapper.fake-focus:not(.search.disabled) .search-handoff-button {
+    border-color: transparent !important;
+    outline: 2px solid var(--newtab-primary-action-background) !important;
+    outline-offset: -1px !important;
+  }
+
+  .search-handoff-button .fake-caret {
+    inset-inline-start: 48px !important;
+    top: 13px !important;
+  }
+
+  .search-disabled .search-handoff-button {
+    opacity: 0 !important;
+  }
+
+  .icon-settings {
+    background-image: url("../icons/settings.svg") !important;
+  }
+
+  /* top sites */
+  .top-site-outer .tile {
+    border-radius: 12px !important;
+    height: 44px !important;
+    width: 44px !important;
+    box-shadow: none !important;
+  }
+
+  .top-site-outer .tile .icon-wrapper {
+    border-radius: 4px !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .top-site-outer .default-icon,
+  .top-site-outer .search-topsite {
+    background-size: 16px !important;
+    height: 24px !important;
+    width: 24px !important;
+  }
+
+  .top-site-outer .tile .icon-wrapper.letter-fallback::before {
+    font-size: 32px !important;
+  }
+
+  /* card */
+  .card-outer,
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    border-radius: 6px !important;
+  }
+
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    box-shadow: 0 1px 4px rgb(0 0 0 / .3) !important;
+  }
+
+  .card-outer .card-preview-image-outer,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) .img-wrapper .img img {
+    border-radius: 6px 6px 0 0 !important
+  }
+
+  .fake-textbox {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .outer-wrapper.only-search {
+    display: flex !important;
+    padding: 30px !important;
+  }
+
+  @media (-moz-bool-pref: "uc.tweak.hide-newtab-logo") {
+    .logo-and-wordmark {
+      display: none !important;
+    }
+
+    .outer-wrapper:not(.fixed-search) .search-wrapper {
+      padding-top: 0 !important;
+    }
+  }
+}
+
+/* private browsing newtab */
+@-moz-document url-prefix(about:privatebrowsing) {
+  :root {
+    --uc-wordmark-color: light-dark(#737373, #fff);
+    --uc-background-color-secondary: light-dark(#fff, #4a4a4a);
+
+    @media (-moz-bool-pref: "browser.theme.dark-private-windows") {
+      color-scheme: dark !important;
+    }
+  }
+
+  /* Custom GTK colours. */
+  @media (-moz-gtk-csd-available) {
+    :root:not([lwt-newtab]):not([style*="color"]) {
+      /* Colour adjusted for readability. */
+      --uc-accent-adjusted: light-dark(
+        color-mix(in oklch, AccentColor 92%, black),
+        color-mix(in oklch, AccentColor 60%, white)
+      );
+
+      --in-content-page-background: light-dark(-moz-dialog, color-mix(in srgb, -moz-dialog 82%, black)) !important;
+      --uc-background-color-secondary: light-dark(Field, color-mix(in srgb, -moz-dialog 86%, white)) !important;
+      --in-content-page-color: -moz-dialogtext !important;
+      --in-content-focus-outline-color: var(--uc-accent-adjusted) !important;
+    }
+  }
+
+  .search-inner-wrapper {
+    height: 44px !important;
+  }
+
+  .search-handoff-button,
+  .search-handoff-button:active,
+  .search-handoff-button:enabled:hover:active {
+    background-color: var(--uc-background-color-secondary) !important;
+    background-size: 24px;
+    border: 0 !important;
+    border-radius: 99px !important;
+    padding-inline-start: 48px !important;
+    --elevation: 4;
+    box-shadow: 0 0 calc((var(--elevation) * 0.225px) + 2px) rgb(0 0 0 / .11), 0 calc(var(--elevation) * 0.4px) calc((var(--elevation) * 0.9px)) rgb(0 0 0 / .13) !important;
+  }
+
+  .search-handoff-button:hover {
+    --elevation: 6;
+  }
+
+  .search-handoff-button.focused:not(.disabled) {
+    box-shadow: none !important;
+    outline: 2px solid var(--in-content-focus-outline-color) !important;
+    outline-offset: -1px !important;
+  }
+
+  .search-handoff-button.disabled {
+    opacity: 0 !important;
+  }
+
+  .fake-textbox {
+    color: var(--in-content-page-color) !important;
+  }
+
+  .wordmark {
+    fill: var(--uc-wordmark-color) !important;
+  }
+
+  .info {
+    background-color: var(--uc-background-color-secondary) !important;
+    background-image: none !important;
+    position: relative !important;
+  }
+
+  .info::before {
+    content: "";
+    position: absolute;
+    left: 32px;
+    top: 20px;
+    height: 32px;
+    aspect-ratio: 1 / 1;
+    background: center / contain url("../icons/account-private.svg");
+    border-radius: 99px;
+  }
+}
+
+@media (-moz-bool-pref: "uc.tweak.newtab-background") {
+  @-moz-document url(about:newtab),
+  url(about:home),
+  url(about:privatebrowsing),
+  url-prefix("about:firefoxview") {
+    :root body {
+      /* Specify both jpg and png file extensions, but jpg images will always
+       * have a higher priority.
+       */
+      --bg-0: url(../background-0.jpg), url(../background-0.png);
+      --bg-1: url(../background-1.jpg), url(../background-1.png);
+      --newtab-element-hover-color: rgb(239 239 239 / .3) !important;
+      --newtab-element-active-color: rgb(239 239 239 / .45) !important;
+      --text-shadow: 0 1px 2px #000;
+      --icon-shadow: drop-shadow(0 0.3px 0.6px #000);
+      background-color: #252525 !important;
+      background-image: var(--bg-0) !important;
+      background-position: center !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+    }
+
+    :root[lwt-newtab-brighttext] body,
+    :root.private body {
+      background-image: var(--bg-1), var(--bg-0) !important;
+      --newtab-element-hover-color: rgb(66 66 66 / .4) !important;
+      --newtab-element-active-color: rgb(66 66 66 / .55) !important;
+    }
+
+    @media not (-moz-bool-pref: "browser.theme.dark-private-windows") {
+      :root.private body {
+        background-image: var(--bg-0) !important;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root.private body {
+          background-image: var(--bg-1), var(--bg-0) !important;
+        }
+      }
+    }
+
+    .top-site-outer .title,
+    .ds-header,
+    .ds-layout .section-title span,
+    .ds-navigation,
+    .page-section-header > h1,
+    .page-section-header > .section-description,
+    .closed-tab-li-main:not(:hover, :active),
+    .closed-tab-li-dismiss,
+    .brand-logo > .brand-feature-name,
+    #colorways-collection-title,
+    #colorways-collection-description,
+    .synced-tabs-container > .loading-content {
+      text-shadow: var(--text-shadow) !important;
+      color: #fff !important;
+      -moz-osx-font-smoothing: auto !important;
+    }
+
+    .wordmark,
+    .icon-settings,
+    .top-site-outer .context-menu-button,
+    .closed-tab-li-main:not(:hover, :active) .favicon,
+    .page-section-header:not(:hover) > .twisty,
+    .synced-tab-li-favicon,
+    .page-section-header:not(:hover) > .twisty,
+    .closed-tab-li-dismiss:not(:hover),
+    .synced-tabs-container > .loading-content .sync {
+      filter: var(--icon-shadow) !important;
+      color: #fff !important;
+      fill: currentColor !important
+    }
+
+    .section-top-bar .learn-more-link a,
+    .ds-navigation a {
+      color: #b3d4ff !important;
+      text-shadow: var(--text-shadow) !important;
+      -moz-osx-font-smoothing: auto !important;
+    }
+
+    .top-site-outer .title .sponsored-label,
+    .closed-tab-li-main:not(:hover, :active) :is(.closed-tab-li-url, .closed-tab-li-time) {
+      color: #eee !important;
+    }
+
+    .fixed-search .search-wrapper {
+      border-bottom: 0 !important;
+      background: transparent linear-gradient(#0004, transparent) !important;
+    }
+  }
+}

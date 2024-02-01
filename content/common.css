@@ -1,0 +1,109 @@
+/* Edge-Frfox - content/common.css */
+
+/* colours */
+@-moz-document url-prefix(about:) {
+  :root {
+    --in-content-page-color: light-dark(#252525, #fff) !important;
+    --in-content-page-background: light-dark(#f7f7f7, #252525) !important;
+    --in-content-deemphasized-text: light-dark(#666, #bbb) !important;
+    --in-content-box-background: light-dark(#fff, #333) !important;
+    --in-content-box-background-odd: light-dark(rgb(0 0 0 / .05), rgb(255 255 255 / .05)) !important;
+    --in-content-box-info-background: light-dark(#f7f7f7, rgb(255 255 255 / 0.15)) !important;
+    --in-content-icon-color: light-dark(#666, #fff) !important;
+    --in-content-accent-color: light-dark(#006CBE, #75B6E8) !important;
+    --in-content-accent-color-active: light-dark(#1683D8, #4C98D1) !important;
+    --in-content-border-hover: light-dark(rgb(0 0 0 / .5), rgb(255 255 255 / .3)) !important;
+    --in-content-border-invalid: var(--red-50) !important;
+    --in-content-border-color: light-dark(#bebebe, rgb(255 255 255 / .2)) !important;
+    --in-content-error-text-color: light-dark(#FF848A, #FF9AA2) !important;
+    --in-content-link-color: light-dark(#0078D4, #75B6E8) !important;
+    --in-content-link-color-hover: light-dark(#006CBE, #63ADE5) !important;
+    --in-content-link-color-active: light-dark(#0749AC, #4C98D1) !important;
+    --in-content-link-color-visited: light-dark(#0078D4, #75B6E8) !important;
+    --link-color: var(--in-content-link-color) !important;
+    --link-color-hover: var(--in-content-link-color-hover) !important;
+    --link-color-active: var(--in-content-link-color-active) !important;
+    --link-color-visited: var(--in-content-link-color-visited) !important;
+    --in-content-button-text-color: var(--in-content-text-color) !important;
+    --in-content-button-text-color-hover: var(--in-content-text-color) !important;
+    --in-content-button-text-color-active: var(--in-content-button-text-color-hover) !important;
+    --in-content-button-background: light-dark(#EDEDED, #3B3B3B) !important;
+    --in-content-button-background-hover: light-dark(#e5e5e5, #545454) !important;
+    --in-content-button-background-active: light-dark(#d5d5d5, #606060) !important;
+    --in-content-primary-button-text-color: light-dark(#fff, #fff) !important;
+    --in-content-primary-button-background: light-dark(#0061e0, #006CBE) !important;
+    --in-content-primary-button-background-hover: light-dark(#0250bb, #0078D4) !important;
+    --in-content-primary-button-background-active: light-dark(#053e94, #005CA3) !important;
+    --color-accent-primary: light-dark(#0078D4, #006CBE) !important;
+    --color-accent-primary-hover: light-dark(#006CBE, #0078D4) !important;
+    --color-accent-primary-active: light-dark(#0749AC, #005CA3) !important;
+    --in-content-danger-button-background: light-dark(#DF4951, #E12424) !important;
+    --in-content-danger-button-background-hover: light-dark(#EA656C, #F94343) !important;
+    --in-content-danger-button-background-active: light-dark(#BB353C, #AA1E1E) !important;
+    --in-content-focus-outline-color: light-dark(rgb(0 85 215 / .5), #63ADE5) !important;
+    --focus-outline-color: var(--in-content-focus-outline-color) !important;
+    --in-content-table-background: light-dark(#f7f7f7, #252525) !important;
+    --in-content-text-color: var(--in-content-page-color) !important;
+    --border-interactive-color: light-dark(#929292, #858585) !important;
+    scrollbar-color:
+      light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
+      light-dark(#f7f7f7, #252525) !important;
+  }
+
+  ::selection {
+    background-color: light-dark(#0078D4, #93B8E7);
+    color: light-dark(#fff, #000);
+  }
+}
+
+/* preferences */
+@-moz-document url-prefix(about:preferences),
+url-prefix(about:addons) {
+  .category[selected] {
+    position: relative !important;
+    border-radius: 4px !important;
+  }
+
+  .category[selected]:not(:hover, :active) {
+    background-color: var(--in-content-button-background) !important;
+  }
+
+  .category[selected]::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    margin-block: auto;
+    height: 24px;
+    width: 3px;
+    left: 2px;
+    background-color: var(--in-content-accent-color);
+    border-radius: 3px;
+  }
+
+  button.tab-button:hover {
+    border-block-color: transparent var(--in-content-box-border-color) !important;
+  }
+
+  button.tab-button[selected],
+  button.tab-button[selected]:hover {
+    border-block-color: transparent currentColor !important;
+  }
+
+  .toggle-button {
+    --toggle-dot-margin: 4px !important;
+    --toggle-width: 40px !important;
+    --toggle-height: 20px !important;
+    --toggle-background-color: transparent !important;
+    --toggle-dot-background-color: var(--in-content-page-color) !important;
+    --toggle-dot-background-color-on-pressed: #fff !important;
+    --toggle-dot-transform-x: calc(var(--toggle-width) - 2 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width) - var(--toggle-dot-width)) !important;
+  }
+}
+
+/* fix page flashes when loading some websites */
+@-moz-document url(about:blank) {
+  body {
+    background: var(--in-content-page-background);
+    color: var(--in-content-page-color);
+  }
+}
