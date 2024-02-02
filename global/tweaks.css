@@ -1,0 +1,208 @@
+/* ArcWTF - tweaks.css */
+
+/* disable drag space above tabs */
+@media (-moz-bool-pref: "uc.tweak.disable-drag-space") {
+  :root {
+    --uc-tab-top-margin: 0px !important;
+  }
+}
+
+/* force tabs to toolbar bg (useful for proton themes) (might experience some
+bugs with certain themes eg. dark text on dark background.) */
+@media (-moz-bool-pref: "uc.tweak.force-tab-colour") {
+  :root:-moz-lwtheme {
+    --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
+    --tab-selected-textcolor: var(--toolbar-color) !important;
+  }
+}
+
+/* remove tab separators */
+@media (-moz-bool-pref: "uc.tweak.remove-tab-separators") {
+  .tabbrowser-tab .tab-stack {
+    &::before,
+    &::after {
+      content: initial !important;
+    }
+  }
+}
+
+@media (-moz-bool-pref: "uc.tweak.floating-tabs") {
+  :root:not(:-moz-lwtheme),
+  /* `--newtab-background-color-secondary used` to differentiate between a dark
+   * private window and private window with the 'Dark' theme enabled.
+   * May not be the most reliable method, but works for now up to FF 123. */
+  :root[privatebrowsingmode="temporary"][style*="--lwt-accent-color: rgb(28, 27, 34)"]:not([style*="--newtab-background-color-secondary: rgb(66, 65, 77)"]) {
+    --lwt-accent-color: light-dark(#f3f3f3, #202020) !important;
+    --lwt-accent-color-inactive: unset !important;
+    --toolbar-bgcolor: light-dark(#fff, #3F3F3F) !important;
+    --lwt-tab-text: light-dark(#262626, #fff) !important;
+    --chrome-content-separator-color: light-dark(#bfbfbf, #535353) !important;
+    --lwt-tab-line-color: light-dark(transparent, rgb(255 255 255 / 0.06)) !important;
+  }
+
+  @media (-moz-gtk-csd-available) {
+    :root:not(:-moz-lwtheme) {
+      --toolbar-bgcolor: color-mix(in srgb, -moz-dialog 80%, #fff) !important;
+      --toolbar-field-background-color: Field !important;
+      --lwt-tab-text: -moz-dialogtext !important;
+      --lwt-tab-line-color: rgb(255 255 255 / 0.06) !important;
+      --lwt-accent-color: var(--toolbox-non-lwt-bgcolor) !important;
+
+      &:-moz-window-inactive {
+        --lwt-accent-color: var(--toolbox-non-lwt-bgcolor-inactive) !important;
+      }
+    }
+  }
+
+  /* Shadow for navbar and tabs */
+  :root,
+  :root .tabbrowser-tab {
+    --uc-titlebar-shadow: none;
+    --uc-tab-shadow-outline: rgb(0 0 0 / .11);
+    --uc-tab-shadow: 0 2.5px 3px 1px rgb(0 0 0 / .08);
+
+    & [brighttext],
+    & [brighttext] .tabbrowser-tab {
+      --uc-titlebar-shadow: none;
+      --uc-tab-shadow-outline: transparent;
+      --uc-tab-shadow: 0 2px 3px rgb(0 0 0 / .12);
+    }
+
+    & #TabsToolbar {
+      --tab-border-radius: 8px !important;
+    }
+  }
+
+  /* remove toolbar bg */
+  #nav-bar,
+  #PersonalToolbar {
+    background-color: transparent !important;
+  }
+
+  /* invert bottom corner radius for tabs */
+  .tab-background {
+    border-radius: var(--tab-border-radius) !important;
+
+    &::before,
+    &::after {
+      display: none !important;
+    }
+  }
+
+  .tab-background[selected] {
+    border: 1px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, transparent)) !important;
+    outline: 1px solid var(--uc-tab-shadow-outline) !important;
+
+    /* Fractional scaling adjustments (150%, 175%, etc.) */
+    @media (1dppx < resolution < 2dppx) {
+      outline-width: 1.5px !important;
+    }
+  }
+
+  /* adjust spacing of area above tabs */
+  @media not (-moz-platform: macos) {
+    :root[sizemode="maximized"] {
+      --uc-tab-top-margin: 4px !important;
+    }
+  }
+
+  :root:is([inFullscreen], :not([tabsintitlebar])) {
+    --uc-tab-top-margin: 4px !important;
+  }
+
+  @media (-moz-bool-pref: "uc.tweak.disable-drag-space") {
+    :root {
+      --uc-tab-top-margin: 4px !important;
+    }
+  }
+
+  /* IMPORTANT: Adds padding and removes margin on top of tabs to allow user to
+   * select it from the top edge of the window */
+  #tabbrowser-tabs {
+    margin-top: calc(var(--uc-tab-top-margin) - 4px) !important;
+
+    & .tabbrowser-tab,
+    & #tabs-newtab-button {
+      padding-top: 4px !important;
+    }
+  }
+
+  #scrollbutton-up:not(.menupopup-scrollbutton),
+  #scrollbutton-down:not(.menupopup-scrollbutton) {
+    &,
+    & ~ spacer {
+      margin-top: 4px !important;
+    }
+  }
+
+  /* move tab shadow behind urlbar */
+  .tabbrowser-tab[visuallyselected="true"],
+  #nav-bar {
+    z-index: 2 !important;
+  }
+
+  /* tab shadow adjustments */
+  .tabbrowser-tab {
+    overflow-clip-margin: 8px !important;
+  }
+
+  #tabbrowser-arrowscrollbox > *,
+  #scrollbutton-up:not(.menupopup-scrollbutton),
+  #scrollbutton-up:not(.menupopup-scrollbutton) ~ spacer,
+  #scrollbutton-down:not(.menupopup-scrollbutton) {
+    margin-bottom: 8px !important;
+  }
+
+  #tabbrowser-arrowscrollbox {
+    margin-bottom: -8px !important;
+  }
+}
+
+@media (not (-moz-platform: macos)) and (not (-moz-bool-pref: "uc.tweak.revert-context-menu")) {
+  @media (-moz-bool-pref: "uc.tweak.vertical-context-navigation") {
+    #context-navigation {
+      /* Stack menu items vertically. */
+      flex-direction: column !important;
+
+      /* Align the image and label to the left edge. */
+      & > .menuitem-iconic {
+        justify-content: start !important;
+
+        &::after {
+          /* Get the menuitem label from the aria-label attribute. */
+          content: attr(aria-label);
+        }
+      }
+    }
+  }
+}
+
+@media (-moz-bool-pref: "uc.tweak.context-menu.hide-access-key") {
+  :where(menuitem, menu) > :is(.menu-text, .menu-iconic-text)[value]:not([value=""]) {
+    &::before {
+      /* The default value is -moz-label-content, which takes the data from the
+       * value attribute and highlights the character found in the accesskey
+       * attribute. This skips that and uses the value attribute directly. */
+      content: attr(value) !important;
+    }
+  }
+}
+
+@media (-moz-bool-pref: "uc.tweak.show-tab-close-button-on-hover") {
+  #tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([pinned], [selected]):hover .tab-close-button {
+    display: flex!important;
+  }
+}
+
+@media (-moz-bool-pref: "uc.tweak.hide-forward-button") {
+  :root:not([customizing]) #forward-button[disabled] {
+    display: none !important;
+  }
+}
+
+@media (-moz-bool-pref: "uc.tweak.context-menu.hide-firefox-account") {
+  #appMenu-fxa-status2,
+  #appMenu-fxa-separator {
+    display: none !important;
+  }
+}

@@ -1,0 +1,340 @@
+/* ArcWTF - colors.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+/* default colours (light & dark) */
+:root:not(:-moz-lwtheme),
+/* `--newtab-background-color-secondary used` to differentiate between a dark
+ * private window and private window with the 'Dark' theme enabled.
+ * May not be the most reliable method, but works for now up to FF 123. */
+:root[privatebrowsingmode="temporary"]:where([style*="--lwt-accent-color: rgb(28, 27, 34)"]:not([style*="--newtab-background-color-secondary: rgb(66, 65, 77)"])) {
+  /* Toolbars */
+  --lwt-accent-color: light-dark(#cecece, #1C1C1C) !important;
+  --lwt-accent-color-inactive: light-dark(#e8e8e8, #2e2e2e) !important;
+  --lwt-text-color: light-dark(#000, #FFF) !important;
+  --lwt-text-color-inactive: light-dark(#3A3A3A, #CBCBCB) !important;
+  --tab-selected-textcolor: light-dark(#000, #fff) !important;
+  --tab-selected-textcolor-inactive: light-dark(#3E3E3E, #CBCBCB) !important;
+  --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
+  --tab-attention-icon-color: light-dark(#0078D4, #93d0ff) !important;
+  --toolbar-bgcolor: light-dark(#f7f7f7, #3B3B3B) !important;
+  --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
+  --toolbar-color: light-dark(#000, #fff) !important;
+  --toolbarbutton-icon-fill: var(--toolbar-color) !important;
+  --toolbarbutton-icon-fill-attention: light-dark(#0078D4, #4C98D1) !important;
+  --toolbarseparator-color: color-mix(in srgb, currentColor 25%, transparent) !important;
+  --chrome-content-separator-color: transparent !important;
+  --newtab-background-color: light-dark(#f7f7f7, #252525) !important;
+  --tabpanel-background-color: var(--newtab-background-color, var(--toolbar-bgcolor, transparent)) !important;
+  /* Toolbar button overlays */
+  --toolbarbutton-hover-background: color-mix(in srgb, currentColor 8%, transparent) !important;
+  --toolbarbutton-active-background: color-mix(in srgb, currentColor 13.5%, transparent) !important;
+  /* Tab audio indicator overlay icon */
+  --tab-icon-overlay-fill: var(--toolbar-color) !important;
+  --tab-icon-overlay-stroke: var(--toolbar-bgcolor) !important;
+  /* URL bar */
+  --toolbar-field-background-color: light-dark(#fff, #2B2B2B) !important;
+  --toolbar-field-color: light-dark(#000, #fff) !important;
+  --toolbar-field-border-color: transparent !important;
+  --toolbar-field-focus-background-color: var(--toolbar-field-background-color) !important;
+  --toolbar-field-focus-color: var(--toolbar-field-color) !important;
+  --toolbar-field-focus-border-color: light-dark(#0055D780, #63ADE5) !important;
+  --urlbar-icon-fill-opacity: 0.58 !important;
+  --urlbar-box-bgcolor: light-dark(rgb(0 0 0 / .09), rgb(255 255 255 / .11)) !important;
+  --urlbar-box-hover-bgcolor: light-dark(rgb(0 0 0 / .09), rgb(255 255 255 / .11)) !important;
+  --urlbar-box-active-bgcolor: light-dark(rgb(0 0 0 / .22), rgb(255 255 255 / .28)) !important;
+  --urlbar-box-focus-bgcolor: var(--urlbar-box-hover-bgcolor) !important;
+  /* URL bar suggestions */
+  --link-color: light-dark(#0078D4, #75B6E8) !important;
+  --uc-urlbarView-accent-color: light-dark(#1A6397, #75B6E8) !important;
+  --urlbarView-highlight-background: light-dark(#F2F2F2, #383838) !important;
+  --urlbarView-highlight-color: light-dark(#000, #fff) !important;
+  --urlbarView-hover-background: light-dark(#e5e5e5, #444444) !important;
+  --urlbarView-separator-color: light-dark(#EFEFEF, #5F5F5F) !important;
+  /* Menus/panels */
+  --arrowpanel-background: light-dark(#fff, #4A4A4A) !important;
+  --arrowpanel-color: light-dark(#1c1c1c, #fff) !important;
+  --arrowpanel-border-color: light-dark(#fff, #636363) !important;
+  --arrowpanel-dimmed: light-dark(#565656, #565656) !important;
+  --arrowpanel-dimmed-further: light-dark(#707070, #707070) !important;
+  --panel-separator-color: light-dark(#dadada, #636363) !important;
+  --panel-description-color: light-dark(#000a, #fffb) !important;
+  --panel-disabled-color: light-dark(#9E9E9E, #ABABAA) !important;
+  --panel-item-hover-bgcolor: light-dark(#eee, #646464) !important;
+  --panel-item-active-bgcolor: light-dark(#ddd, #747474) !important;
+  --panel-banner-item-update-supported-bgcolor: light-dark(#188038, #81C995) !important;
+  /* Primary button */
+  --button-primary-bgcolor: light-dark(#0078D4, #006CBE) !important;
+  --button-primary-color: light-dark(#fff, #fff) !important;
+  --button-primary-hover-bgcolor: light-dark(#006BBD, #1C7CC5) !important;
+  --button-primary-active-bgcolor: light-dark(#0060AA, #3289CB) !important;
+  /* Secondary button */
+  --button-bgcolor: light-dark(#EFEFEF, #5C5C5C) !important;
+  --button-color: light-dark(#000, #fff) !important;
+  --button-hover-bgcolor: light-dark(#D5D5D5, #6E6E6E) !important;
+  --button-active-bgcolor: light-dark(#C0C0C0, #7C7C7C) !important;
+  /* Text input field, e.g. bookmarks editor */
+  --focus-outline-color: light-dark(#0055D780, #63ADE5) !important;
+  --input-bgcolor: light-dark(#fff, #4A4A4A) !important;
+  --input-color: light-dark(#2b2b2b, #fff) !important;
+  --input-border-color: light-dark(#bebebe, #808080) !important;
+  --error-text-color: light-dark(#FF9AA2, #FF9AA2) !important;
+  --input-error-border-color: light-dark(#FF848A, #FF848A) !important;
+  /* Side bar colours. */
+  --sidebar-background-color: light-dark(#f7f7f7, #3b3b3b) !important;
+  --sidebar-text-color: light-dark(#000, #fff) !important;
+  --sidebar-border-color: light-dark(#bfbfbf, #686868) !important;
+
+  /* ::::: Dialog theme ::::: */
+  & #window-modal-dialog::backdrop {
+    /* Overlay when dialog is shown. */
+    background-color: rgb(20 20 20 / .2) !important;
+  }
+
+  &[dialogroot] {
+    /* Dialog */
+    --in-content-page-background: var(--arrowpanel-background) !important;
+    --in-content-page-color: var(--arrowpanel-color) !important;
+    /* Primary button */
+    --in-content-primary-button-text-color: var(--button-primary-color) !important;
+    --in-content-primary-button-background: var(--button-primary-bgcolor) !important;
+    --in-content-primary-button-background-hover: var(--button-primary-hover-bgcolor) !important;
+    --in-content-primary-button-background-active: var(--button-primary-active-bgcolor) !important;
+    /* Secondary button */
+    --in-content-button-text-color: var(--button-color) !important;
+    --in-content-button-background: var(--button-bgcolor) !important;
+    --in-content-button-background-hover: var(--button-hover-bgcolor) !important;
+    --in-content-button-background-active: var(--button-active-bgcolor) !important;
+    /* Text input */
+    --in-content-box-background: var(--input-bgcolor) !important;
+    --in-content-box-border-color: var(--input-border-color) !important;
+  }
+}
+
+/* Ensure that dark mode is enabled completely in private browsing mode. */
+@media (-moz-bool-pref: "browser.theme.dark-private-windows") {
+  :root[privatebrowsingmode="temporary"],
+  :root[privatebrowsingmode="temporary"] #nav-bar,
+  :root[privatebrowsingmode="temporary"] #PersonalToolbar {
+    --toolbar-color-scheme: dark !important;
+    --tab-selected-color-scheme: dark !important;
+    color-scheme: dark !important;
+  }
+}
+
+/* Make the titlebar buttons black/white on default themes */
+:root:not(:-moz-lwtheme)[tabsintitlebar] .titlebar-buttonbox {
+  color: var(--lwt-text-color) !important;
+}
+
+/* Status/link preview panel */
+#statuspanel-label {
+  background-color: var(--toolbar-field-focus-background-color) !important;
+  color: var(--toolbar-field-focus-color) !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 5px #0002, 0 0 0 1px light-dark(#0001, #0002) !important;
+  border-radius: 0 4px 0 0 !important;
+
+  #statuspanel[mirror] & {
+    border-radius: 4px 0 0 0 !important;
+  }
+}
+
+@media (-moz-platform: windows) {
+  /* Colour the text selection background and foreground. */
+  ::selection {
+    background-color: light-dark(#0078D4, #93B8E7) !important;
+    color: light-dark(#fff, #000) !important;
+  }
+
+  tooltip {
+    background-color: var(--arrowpanel-background) !important;
+    color: var(--arrowpanel-color) !important;
+    border-color: var(--arrowpanel-border-color) !important;
+  }
+
+  /* Use accent colour in titlebar when Windows option is enabled. */
+  @media (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "browser.theme.windows.accent-color-in-tabs.enabled") {
+    :root:not(:-moz-lwtheme) {
+      --lwt-accent-color: ActiveCaption !important;
+      --lwt-text-color: CaptionText !important;
+      --lwt-accent-color-inactive: InActiveCaption !important;
+      --lwt-text-color-inactive: InActiveCaptionText !important;
+    }
+  }
+
+  .titlebar-button:not(.titlebar-close):hover {
+    background-color: color-mix(in srgb, currentColor 11%, transparent) !important;
+
+    &:active {
+      background-color: color-mix(in srgb, currentColor 20%, transparent) !important;
+    }
+  }
+
+  .titlebar-close:hover {
+    stroke: white !important;
+    background-color: #e81123 !important;
+
+    &:active {
+      background-color: #DC5C66 !important;
+    }
+
+    toolbar[brighttext] &:active {
+      background-color: #971821 !important;
+    }
+  }
+
+  /* Library window colour theme. */
+  window#places {
+    --organizer-color: light-dark(#000, #fff) !important;
+    --organizer-deemphasized-color: light-dark(#666, #bbb) !important;
+    --organizer-toolbar-background: light-dark(#f7f7f7, #3B3B3B) !important;
+    --organizer-pane-background: light-dark(#f7f7f7, #2B2B2B) !important;
+    --organizer-content-background: light-dark(#f7f7f7, #1C1C1C) !important;
+    --organizer-hover-background: light-dark(#00000025, #ffffff25) !important;
+    --organizer-selected-background: light-dark(#006CBE80, #006CBE80) !important;
+    --organizer-outline-color: light-dark(#0055D7a0, #63ADE5) !important;
+    --organizer-toolbar-field-background: light-dark(#fff, #2B2B2B) !important;
+    --organizer-toolbar-field-background-focused: light-dark(#fff, #2B2B2B) !important;
+    --organizer-border-color: light-dark(#bfbfbf, #686868) !important;
+    scrollbar-color:
+      light-dark(#0006, #fff6)
+      light-dark(#f7f7f740, #2B2B2B40) !important;
+  }
+
+  #placesViewsBox #downloadsListBox richlistitem[selected="true"] {
+    background-color: light-dark(#006CBE, #006CBE) !important;
+    color: light-dark(#fff, #fff) !important;
+  }
+
+  #placeContentColumns :is(treecol, treecolpicker) {
+    background-color: light-dark(#f7f7f7, #3B3B3B) !important;
+    color: light-dark(#000, #fff) !important;
+    border-inline-start: 1px solid light-dark(#bfbfbf, #686868) !important;
+    box-shadow: inset 0 -1px light-dark(#bfbfbf, #686868) !important;
+    appearance: none !important;
+  }
+
+  #placeContentColumns :is(treecol, treecolpicker):where(:hover) {
+    background-color: light-dark(#cecece, #4A4A4A) !important;
+    color: light-dark(#000, #fff) !important;
+  }
+}
+
+/* Prevent macOS vibrancy appearance, instead using a solid background. */
+#sidebar-box {
+  appearance: none !important;
+}
+
+.sidebar-panel:not([lwt-sidebar]) {
+  color: light-dark(#000, #fff) !important;
+  scrollbar-color: light-dark(#0006, #fff6) light-dark(#f7f7f740, #3b3b3b40) !important;
+
+  /* Sidebar search box (Windows) */
+  @media(-moz-platform: windows) {
+    & #sidebar-search-container > #search-box,
+    & #viewButton {
+      appearance: none !important;
+      background-color: var(--toolbar-field-background-color) !important;
+      color: inherit !important;
+      border: 1px solid var(--input-border-color) !important;
+      border-radius: 4px !important;
+      padding: 6px 8px !important;
+
+      &:focus {
+        outline: 2px solid var(--input-border-color) !important;
+        outline-offset: -2px !important;
+        border-color: transparent !important;
+      }
+    }
+  }
+}
+
+@-moz-document url(chrome://browser/content/syncedtabs/sidebar.xhtml) {
+  body {
+    background: transparent !important;
+  }
+}
+
+/* Linux / GTK csd support */
+@media (-moz-gtk-csd-available) {
+  :root:not(:-moz-lwtheme),
+  /* `--newtab-background-color-secondary used` to differentiate between a dark
+   * private window and private window with the 'Dark' theme enabled.
+   * May not be the most reliable method, but works for now up to FF 123. */
+  :root[privatebrowsingmode="temporary"]:where([style*="--lwt-accent-color: rgb(28, 27, 34)"]:not([style*="--newtab-background-color-secondary: rgb(66, 65, 77)"])) {
+    /* Used for mixing colours differently in light/dark themes. */
+    --uc-tint: light-dark(black, white);
+    /* Colour adjusted for readability. */
+    --uc-accent-adjusted: light-dark(
+      color-mix(in oklch, AccentColor 92%, black),
+      color-mix(in oklch, AccentColor 60%, white)
+    );
+    /* Toolbars */
+    --lwt-accent-color: light-dark(color-mix(in srgb, ActiveCaption 90%, black), ActiveCaption) !important;
+    --lwt-accent-color-inactive: light-dark(color-mix(in srgb, InactiveCaption 94%, black), InactiveCaption) !important;
+    --lwt-text-color: CaptionText !important;
+    --lwt-text-color-inactive: color-mix(in srgb, CaptionText 65%, transparent) !important;
+    --tab-selected-textcolor: var(--toolbar-color) !important;
+    --tab-selected-textcolor-inactive: color-mix(in srgb, var(--toolbar-color) 65%, transparent) !important;
+    --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
+    --tab-attention-icon-color: var(--uc-accent-adjusted) !important;
+    --toolbar-bgcolor: light-dark(-moz-dialog, color-mix(in srgb, -moz-dialog 92%, white)) !important;
+    --toolbar-color: -moz-dialogtext !important;
+    --toolbarbutton-icon-fill-attention: var(--uc-accent-adjusted) !important;
+    --chrome-content-separator-color: color-mix(in srgb, currentColor 17%, var(--toolbar-bgcolor)) !important;
+    --newtab-background-color: light-dark(-moz-dialog, color-mix(in srgb, -moz-dialog 82%, black)) !important;
+    /* URL bar */
+    --toolbar-field-background-color: light-dark(Field, color-mix(in srgb, Field 96%, -moz-dialogtext)) !important;
+    --toolbar-field-color: FieldText !important;
+    --toolbar-field-focus-border-color: light-dark(color-mix(in srgb, var(--focus-outline-color) 50%, transparent), var(--focus-outline-color)) !important;
+    --urlbar-box-bgcolor: var(--button-bgcolor) !important;
+    --urlbar-box-hover-bgcolor: var(--button-hover-bgcolor) !important;
+    --urlbar-box-active-bgcolor: var(--button-active-bgcolor) !important;
+    /* URL bar suggestions. */
+    --link-color: var(--uc-accent-adjusted) !important;
+    --uc-urlbarView-accent-color: var(--uc-accent-adjusted) !important;
+    --urlbarView-highlight-background: var(--panel-item-hover-bgcolor) !important;
+    --urlbarView-highlight-color: var(--toolbar-field-color) !important;
+    --urlbarView-hover-background: var(--panel-item-active-bgcolor) !important;
+    --urlbarView-separator-color: var(--panel-separator-color) !important;
+    /* Menus/panels */
+    --arrowpanel-background: Field !important;
+    --arrowpanel-color: FieldText !important;
+    --arrowpanel-border-color: light-dark(transparent, var(--panel-separator-color)) !important;
+    --arrowpanel-dimmed: color-mix(in srgb, currentColor 17%, transparent) !important;
+    --arrowpanel-dimmed-further: color-mix(in srgb, currentColor 30%, transparent) !important;
+    --panel-separator-color: color-mix(in srgb, currentColor 17%, var(--arrowpanel-background)) !important;
+    --panel-description-color: GrayText !important;
+    --panel-disabled-color: GrayText !important;
+    --panel-item-hover-bgcolor: color-mix(in srgb, currentColor 8%, transparent) !important;
+    --panel-item-active-bgcolor: color-mix(in srgb, currentColor 13%, transparent) !important;
+    /* Primary button */
+    --button-primary-bgcolor: AccentColor !important;
+    --button-primary-color: AccentColorText !important;
+    --button-primary-hover-bgcolor: color-mix(in srgb, var(--uc-tint) 10%, var(--button-primary-bgcolor)) !important;
+    --button-primary-active-bgcolor: color-mix(in srgb, var(--uc-tint) 20%, var(--button-primary-bgcolor)) !important;
+    /* Secondary button */
+    --button-bgcolor: color-mix(in srgb, currentColor 10%, transparent) !important;
+    --button-color: currentColor !important;
+    --button-hover-bgcolor: color-mix(in srgb, currentColor 14%, transparent) !important;
+    --button-active-bgcolor: color-mix(in srgb, currentColor 20%, transparent) !important;
+    /* Text input field, e.g. bookmarks editor. */
+    --focus-outline-color: var(--uc-accent-adjusted) !important;
+    --input-bgcolor: var(--arrowpanel-background) !important;
+    --input-color: var(--arrowpanel-color) !important;
+    --input-border-color: color-mix(in srgb, currentColor 35%, var(--arrowpanel-background)) !important;
+    /* Sidebar */
+    --sidebar-background-color: var(--toolbar-color) !important;
+    --sidebar-text-color: var(--toolbar-color) !important;
+    --sidebar-border-color: var(--chrome-content-separator-color) !important;
+  }
+
+  /* Use the same sidebar splitter style as other platforms. */
+  .sidebar-splitter {
+    border: 0 solid var(--sidebar-border-color) !important;
+    border-inline-end-width: 1px !important;
+    width: 4px !important;
+    background-color: transparent !important;
+    margin-inline-start: -4px !important;
+  }
+}
