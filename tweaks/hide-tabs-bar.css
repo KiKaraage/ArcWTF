@@ -1,0 +1,83 @@
+/* ArcWTF - tweaks/hide-tabs-bar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+:root:not([customizing]) {
+  /* Height of navbar, used for determining height and position of window controls */
+  --uc-navbar-height: 36px;
+  /* Drag space next to the window controls, allows you to move the window more easily */
+  --uc-titlebar-drag-space: 40px;
+
+  @media not (-moz-bool-pref: "uc.tweak.hide-tabs-bar.only-when-maximised") {
+    /* Hide the tabs */
+    & #TabsToolbar {
+      visibility: collapse !important;
+    }
+
+  /* macOS specific positioning */
+  @media (-moz-platform: macos) {
+    &[inFullscreen] {
+      /* Hide the tabs */
+      & #TabsToolbar {
+        visibility: collapse !important;
+      }
+    }
+
+    @media not (-moz-bool-pref: "uc.tweak.hide-tabs-bar.only-when-maximised") {
+      /* Offset navbar contents to make space for the window controls */
+      &[tabsintitlebar] #nav-bar:not([inFullscreen]) {
+        padding-left: calc(70px + var(--uc-titlebar-drag-space)) !important;
+
+        /* Remove the padding from the side of the navbar */
+        & #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child {
+          padding-inline-start: 0 !important;
+        }
+      }
+
+      /* Positioning of the window controls */
+      #TabsToolbar .titlebar-buttonbox-container {
+        visibility: visible !important;
+        position: fixed !important;
+        height: calc(var(--uc-navbar-height) + var(--uc-tab-top-margin)));
+        margin: 0 !important;
+        top: 0;
+        left: 0;
+
+        & .titlebar-buttonbox {
+          margin-inline: calc((var(--uc-navbar-height) + var(--uc-tab-top-margin, 0px) - 14px) / 2) !important;
+        }
+      }
+    }
+  }
+
+  /* Windows specific positioning */
+  @media (-moz-platform: windows) {
+    /* Offset navbar contents to make space for the window controls */
+    &:where([inFullscreen], [tabsintitlebar]) #nav-bar {
+      padding-right: calc(100px + var(--uc-titlebar-drag-space)) !important;
+
+      /* Remove the padding from the side of the navbar */
+      & #PanelUI-menu-button {
+        padding-inline-end: 0 !important;
+      }
+    }
+
+    /* Positioning of the window controls */
+    & #toolbar-menubar[inactive] + #TabsToolbar .titlebar-buttonbox {
+      visibility: visible !important;
+      position: fixed !important;
+      top: 0;
+      right: 0;
+      height: calc(var(--uc-navbar-height) - var(--uc-tab-top-margin, 0)) !important;
+      z-index: 3 !important;
+      color: var(--toolbar-color) !important;
+    }
+
+    /* Set background colour of the menu bar to maintain consistency with the navbar */
+    @media not (-moz-bool-pref: "uc.tweak.floating-tabs") {
+      #toolbar-menubar {
+        background-color: var(--toolbar-bgcolor) !important;
+        color: var(--toolbar-color) !important;
+      }
+    }
+  }
+}
