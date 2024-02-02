@@ -1,0 +1,254 @@
+/* ArcWTF - urlbar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+/* Variables */
+:root {
+  --urlbar-min-height: 24px !important;
+  --urlbarView-item-inline-padding: calc(1px + var(--uc-urlbar-inline-padding) + var(--uc-urlbar-icon-inline-padding)) !important;
+  --urlbar-icon-border-radius: 9px !important;
+  --urlbar-icon-padding: calc(var(--toolbarbutton-inner-padding) - 2px) !important;
+  --urlbar-margin-inline: 2px !important;
+  --identity-box-margin-inline: 4px !important;
+  --uc-urlbar-icon-inline-padding: calc(var(--uc-toolbarbutton-inner-inline-padding));
+  --uc-urlbar-inline-padding: 5px;
+  --uc-urlbar-shadow: 0 0 0px rgb(0 0 0 / .1);
+
+  /* urlbar height */
+  & #urlbar-container {
+    --urlbar-container-height: calc(8px + 16px + var(--toolbarbutton-inner-padding) * 2) !important;
+  }
+
+  & #urlbar {
+    --urlbar-toolbar-height: calc(5px + 16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    --urlbar-height: calc(16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    --urlbar-min-height: calc(16px + var(--toolbarbutton-inner-padding) * 2) !important;
+
+  }
+
+  /* Spacing for urlbar suggestion icons. */
+  .urlbarView-row {
+    --urlbarView-icon-margin-start: 0 !important;
+    --urlbarView-icon-margin-end: calc(var(--uc-urlbar-icon-inline-padding) + var(--identity-box-margin-inline)) !important;
+  }
+}
+
+/* Appearance for URL bar. */
+#urlbar-background,
+#searchbar {
+  border-radius: calc(var(--urlbar-icon-border-radius) + 2px) !important;
+  border-color: transparent !important;
+
+  /* Shadow for URL bar, only appears in light mode. */
+  :root:not(:-moz-lwtheme) #nav-bar:not([brighttext]) & {
+    box-shadow: var(--uc-urlbar-shadow, none);
+  }
+
+  /* Appearance when the URL bar is expanded. */
+  #urlbar[open] & {
+    border-radius: 8px !important;
+    border-color: transparent !important;
+    outline: 0px solid var(--arrowpanel-border-color) !important;
+
+    &:not(:-moz-lwtheme) {
+      outline-color: transparent !important;
+    }
+  }
+}
+
+/* Add padding to sides of URL bar. */
+#urlbar-input-container,
+#searchbar {
+  padding-inline: var(--uc-urlbar-inline-padding) !important;
+}
+
+#urlbar #urlbar-input {
+   text-align: center !important
+}
+#urlbar:not([focused="true"]) > #urlbar-background {background: transparent !important;}
+
+/* URL bar suggestions container. */
+.urlbarView {
+  margin-inline: 0 !important;
+  width: 100% !important;
+  border-inline: 0 !important;
+  padding-block: 0 !important;
+
+  & .urlbarView-body-inner {
+    width: 100% !important;
+    margin-inline: 0 !important;
+  }
+
+  /* Remove padding from top of URL bar results, not needed as URL bar input already has padding. */
+  & .urlbarView-results {
+    padding-block-start: 0 !important;
+  }
+}
+
+/* URL bar item. */
+.urlbarView-row {
+  padding-block: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+
+  & .urlbarView-row-inner {
+    padding-block: 8px !important;
+  }
+}
+
+/* Add highlighted marker to the left of selected URL bar items. */
+.urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner,
+.urlbarView-row-inner[selected] {
+  box-shadow: 3px 0 var(--uc-urlbarView-accent-color, var(--toolbar-field-focus-border-color)) inset !important;
+}
+
+/* Keep URL bar in place when expanding. */
+#urlbar[breakout][breakout-extend] {
+  left: 0 !important;
+  width: 100% !important;
+}
+
+/* Search engine selector */
+.search-one-offs:not([hidden]) {
+  padding-block: 6px !important;
+
+  & .searchbar-engine-one-off-item {
+    min-width: 30px !important;
+    height: 30px !important;
+  }
+
+  .urlbarView:not([noresults]) > & {
+    border-color: var(--urlbarView-separator-color) !important;
+  }
+
+  #urlbar-anon-search-settings {
+    margin-inline-end: 8px !important;
+  }
+}
+
+/* Search engine indicator. */
+#urlbar-search-mode-indicator {
+  :root:not(:-moz-lwtheme) & {
+    background-color: var(--urlbar-box-hover-bgcolor) !important;
+  }
+
+  & #urlbar-search-mode-indicator-title {
+    font-size: 0.8em !important;
+  }
+}
+
+/* Remove border between URL bar input and suggestions. */
+#urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
+  border-top: 0 !important;
+  align: center !important;
+}
+
+/* Buttons inside the URL bar. */
+.urlbar-page-action,
+#urlbar-go-button,
+.search-go-button,
+#tracking-protection-icon-container,
+#identity-icon-box {
+  padding-inline: var(--uc-urlbar-icon-inline-padding) !important;
+  width: calc(var(--uc-urlbar-icon-inline-padding) * 2 + 16px) !important;
+}
+
+/* Site information and Permissions buttons. */
+#identity-icon-box,
+#identity-permission-box,
+.notification-anchor-icon {
+  padding-inline: var(--uc-urlbar-icon-inline-padding) !important;
+}
+
+/* Zoom level and tab container indicators. */
+#userContext-icons,
+#urlbar-zoom-button {
+  padding-inline: var(--uc-urlbar-icon-inline-padding) !important;
+  margin-block: 0 !important;
+  margin-inline: 0 !important;
+  visibility: collapse !important;
+}
+
+/* Move tracking protection button. */
+#tracking-protection-icon-container,
+#page-action-buttons {
+  order: 2 !important;
+}
+
+/* Hide tracking protection button when not hovering over URL bar.
+#urlbar-container:not(:hover) #tracking-protection-icon-container:not([open]) {
+  visibility: collapse !important;
+} */
+
+/* Focus border for URL bar. */
+#urlbar[focused="true"]:not([suppress-focus-border]) > #urlbar-background,
+#searchbar:focus-within {
+  outline-offset: calc(var(--focus-outline-width) * -1 + 1px) !important;
+}
+
+/* Pin icon for URL bar suggested sites. */
+.urlbarView-row[pinned] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-type-icon {
+  fill: var(--toolbar-field-color) !important;
+}
+
+#urlbar-input::placeholder,
+.searchbar-textbox::placeholder {
+  opacity: 0.6 !important;
+   font-size: 0.8em !important;
+}
+
+/* Make the lock icon brighter in dark mode. */
+#nav-bar[brighttext] #identity-box:not([pageproxystate="invalid"]) #identity-icon {
+  fill-opacity: calc(var(--urlbar-icon-fill-opacity) * 1.8) !important;
+}
+
+/* Make the URL bar label opaque in light mode, matching the icons. */
+#nav-bar:not([brighttext]) #identity-box #identity-icon-label {
+  opacity: var(--urlbar-icon-fill-opacity) !important;
+}
+
+/* Label on the left of the URL bar, shown when viewing Firefox or extension pages. */
+#identity-box[pageproxystate="valid"]:is(.notSecureText, .chromeUI, .extensionPage) > .identity-box-button {
+  position: relative;
+  width: unset !important;
+
+  /* Spacing between the icon and label. */
+  & #identity-icon-label {
+  visibility: collapse !important;
+  }
+
+  /* Separator to the right of the label. */
+  &::after {
+    content: "";
+    position: absolute;
+    height: 16px;
+    border-right: 0px solid currentColor;
+    right: 0;
+    inset-block: 0;
+    margin-block: auto;
+    opacity: 0;
+  }
+
+  /* Fractional scaling adjustments (150%, 175%, etc.) */
+  @media (1dppx < resolution < 2dppx) {
+    &::after {
+      border-right-width: 1.5px !important;
+    }
+  }
+
+  /* Remove background from urlbar box. */
+  &:not(:hover, [open]) {
+    background-color: transparent !important;
+
+    /* Separator opacity */
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  /* Fade transition for separator. */
+  @media not (prefers-reduced-motion) {
+    &::after {
+      transition: opacity 0.2s ease;
+    }
+  }
+}

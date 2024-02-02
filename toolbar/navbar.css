@@ -1,0 +1,101 @@
+/* ArcWTF - navbar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+:root {
+  --toolbarbutton-border-radius: 4px !important;
+  --toolbarbutton-inner-padding: 5px !important;
+  --uc-toolbarbutton-inner-inline-padding: 4px !important;
+  --toolbarbutton-outer-padding: 6px !important;
+  --tabs-navbar-shadow-size: 0px !important;
+}
+
+#navigator-toolbox::after {
+      border-bottom: 0px !important;
+  }
+#nav-bar {
+    box-shadow: none !important;
+    border-top: none !important;
+  }
+
+#nav-bar .toolbarbutton-1>.toolbarbutton-icon {
+  width: calc(2 * var(--uc-toolbarbutton-inner-inline-padding) + 16px) !important;
+  scale: 0.8;
+}
+
+#nav-bar .toolbarbutton-1>.toolbarbutton-icon,
+#nav-bar .toolbarbutton-1>.toolbarbutton-text,
+#nav-bar .toolbarbutton-1>.toolbarbutton-badge-stack {
+  padding-inline: var(--uc-toolbarbutton-inner-inline-padding) !important;
+}
+
+/* move reload/stop icon to middle of button */
+#reload-button>.toolbarbutton-animatable-box,
+#stop-button>.toolbarbutton-animatable-box {
+  top: calc(50% - 10px) !important;
+}
+
+#nav-bar-customization-target :where(#reload-button, #stop-button)>.toolbarbutton-icon {
+  padding: var(--toolbarbutton-inner-padding) var(--uc-toolbarbutton-inner-inline-padding) !important;
+}
+
+toolbar .toolbaritem-combined-buttons {
+  margin-inline: var(--toolbarbutton-outer-padding) !important;
+}
+
+/* account button */
+.browser-toolbar #fxa-toolbar-menu-button,
+.browser-toolbar #fxa-toolbar-menu-button>.toolbarbutton-badge-stack,
+#fxa-avatar-image {
+  border-radius: 110px !important;
+}
+
+.browser-toolbar #fxa-toolbar-menu-button>.toolbarbutton-badge-stack {
+  padding: var(--toolbarbutton-inner-padding) !important;
+  margin-inline: calc(var(--uc-toolbarbutton-inner-inline-padding) - var(--toolbarbutton-inner-padding)) !important;
+}
+
+#fxa-toolbar-menu-button {
+  display: flex !important;
+}
+
+#PanelUI-button {
+  order: -1 !important;
+  padding-left: 3px;
+  padding-right; 0px;}
+
+#widget-overflow-list>#fxa-toolbar-menu-button #fxa-avatar-image {
+  scale: 1.0 !important;
+}
+
+.customization-target>#fxa-toolbar-menu-button #fxa-avatar-image {
+  scale: 1.2 !important;
+}
+
+/* button background transition */
+@media not (prefers-reduced-motion) {
+  .toolbarbutton-1>.toolbarbutton-icon,
+  .toolbarbutton-1>.toolbarbutton-text,
+  .toolbarbutton-1>.toolbarbutton-badge-stack,
+  :not(.panel-subview-body>toolbaritem)>.bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  panel button,
+  panel menulist,
+  .titlebar-button {
+    transition: background-color 0.25s ease !important;
+  }
+
+  .toolbarbutton-1:not([disabled=true]):is([open], [checked], :hover:active)>.toolbarbutton-icon,
+  .toolbarbutton-1:not([disabled=true]):is([open], [checked], :hover:active)>.toolbarbutton-text,
+  .toolbarbutton-1:not([disabled=true]):is([open], [checked], :hover:active)>.toolbarbutton-badge-stack,
+  :not(.panel-subview-body>toolbaritem)>.bookmark-item:not(menu, menuitem):not([disabled=true]):is([open], [checked], :hover:active),
+  .urlbar-page-action:not([disabled=true]):is([open], [checked], :hover:active),
+  .identity-box-button:not([disabled=true]):is([open], [checked], :hover:active),
+  #tracking-protection-icon-container:not([disabled=true]):is([open], [checked], :hover:active),
+  panel button:not([disabled=true]):is([open], [checked], :hover:active),
+  panel menulist:not([disabled=true]):is([open], [checked], :hover:active),
+  .titlebar-button:not([disabled=true]):hover:active {
+    transition-duration: 0s !important;
+  }
+}
