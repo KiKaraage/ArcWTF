@@ -30,7 +30,7 @@ I modify, made and test this theme on Firefox 122, Windows 10. Based on edge-frf
 ## Applying the theme
 <b>Installing extensions and choosing theme</b>
 * Install [Sidebery](https://github.com/mbnuqw/sidebery)
-* Open Sidebery settings, go to the Style Editor and paste the [CSS config](docs/sidebery/sidebery-css)
+* Open Sidebery settings, go to the Style Editor and paste the [CSS config](sidebery/sidebery-css)
 * Install [Userchrome Toggle](https://addons.mozilla.org/id/firefox/addon/userchrome-toggle/) to toggle vertical tab state ('fixed' or 'hidden, hover to show tab sidebar')
 * Open `about:addons`, click 'Userchrome Toggle', go to 'Options' tab
 * Disable 'Display a notification'
