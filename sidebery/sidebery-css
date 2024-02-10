@@ -24,6 +24,8 @@
   background: #f2f2f250;
   padding: -10px;
   color: #ffffff20;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .Tab .title {
