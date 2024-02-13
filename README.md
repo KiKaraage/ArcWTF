@@ -50,7 +50,8 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
   * Check 'Root Directory' and click 'Open Folder'/'Show in Finder'
   * Click and open 'chrome' folder (or create the folder if it isn't existed yet)
   * Paste folders and files from this repo to the chrome folder
-  * Go to `about:config`, paste `toolkit.legacyUserProfileCustomizations.stylesheets` into the bar and set its value to true`
+  * Go to `about:config`, paste `toolkit.legacyUserProfileCustomizations.stylesheets` into the bar and set its value to true/choose Boolean and click + (plus) icon.
+  * After that, paste `svg.context-properties.content.enabled` into the bar and set its value to true/choose Boolean and click + (plus) icon.
   * Restart Firefox
 
  <b>(3/3) How to use this theme?</b>
