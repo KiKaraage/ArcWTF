@@ -12,120 +12,12 @@
 
 /* Tweaks */
 @import url("global/tweaks.css");
-@import url("tweaks/hide-tabs-bar.css") (-moz-bool-pref: "uc.tweak.hide-tabs-bar");
-@import url("tweaks/cleaner_extensions_menu.css");
+@import url("tweaks/hide-tabs-bar.css");
+@import url("tweaks/extensions.css");
+@import url("tweaks/sidebar.css");
 
 /* Import custom stylesheet instead of modifying the theme files. */
 @import url("custom.css");
 
-/* Show sidebar only when the cursor is over it  */
-/* The border controlling sidebar width will be removed so you'll need to modify these values to change width */
-
-#sidebar-box{
-  --uc-sidebar-width: 4px;
-  --uc-sidebar-hover-width: 200px;
-  --uc-autohide-sidebar-delay: 100ms; /* Wait 0.1s before hiding sidebar */
-  --uc-autohide-transition-duration: 115ms;
-  --uc-autohide-transition-type: linear;
-  position: relative;
-  min-width: var(--uc-sidebar-width) !important;
-  width: var(--uc-sidebar-width) !important;
-  max-width: var(--uc-sidebar-width) !important;
-  z-index:1;
-}
-
-#sidebar-box[positionend]{ direction: rtl }
-#sidebar-box[positionend] > *{ direction: ltr }
-
-#sidebar-box[positionend]:-moz-locale-dir(rtl){ direction: ltr }
-#sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
-
-#main-window[sizemode="maximized"] #sidebar-box{ --uc-sidebar-width: 1px; }
-#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 1px; }
-
-#sidebar-splitter{ display: none }
-
-#sidebar-header{
-  overflow: hidden;
-  color: var(--chrome-color, inherit) !important;
-  padding-inline: 0 !important;
-}
-
-#sidebar-header::before,
-#sidebar-header::after{
-  content: "";
-  display: flex;
-  padding-left: 8px;
-}
-
-#sidebar-header,
-#sidebar{
-  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
-  min-width: var(--uc-sidebar-width) !important;
-  will-change: min-width;
-}
-#sidebar-box:hover > #sidebar-header,
-#sidebar-box:hover > #sidebar{
-  min-width: var(--uc-sidebar-hover-width) !important;
-  transition-delay: 0ms !important;
-}
-
-.sidebar-panel{
-  background-color: transparent !important;
-  color: var(--newtab-text-primary-color) !important;
-}
-
-.sidebar-panel #search-box{
-  -moz-appearance: none !important;
-  background-color: rgba(249,249,250,0.1) !important; 
-  color: inherit !important;
-}
-
-/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
-
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel{
-  inset-inline: auto 0px !important;
-}
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label{
-  margin-inline: 0px !important;
-  border-left-style: solid !important; 
-}
-
-/* Collapsing sidebar header */
-#sidebar-header {
-  visibility: collapse !important;
- }
-
-#main-window[titlepreface*="|| "] {
-  --ovrl-wdt: var(--ovrl-max-wdt);
-  
-  & :is(#sidebar-box) {
-  --uc-sidebar-width: var(--uc-sidebar-hover-width);
-    opacity: 100%;
-    overflow: visible;
-    
-    /* & > * { opacity: 100%; } */
-  }
-
-  & .browserContainer::after {
-    margin-left: calc(var(--sdbr-real-wdt) * -1);
-  }
-  
-  & #browser > #appcontent {
-    margin-left: var(--sdbr-real-wdt);
-  }
-  & #appcontent browser {
-    margin-left: 0px;
-  }
-  & #statuspanel { margin-left: 2px }
-}
-
-/* Replacing Userchrome Toggle icon with a sidebar icon */
+/* Replacing Userchrome Toggle icon with Arc sidebar icon */
 :is(.webextension-browser-action, .eom-addon-button)[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon { list-style-image: url(./icons/userchrome-toggle.svg); }
-
-/* Hiding window controls when Firefox is in fullscreen */
-.titlebar-buttonbox, #window-controls{ color: var(--toolbar-color) }
-:root[sizemode="fullscreen"] .titlebar-buttonbox-container{ display:none !important;
-}
-:root[sizemode="fullscreen"] #TabsToolbar > .titlebar-buttonbox-container:last-child,
-:root[uidensity="compact"][sizemode="fullscreen"] #window-controls{ height: 32px }
