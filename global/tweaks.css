@@ -1,12 +1,5 @@
 /* ArcWTF - tweaks.css */
 
-/* disable drag space above tabs */
-@media (-moz-bool-pref: "uc.tweak.disable-drag-space") {
-  :root {
-    --uc-tab-top-margin: 0px !important;
-  }
-}
-
 /* force tabs to toolbar bg (useful for proton themes) (might experience some
 bugs with certain themes eg. dark text on dark background.) */
 @media (-moz-bool-pref: "uc.tweak.force-tab-colour") {
@@ -26,7 +19,7 @@ bugs with certain themes eg. dark text on dark background.) */
   }
 }
 
-@media (-moz-bool-pref: "uc.tweak.floating-tabs") {
+@media  {
   :root:not(:-moz-lwtheme),
   /* `--newtab-background-color-secondary used` to differentiate between a dark
    * private window and private window with the 'Dark' theme enabled.
