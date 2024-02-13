@@ -13,7 +13,10 @@ Any suggestions or concerns? [Submit new issues](https://github.com/KiKaraage/Ar
 
 ## Compability
 I modify, made and test this theme on Firefox 122, Windows 10. Based on edge-frfox's compability, this theme can work with Linux and MacOS too.
+
 ArcWTF will clash with the default Firefox system theme, dark themes that have light toolbar/light URL bar, and light themes with dark toolbar/dark URL bar.
+
+Vertical tabs are currently disabled in Private Browsing Mode due to behaviour clashes with window controls.
 
 <details> 
   <summary>For Floorp, there's several incompability I currently have since it might clashed with several parts of the built-in theme they had, like:</summary>
