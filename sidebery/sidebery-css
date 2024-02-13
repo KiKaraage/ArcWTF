@@ -17,7 +17,6 @@
 #root.root {--general-margin: 1px;}
 #root.root {--nav-btn-height: 25px;}
 #root.root {--nav-btn-width: 25px;}
-#root.root {--ntb-padding: 10px;}
 #root.root {--ntb-btn-height: 25px;}
 #root.root {--tabs-pinned-width: calc( (96vw - (var(--tabs-margin)*var(--pinned-tabs-col))) / var(--pinned-tabs-col));}
 #root.root {--tabs-pinned-height: 42px;}
