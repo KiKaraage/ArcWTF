@@ -2,7 +2,9 @@
 For you who want to try new, shiny Arc Browser on Windows! No registration needed, compatible for all Windows versions ✨
 
 Based on [edge-frfox theme by bmFtZQ](https://github.com/bmFtZQ/edge-frfox).
+
 Vertical tab sidebar setup derived from [arcticfox-theme by Sirlan-ff00ff](https://github.com/sirlan-ff00ff/arcticfox-theme).
+
 Any suggestions or concerns? [Submit new issues](https://github.com/KiKaraage/ArcWTF/issues/new/choose) or [contact me on Reddit](https://www.reddit.com/r/FirefoxCSS/comments/1acgx8c/arcftw_attempt_to_replicate_arc_browser_sleek/).
 
 ## Previews
