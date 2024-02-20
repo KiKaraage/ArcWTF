@@ -1,51 +1,87 @@
+/* PINNED TABS */
+
 /* Control how much pinned tabs column you want below, width of the pinned tabs will be automatically resized depend on it. */
 #root.root {--pinned-tabs-col: 3;}
 
-/* ------------------------------------- */
-
-/* Moving navigation bar to bottom if horizontal layout is set, to mimic how Space works on Arc Browser. */
-.top-horizontal-box {
-  display: flex;
-  order: 1; 
-}
-
-.NavigationBar .nav-item {
-  transform: rotateX(180deg);
-}
-
-.hidden-panels-popup-layer {
-  margin-top: -3rem;
-  transform: rotateY(180deg) rotateZ(180deg);
-}
-
-/* ------------------------------------- */
-
-#root.root {--tabs-height: 37px;}
-#root.root {--toolbar-bg: transparent;}
-#root.root {--general-border-radius: 6px;}
-#root.root {--general-margin: 1px;}
-#root.root {--nav-btn-height: 25px;}
-#root.root {--nav-btn-width: 25px;}
-#root.root {--ntb-btn-height: 25px;}
-#root.root {--tabs-pinned-width: calc( (96vw - (var(--tabs-margin)*var(--pinned-tabs-col))) / var(--pinned-tabs-col));}
+#root.root {--tabs-pinned-width: calc( (95vw - (var(--tabs-margin)*var(--pinned-tabs-col))) / var(--pinned-tabs-col));}
 #root.root {--tabs-pinned-height: 42px;}
-#root.root {--tabs-close-btn-margin: 5px;}
-#root.root {--tabs-inner-gap: 10px;}
-#root.root {--nav-btn-margin: 8px;}
-#root.root {--tabs-margin: 7px;}
 
 .Tab[data-pin="true"] .body {
-	border: 0px solid #00000030;
 	box-shadow: 0px 2px 1px #00000000;
   background: #f2f2f250;
-  padding: -10px;
   color: #ffffff20;
   padding-left: 6px;
   padding-right: 6px;
 }
 
+/* GENERAL */
+
+#root.root {--tabs-height: 37px;}
+#root.root {--tabs-margin: 7px;}
+#root.root {--tabs-indent: 18px;}
+#root.root {padding-top: 3px;}
+#root.root {padding-left: 3px;}
+#root.root {padding-bottom: 3px;}
+#root.root {--tabs-close-btn-margin: 5px;}
+#root.root {--tabs-inner-gap: 10px;}
+#root.root {--ntb-btn-height: 25px;}
+#root.root {--general-border-radius: 7px;}
+
 .Tab .title {
-	background: linear-gradient(90deg, var(--tabs-normal-fg) 70%, #f1f1f100 95%);
+	background: linear-gradient(90deg, var(--tabs-normal-fg) 80%, #f1f1f100 99%);
 	background-clip: text;
 	color: transparent;
+}
+
+/* NAVBAR */
+
+#root.root {--nav-btn-width: 25px;}
+#root.root {--nav-btn-height: 25px;}
+#root.root {--nav-btn-margin: 4px;}
+#root.root {--toolbar-bg: transparent;}
+
+/* Moving Sidebery navigation bar to bottom, to mimic how Space works on Arc Browser. Make sure to choose Horizontal when activating the navigation bar. */
+.top-horizontal-box {
+  display: flex;
+  order: 1; 
+}
+
+/* Settings related to Hidden Panels icon and popup layer, adapting to the flipped navbar orientation. */
+#hidden_panels_btn.nav-item .icon {
+  transform: scaleY(-1);
+}
+.hidden-panels-popup-layer {
+  transform: scaleY(-1);  
+  margin-top: -15%;
+  --toolbar-bg: var(--frame-bg);
+}
+.NavigationBar .hidden-panels-popup-content {
+  transform: scaleY(-1);
+}
+
+/* Remove background color, border and shadow for active tab panel. */
+.NavigationBar .nav-item[data-active="true"] {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Replacing non-active tabs (including bookmark panels) to small dot icon. */
+.NavigationBar .nav-item[data-active="false"] .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  mask: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZmlsbD0ibm9uZSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDE1IDE1IiB3aWR0aD0iMTUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkuODc1IDcuNUM5Ljg3NSA4LjgxMTY4IDguODExNjggOS44NzUgNy41IDkuODc1QzYuMTg4MzIgOS44NzUgNS4xMjUgOC44MTE2OCA1LjEyNSA3LjVDNS4xMjUgNi4xODgzMiA2LjE4ODMyIDUuMTI1IDcuNSA1LjEyNUM4LjgxMTY4IDUuMTI1IDkuODc1IDYuMTg4MzIgOS44NzUgNy41WiIgZmlsbD0iY3VycmVudENvbG9yIi8+PC9zdmc+");
+}
+
+/* Replacing 'history' panel with an archive icon to mimic Arc's 'recently closed' button. */
+.NavigationBar #navhistory.nav-item .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  mask: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMSAtMSAxMDAgMTAwOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIxIC0xIDEwMCAxMDAiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjx0aXRsZS8+PGc+PHBhdGggZD0iTTc2LDI5LjVIMjZjLTUsMC05LDQtOSw5djQzYzAsNSw0LDksOSw5aDUwYzUsMCw5LTQsOS05di00M0M4NSwzMy41LDgxLDI5LjUsNzYsMjkuNXogTTY1LjMsNTMuOGMwLDEuNy0xLjMsMy0zLDNIMzkuNyAgIGMtMS43LDAtMy0xLjMtMy0zdi03LjZjMC0xLjcsMS4zLTMsMy0zczMsMS4zLDMsM3Y0LjZoMTYuNnYtNC42YzAtMS43LDEuMy0zLDMtM3MzLDEuMywzLDNWNTMuOHoiLz48cGF0aCBkPSJNMjYsMjQuNWg1MGMxLjcsMCwzLTEuMywzLTNzLTEuMy0zLTMtM0gyNmMtMS43LDAtMywxLjMtMywzUzI0LjMsMjQuNSwyNiwyNC41eiIvPjxwYXRoIGQ9Ik0zMSwxMy41aDQwYzEuNywwLDMtMS4zLDMtM3MtMS4zLTMtMy0zSDMxYy0xLjcsMC0zLDEuMy0zLDNTMjkuMywxMy41LDMxLDEzLjV6Ii8+PC9nPjwvc3ZnPg==");
+}
+
+/* Replacing 'add tabs panels' button with a plus icon to mimic Arc's 'new space' button. */
+.NavigationBar #add_tp.nav-item .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  mask: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQ7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7b3BhY2l0eTowLjI7ZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo1LjAwMDAwMGUtMDI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fQo8L3N0eWxlPjxnIGlkPSJncmlkX3N5c3RlbSIvPjxnIGlkPSJfaWNvbnMiPjxwYXRoIGQ9Ik01LDEzaDZ2NmMwLDAuNiwwLjQsMSwxLDFzMS0wLjQsMS0xdi02aDZjMC42LDAsMS0wLjQsMS0xcy0wLjQtMS0xLTFoLTZWNWMwLTAuNi0wLjQtMS0xLTFzLTEsMC40LTEsMXY2SDUgICBjLTAuNiwwLTEsMC40LTEsMVM0LjQsMTMsNSwxM3oiLz48L2c+PC9zdmc+");
 }
