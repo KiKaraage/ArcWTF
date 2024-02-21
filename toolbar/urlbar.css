@@ -9,8 +9,8 @@
   --urlbar-icon-padding: calc(var(--toolbarbutton-inner-padding) - 2px) !important;
   --urlbar-margin-inline: 2px !important;
   --identity-box-margin-inline: 6px !important;
-  --uc-urlbar-icon-inline-padding: calc(var(--uc-toolbarbutton-inner-inline-padding));
-  --uc-urlbar-inline-padding: 6px;
+  --uc-urlbar-icon-inline-padding: var(--uc-toolbarbutton-inner-inline-padding);
+  --uc-urlbar-inline-padding: 5px;
   --uc-urlbar-shadow: 0 0 0px rgb(0 0 0 / .1);
    --urlbarView-rich-suggestion-default-icon-size: 32px !important;
 
