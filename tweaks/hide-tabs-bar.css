@@ -18,7 +18,12 @@
   & #TabsToolbar {
     visibility: collapse !important;
   }
-
+  
+  /* Fix issue with missing window controls. */
+  &[tabsintitlebar] #titlebar {
+    will-change: auto !important;
+  }
+  
   /* Add some padding to the top of the navbar */
   &[tabsintitlebar] #nav-bar {
     padding-top: 0 !important;
@@ -117,7 +122,7 @@
     &:where([inFullscreen], [tabsintitlebar]) #nav-bar {
       /* Window controls on the right. */
       @media not (-moz-gtk-csd-reversed-placement) {
-        padding-inline: 0 calc(var(--uc-window-controls-width, 0px) + var(--uc-titlebar-drag-space)) !important;
+        padding-inline-end: calc(var(--uc-window-controls-width, 0px) + var(--uc-titlebar-drag-space)) !important;
 
         /* Remove the padding from the side of the navbar */
         & #PanelUI-menu-button {
@@ -127,7 +132,7 @@
 
       /* Window controls on the left. */
       @media (-moz-gtk-csd-reversed-placement) {
-        padding-inline: calc(var(--uc-window-controls-width, 0px) + var(--uc-titlebar-drag-space)) 0 !important;
+        padding-inline-start: calc(var(--uc-window-controls-width, 0px) + var(--uc-titlebar-drag-space)) !important;
 
         /* Remove the padding from the side of the navbar */
         & #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child {
