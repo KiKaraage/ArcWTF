@@ -2,9 +2,11 @@
 /* The border controlling sidebar width will be removed so you'll need to modify these values to change width */
 
 #sidebar{
-  border-radius: var(--uc-tweak-rounded-corners-radius) !important; 
   margin-bottom: var(--uc-tweak-rounded-corners-padding) !important;
 }
+
+#sidebar-title {padding-inline: 0 !important;}
+#sidebar-switcher-target {padding: 0px 0px 2px 0px !important;}
 
 #sidebar-box{
   --uc-sidebar-width: 6px;
@@ -19,6 +21,7 @@
   background-color: var(--lwt-accent-color) !important;
   z-index:1;
   opacity: 1%;
+  border-radius: var(--uc-tweak-rounded-corners-radius) !important; 
 }
 
 /* if this preference is activated in about:config, sidebar width will be increased */
@@ -35,18 +38,26 @@
 #sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
 
 #main-window[sizemode="maximized"] #sidebar-box{ 
-  --uc-sidebar-width: 2px;
+  --uc-sidebar-width: 3px;
   }
 
-#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 3px; }
+#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 1px; }
 
-#sidebar-splitter{ display: none }
+/* #sidebar-splitter{ display: none } */
 
 #sidebar-header{
   overflow: hidden;
   color: var(--chrome-color, inherit) !important;
-  padding-inline: 0 !important;
+  padding: 2px 0 2px 0 !important;
+  font-size: 1em !important;
+  font-weight: bold !important;
+  margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
+  border-bottom: 0 !important;
 }
+
+#sidebar-header #sidebar-switcher-target #sidebar-icon, #sidebar-switcher-arrow, #sidebar-close.close-icon {visibility: collapse !important;}
+
+@media (-moz-bool-pref: "uc.tweak.hide-sidebar-header") {#sidebar-header {visibility: collapse !important;}}
 
 #sidebar-header::before,
 #sidebar-header::after{
@@ -62,6 +73,7 @@
   will-change: min-width;
   background-color: var(--lwt-accent-color) !important;
 }
+
 #sidebar-box:hover > #sidebar-header,
 #sidebar-box:hover > #sidebar{
   margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
@@ -92,11 +104,6 @@
   margin-inline: 0px !important;
   border-left-style: solid !important; 
 }
-
-/* Collapsing sidebar header */
-#sidebar-header {
-  visibility: collapse !important;
- }
 
 #main-window[titlepreface*="|| "] {
   --ovrl-wdt: var(--ovrl-max-wdt);
