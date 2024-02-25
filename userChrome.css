@@ -15,6 +15,7 @@
 @import url("tweaks/hide-tabs-bar.css");
 @import url("tweaks/extensions.css");
 @import url("tweaks/sidebar.css");
+@import url("tweaks/popup-search.css");
 
 /* Import custom stylesheet instead of modifying the theme files. */
 @import url("custom.css");
