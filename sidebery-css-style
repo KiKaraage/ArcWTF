@@ -1,0 +1,128 @@
+/* PINNED TABS */
+
+/* Control how much pinned tabs column you want below, width of the pinned tabs will be automatically resized depend on it. */
+#root.root {--pinned-tabs-col: 3;}
+#root.root {--tabs-pinned-width: calc( (96vw - (var(--tabs-margin)*var(--pinned-tabs-col))) / var(--pinned-tabs-col));}
+#root.root {--tabs-pinned-height: 42px;}
+
+.Tab[data-pin="true"] .body {
+	box-shadow: 0px 2px 1px #00000000;
+  background: #f2f2f250;
+  color: #ffffff20;
+}
+
+/* GENERAL */
+
+#root.root {--tabs-height: 40px;}
+#root.root {--tabs-margin: 6px;}
+#root.root {--tabs-indent: 18px;}
+#root.root {padding-top: 1px;}
+#root.root {padding-left: 2px;}
+#root.root {--tabs-close-btn-margin: 5px;}
+#root.root {--tabs-inner-gap: 10px;}
+#root.root {--general-border-radius: 6px;}
+
+.Tab .title {
+	background: linear-gradient(90deg, var(--tabs-normal-fg) 80%, #f1f1f100 99%);
+	background-clip: text;
+	color: transparent;
+}
+
+/* NAVBAR */
+
+#root.root {--nav-btn-width: 25px;}
+#root.root {--nav-btn-height: 25px;}
+#root.root {--nav-btn-margin: 2px;}
+#root.root {--toolbar-bg: transparent;}
+
+/* Moving Sidebery navigation bar to bottom, to mimic how Space works on Arc Browser. Make sure to choose Horizontal when activating the navigation bar. */
+.NavigationBar {box-shadow: none;}
+.top-horizontal-box {
+  display: flex;
+  order: 1; 
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+
+/* Remove background color, border and shadow for active tab panel. */
+.NavigationBar .nav-item[data-active="true"] {
+  background-color: transparent;
+  box-shadow: none;
+  scale: 0.9;
+}
+
+/* Making non-active tabs (including bookmark panels) grayscale. */
+.NavigationBar .nav-item[data-type="tabs"][data-active="false"] .icon {
+  fill: var(--nav-btn-fg);
+  opacity: 40%;
+  scale: 0.75;
+}
+
+/* Settings related to Hidden Panels icon and popup layer, adapting to the flipped navbar orientation. */
+#hidden_panels_btn.nav-item .icon {
+  transform: scaleY(-1);
+  opacity: 40%;
+  scale: 0.9;
+}
+.hidden-panels-popup-layer {
+  transform: scaleY(-1);  
+  margin-top: -15%;
+  --toolbar-bg: var(--frame-bg);
+}
+.NavigationBar .hidden-panels-popup-content {
+  transform: scaleY(-1);
+}
+
+/* Replacing 'add tabs panels' button with a plus icon to mimic Arc's 'new space' button. */
+.NavigationBar #add_tp.nav-item .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  width: 80%;
+  height: 80%;
+  mask: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiB3aWR0aD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDIuNUMxMCAyLjIyMzg2IDkuNzc2MTQgMiA5LjUgMkM5LjIyMzg2IDIgOSAyLjIyMzg2IDkgMi41VjlIMi41QzIuMjIzODYgOSAyIDkuMjIzODYgMiA5LjVDMiA5Ljc3NjE0IDIuMjIzODYgMTAgMi41IDEwSDlWMTYuNUM5IDE2Ljc3NjEgOS4yMjM4NiAxNyA5LjUgMTdDOS43NzYxNCAxNyAxMCAxNi43NzYxIDEwIDE2LjVWMTBIMTYuNUMxNi43NzYxIDEwIDE3IDkuNzc2MTQgMTcgOS41QzE3IDkuMjIzODYgMTYuNzc2MSA5IDE2LjUgOUgxMFYyLjVaIiBmaWxsPSIjMjEyMTIxIi8+PC9zdmc+");
+}
+
+/* Replacing 'history' panel with an archive icon to mimic Arc's 'recently closed' button. */
+.NavigationBar #navhistory.nav-item .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  display: flex;
+  padding: auto;
+  width: 80%;
+  height: 80%;
+  mask: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiB3aWR0aD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjUgMkMxNy4zMjg0IDIgMTggMi42NzE1NyAxOCAzLjVWNS41QzE4IDYuMTUyODUgMTcuNTgyOSA2LjcwODI4IDE3LjAwMDcgNi45MTQ0TDE3IDE0LjVDMTcgMTYuNDMzIDE1LjQzMyAxOCAxMy41IDE4SDYuNUM0LjU2NyAxOCAzIDE2LjQzMyAzIDE0LjVMMy4wMDAyOSA2LjkxNDc1QzIuNDE3NTQgNi43MDg5MSAyIDYuMTUzMjIgMiA1LjVWMy41QzIgMi42NzE1NyAyLjY3MTU3IDIgMy41IDJIMTYuNVpNMTYgN0g0VjE0LjVDNCAxNS44ODA3IDUuMTE5MjkgMTcgNi41IDE3SDEzLjVDMTQuODgwNyAxNyAxNiAxNS44ODA3IDE2IDE0LjVWN1pNOC41IDlIMTEuNUMxMS43NzYxIDkgMTIgOS4yMjM4NiAxMiA5LjVDMTIgOS43NDU0NiAxMS44MjMxIDkuOTQ5NjEgMTEuNTg5OSA5Ljk5MTk0TDExLjUgMTBIOC41QzguMjIzODYgMTAgOCA5Ljc3NjE0IDggOS41QzggOS4yNTQ1NCA4LjE3Njg4IDkuMDUwMzkgOC40MTAxMiA5LjAwODA2TDguNSA5SDExLjVIOC41Wk0xNi41IDNIMy41QzMuMjIzODYgMyAzIDMuMjIzODYgMyAzLjVWNS41QzMgNS43NzYxNCAzLjIyMzg2IDYgMy41IDZIMTYuNUMxNi43NzYxIDYgMTcgNS43NzYxNCAxNyA1LjVWMy41QzE3IDMuMjIzODYgMTYuNzc2MSAzIDE2LjUgM1oiIGZpbGw9IiMyMTIxMjEiLz48L3N2Zz4=");
+}
+
+/* NEW TAB */
+
+.TabsPanel .new-tab-btns{
+  position: relative;
+  padding-top: 5px;
+}
+.TabsPanel .new-tab-btn {
+  justify-content: left;
+  padding-left: calc(var(--tabs-inner-gap));
+  margin-left: calc(var(--tabs-margin)*0.5);
+  margin-right: calc(var(--tabs-margin)*0.5);
+  --ntb-btn-height: 37px;
+}
+
+.TabsPanel .new-tab-btn > svg, .TabsPanel .new-tab-btn > img {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  opacity: 40%;
+  width: 17px;
+  height: 17px;
+  scale: 0.9;
+  mask: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiB3aWR0aD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDIuNUMxMCAyLjIyMzg2IDkuNzc2MTQgMiA5LjUgMkM5LjIyMzg2IDIgOSAyLjIyMzg2IDkgMi41VjlIMi41QzIuMjIzODYgOSAyIDkuMjIzODYgMiA5LjVDMiA5Ljc3NjE0IDIuMjIzODYgMTAgMi41IDEwSDlWMTYuNUM5IDE2Ljc3NjEgOS4yMjM4NiAxNyA5LjUgMTdDOS43NzYxNCAxNyAxMCAxNi43NzYxIDEwIDE2LjVWMTBIMTYuNUMxNi43NzYxIDEwIDE3IDkuNzc2MTQgMTcgOS41QzE3IDkuMjIzODYgMTYuNzc2MSA5IDE2LjUgOUgxMFYyLjVaIiBmaWxsPSIjMjEyMTIxIi8+PC9zdmc+");
+}
+
+.TabsPanel .new-tab-btn:after {
+  justify-content: left;
+  content: "New Tab";
+  font: var(--tabs-font);
+  padding-left: calc(var(--tabs-inner-gap) + var(--tabs-margin) + 12px);
+  color: var(--nav-btn-fg);  
+  opacity: 40%;
+}
