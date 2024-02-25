@@ -7,9 +7,10 @@
   --uc-toolbarbutton-inner-inline-padding: 4px !important;
   --toolbarbutton-outer-padding: 6px !important;
   --tabs-navbar-shadow-size: 0px !important;
+  --message-bar-border-radius: var(--border-radius-medium);
 }
 
-#nav-bar .toolbarbutton-icon {scale: 0.9;}
+#nav-bar .toolbarbutton-icon {scale: 0.85;}
 
 /* move reload/stop icon to middle of button */
 #reload-button>.toolbarbutton-animatable-box,
@@ -23,18 +24,20 @@
 
 #PanelUI-button {
   order: -1 !important;
-  margin-left: 3px !important;
+  margin-left: 5px !important;
    padding-right: 0px !important;
 }
 
-/* Configure in-browser notification appearance to blend better with the theme. */
-#navigator-toolbox
-.notificationbox-stack {background-color: transparent}
-.notification-message {
-  margin: 0 10px 10px;
-  --close-icon-size: 30px;
-}
-.container.infobar {
-  background: var(--toolbar-bgcolor);
-  border-radius: 3px var(--uc-tweak-rounded-corners-radius) var(--uc-tweak-rounded-corners-radius) 3px;
-}
+/* Make navbar keep using lwt-accent-color even when browser window is inactive. */
+#navigator-toolbox {
+  &:-moz-lwtheme {
+    &:-moz-window-inactive {
+      background-color: var(--lwt-accent-color) !important;
+     }
+    }
+   }
+
+/* Decrease navbar buttons and URL when browser window is inactive.  */
+#nav-bar.browser-toolbar .toolbarbutton-icon { &:-moz-window-inactive {opacity: 0.5 !important;} }
+#titlebar .titlebar-buttonbox-container .titlebar-buttonbox { &:-moz-window-inactive {opacity: 0.5 !important;} }
+#nav-bar.browser-toolbar #urlbar-container { &:-moz-window-inactive {opacity: 0.5 !important;} }
