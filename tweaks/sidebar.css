@@ -1,8 +1,13 @@
 /* Show sidebar only when the cursor is over it  */
 /* The border controlling sidebar width will be removed so you'll need to modify these values to change width */
 
+#sidebar{
+  border-radius: var(--uc-tweak-rounded-corners-radius) !important; 
+  margin-bottom: var(--uc-tweak-rounded-corners-padding) !important;
+}
+
 #sidebar-box{
-  --uc-sidebar-width: 5px;
+  --uc-sidebar-width: 6px;
   --uc-sidebar-hover-width: 200px;
   --uc-autohide-sidebar-delay: 100ms; /* Wait 0.1s before hiding sidebar */
   --uc-autohide-transition-duration: 115ms;
@@ -11,7 +16,9 @@
   min-width: var(--uc-sidebar-width) !important;
   width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
+  background-color: var(--lwt-accent-color) !important;
   z-index:1;
+  opacity: 1%;
 }
 
 /* if this preference is activated in about:config, sidebar width will be increased */
@@ -27,8 +34,11 @@
 #sidebar-box[positionend]:-moz-locale-dir(rtl){ direction: ltr }
 #sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
 
-#main-window[sizemode="maximized"] #sidebar-box{ --uc-sidebar-width: 1px; }
-#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 1px; }
+#main-window[sizemode="maximized"] #sidebar-box{ 
+  --uc-sidebar-width: 2px;
+  }
+
+#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 3px; }
 
 #sidebar-splitter{ display: none }
 
@@ -50,21 +60,26 @@
   transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
   min-width: var(--uc-sidebar-width) !important;
   will-change: min-width;
+  background-color: var(--lwt-accent-color) !important;
 }
 #sidebar-box:hover > #sidebar-header,
 #sidebar-box:hover > #sidebar{
+  margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
   min-width: var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
 }
+#sidebar-box:hover {
+  opacity: 100% !important;
+  }
 
 .sidebar-panel{
-  background-color: transparent !important;
+  background-color: var(--lwt-accent-color) !important;
   color: var(--newtab-text-primary-color) !important;
 }
 
 .sidebar-panel #search-box{
   -moz-appearance: none !important;
-  background-color: rgba(249,249,250,0.1) !important; 
+  background-color: var(--lwt-accent-color) !important; 
   color: inherit !important;
 }
 
@@ -89,8 +104,15 @@
   & :is(#sidebar-box) {
   --uc-sidebar-width: var(--uc-sidebar-hover-width);
     opacity: 100%;
-    overflow: visible;
-    
+    background-color: transparent !important;
+    margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;    
+    margin-block-end: 0 !important;
+    overflow: visible !important;
+    &[positionend] {
+      margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important;
+      margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;
+      }
+
     /* & > * { opacity: 100%; } */
   }
 
@@ -105,4 +127,13 @@
     margin-left: 0px;
   }
   & #statuspanel { margin-left: 2px }
+
+  & #sidebar{margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;}
+#sidebar-box:hover > #sidebar{
+  margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
+  min-width: var(--uc-sidebar-hover-width) !important;
+  transition-delay: 0ms !important;
+}
+
+ }
 }
