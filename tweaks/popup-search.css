@@ -1,0 +1,47 @@
+/* search */
+@media (-moz-bool-pref: "uc.tweak.popup-search") {
+#urlbar:is([breakout][breakout-extend]){
+  #urlbar-input {
+    font-size: 16px !important;
+    text-align: left !important;
+    padding-block: 12px !important;
+   padding-inline: 3px !important;
+  }
+  
+  position: fixed !important;
+  padding-top: 12px !important;
+  --urlbar-height: auto !important;
+  bottom: auto !important;
+  top: 20vh !important;
+  padding-left: 6px !important;
+  padding-right: 8px !important;
+  background-color: #toolbar-bgcolor !important;
+  
+  left: 18vw !important;
+  right: 18vw !important;
+  width: 64vw !important;
+  
+  & .urlbarView-results {
+    margin-top: 12px !important;
+    padding-block-start: 0px !important;
+  }
+
+  
+  /* background */
+  &:before{
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    
+    width: 100vw;
+    height: 100vh;
+    
+    top: 0px;
+    left: 0px;
+    
+    background-color: #000000;
+    opacity: 0.5;
+    backdrop-filter: blur(300px);
+  }
+}
+}
