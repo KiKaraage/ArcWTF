@@ -9,8 +9,8 @@
   --urlbar-icon-padding: calc(var(--toolbarbutton-inner-padding) - 2px) !important;
   --urlbar-margin-inline: 2px !important;
   --identity-box-margin-inline: 6px !important;
-  --uc-urlbar-icon-inline-padding: var(--uc-toolbarbutton-inner-inline-padding);
-  --uc-urlbar-inline-padding: 5px;
+  --uc-urlbar-icon-inline-padding: calc(var(--uc-toolbarbutton-inner-inline-padding));
+  --uc-urlbar-inline-padding: 6px;
   --uc-urlbar-shadow: 0 0 0px rgb(0 0 0 / .1);
    --urlbarView-rich-suggestion-default-icon-size: 32px !important;
 
@@ -63,14 +63,19 @@
 }
 
 #urlbar #urlbar-input {text-align: center !important}
-#urlbar:not([focused="true"]) > #urlbar-background {background: transparent !important;}
+#urlbar-background {background: transparent !important;}
+#urlbar[focused="true"] > #urlbar-background {background: var(--toolbar-bgcolor) !important;}
 
 /* URL bar suggestions container. */
 .urlbarView {
+  margin-top: 2px !important;
   margin-inline: 0 !important;
   width: 100% !important;
   border-inline: 0 !important;
   padding-block: 0 !important;
+  background: var(--toolbar-bgcolor) !important;
+  border-radius: 0 0 8px 8px !important;
+
 
   & .urlbarView-body-inner {
     width: 100% !important;
@@ -87,23 +92,14 @@
 .urlbarView-row {
   padding-block: 0 !important;
   border: none !important;
-  border-radius: 0 !important;
-
-  & .urlbarView-row-inner {
-    padding-block: 8px !important;
-  }
+  border-radius: 8px !important;
+  margin-inline: 2px !important;
   
   /* Vertically align search suggestion thumbnail images. */
   &[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
     margin-inline-start: calc(var(--urlbarView-icon-margin-start) + (16px - var(--urlbarView-rich-suggestion-default-icon-size)) / 2) !important;
     margin-inline-end: calc(var(--urlbarView-icon-margin-end) + (16px - var(--urlbarView-rich-suggestion-default-icon-size)) / 2) !important;
   }
-}
-
-/* Add highlighted marker to the left of selected URL bar items. */
-.urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner,
-.urlbarView-row-inner[selected] {
-  box-shadow: 3px 0 var(--uc-urlbarView-accent-color, var(--toolbar-field-focus-border-color)) inset !important;
 }
 
 /* Keep URL bar in place when expanding. */
@@ -137,7 +133,7 @@
   }
 
   & #urlbar-search-mode-indicator-title {
-    font-size: 0.7em !important;
+    font-size: 0.9em !important;
   }
 }
 
@@ -181,15 +177,10 @@
 
 /* Show translation button on URL bar. */
 #translation-button {
-  hidden="false" !important;
-   width=auto !important;
+   hidden: false !important;
+   display: flex !important;
    }
 
-/* Focus border for URL bar. */
-#urlbar[focused="true"]:not([suppress-focus-border]) > #urlbar-background,
-#searchbar:focus-within {
-  outline-offset: calc(var(--focus-outline-width) * -1 + 1px) !important;
-}
 
 /* Pin icon for URL bar suggested sites. */
 .urlbarView-row[pinned] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-type-icon {
@@ -257,4 +248,3 @@
     }
   }
 }
-
