@@ -92,7 +92,7 @@
     border-radius: var(--uc-tweak-rounded-corners-radius) !important;
     box-shadow: var(--uc-tweak-rounded-corners-shadow) !important;
     background-color: var(--tabpanel-background-color) !important;
-       position: relative !important;
+    position: relative !important;
 
     /* Use pseudo element overlay to simulate rounded corners, similar to the
      * tab corners, fixes bug with backdrop-filter. */
@@ -114,6 +114,39 @@
   /* Prevent status panel corners and shadow from appearing outside the browser. */
   #statuspanel {
     overflow: hidden;
+  }
+    
+ /* Devtools window when docked to the left or right. */
+  .devtools-toolbox-side-iframe {
+    margin-block-end: var(--uc-tweak-rounded-corners-padding) !important;
+    border-radius: var(--uc-tweak-rounded-corners-radius) !important;
+    overflow: hidden !important;
+    box-shadow: var(--uc-tweak-rounded-corners-shadow) !important;
+
+    /* Devtools window when docked to the left. */
+    &:first-child {
+      margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important;
+    }
+
+    /* Devtools window when docked to the right. */
+    &:last-child {
+      margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;
+    }
+  }
+
+  /* Devtools window when docked to the bottom. */
+  .devtools-toolbox-bottom-iframe {
+    margin: var(--uc-tweak-rounded-corners-padding) !important;
+    margin-block-start: 0 !important;
+    border-radius: var(--uc-tweak-rounded-corners-radius) !important;
+    overflow: hidden !important;
+    box-shadow: var(--uc-tweak-rounded-corners-shadow) !important;
+  }
+
+  /* Hide devtools splitter. */
+  .devtools-side-splitter,
+  .devtools-horizontal-splitter {
+    background-color: transparent !important;
   }
 
   /* Remove sidebar border when not in full screen. */
