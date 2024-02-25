@@ -1,5 +1,4 @@
 /* ArcWTF - popup.css */
-/* https://github.com/KiKaraage/ArcWTF */
 
 :root {
   --panel-subview-body-padding: 2px 0 !important;
@@ -75,8 +74,8 @@
 #appMenu-fxa-label2::before {
   content: "";
   display: flex;
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 16px;
   background: var(--avatar-image-url) 0/16px;
   scale: 1.25;
   border-radius: 99px;
