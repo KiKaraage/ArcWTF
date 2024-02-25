@@ -1,4 +1,4 @@
-/* Edge-Frfox - content/newtab.css */
+/* ArcWTF - content/newtab.css */
 
 /* colours */
 @-moz-document url-prefix("about:newtab"),
@@ -90,7 +90,7 @@ url-prefix("about:firefoxview") {
 @-moz-document url-prefix("about:newtab"),
 url-prefix("about:home") {
   /* Enforce system font selection. */
-  body {
+  :where(body) {
     font-family: system-ui !important;
   }
 
