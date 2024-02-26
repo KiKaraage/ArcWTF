@@ -3,9 +3,10 @@
 
 #sidebar{
   margin-bottom: var(--uc-tweak-rounded-corners-padding) !important;
+  border-bottom-right-radius: var(--uc-tweak-rounded-corners-radius) !important; 
 }
 
-#sidebar-title {padding-inline: 0 !important;}
+#sidebar-title {padding-inline: 0 !important; padding-top: 2px !important; opacity: 40% !important;}
 #sidebar-switcher-target {padding: 0px 0px 2px 0px !important;}
 
 #sidebar-box{
@@ -21,8 +22,7 @@
   background-color: var(--lwt-accent-color) !important;
   z-index:1;
   opacity: 1%;
-  border-radius: var(--uc-tweak-rounded-corners-radius) !important; 
-}
+  }
 
 /* if this preference is activated in about:config, sidebar width will be increased */
 @media (-moz-bool-pref: "uc.tweak.longer-sidebar") {
@@ -53,6 +53,7 @@
   font-weight: bold !important;
   margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
   border-bottom: 0 !important;
+  border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important; 
 }
 
 #sidebar-header #sidebar-switcher-target #sidebar-icon, #sidebar-switcher-arrow, #sidebar-close.close-icon {visibility: collapse !important;}
