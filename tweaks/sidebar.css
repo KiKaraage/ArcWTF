@@ -12,7 +12,7 @@
 #sidebar-box{
   --uc-sidebar-width: 6px;
   --uc-sidebar-hover-width: 200px;
-  --uc-autohide-sidebar-delay: 100ms; /* Wait 0.1s before hiding sidebar */
+  --uc-autohide-sidebar-delay: 400ms; /* Wait 0.4s before hiding sidebar */
   --uc-autohide-transition-duration: 115ms;
   --uc-autohide-transition-type: linear;
   position: relative;
@@ -37,13 +37,8 @@
 #sidebar-box[positionend]:-moz-locale-dir(rtl){ direction: ltr }
 #sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
 
-#main-window[sizemode="maximized"] #sidebar-box{ 
-  --uc-sidebar-width: 3px;
-  }
-
-#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 1px; }
-
-/* #sidebar-splitter{ display: none } */
+#main-window[sizemode="maximized"] #sidebar-box{--uc-sidebar-width: 0.6rem;}
+#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 0.6rem;}
 
 #sidebar-header{
   overflow: hidden;
@@ -56,7 +51,9 @@
   border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important; 
 }
 
-#sidebar-header #sidebar-switcher-target #sidebar-icon, #sidebar-switcher-arrow, #sidebar-close.close-icon {visibility: collapse !important;}
+#sidebar-header #sidebar-switcher-target #sidebar-icon, #sidebar-switcher-arrow, #sidebar-close.close-icon, #sidebar-splitter {
+  visibility: collapse !important;
+}
 
 @media (-moz-bool-pref: "uc.tweak.hide-sidebar-header") {#sidebar-header {visibility: collapse !important;}}
 
