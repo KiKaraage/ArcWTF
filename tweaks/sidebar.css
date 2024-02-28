@@ -1,18 +1,24 @@
 /* Show sidebar only when the cursor is over it  */
 /* The border controlling sidebar width will be removed so you'll need to modify these values to change width */
 
-#sidebar{
+#sidebar {
   margin-bottom: var(--uc-tweak-rounded-corners-padding) !important;
-  border-bottom-right-radius: var(--uc-tweak-rounded-corners-radius) !important; 
+  border-bottom-right-radius: var(--uc-tweak-rounded-corners-radius) !important;
 }
 
-#sidebar-title {padding-inline: 0 !important; padding-top: 2px !important; opacity: 40% !important;}
-#sidebar-switcher-target {padding: 0px 0px 2px 0px !important;}
+#sidebar-title {
+  padding-inline: 0 !important;
+  padding-top: 2px !important;
+  opacity: 40% !important;
+}
+#sidebar-switcher-target {
+  padding: 0px 0px 2px 0px !important;
+}
 
-#sidebar-box{
+#sidebar-box {
   --uc-sidebar-width: 6px;
   --uc-sidebar-hover-width: 200px;
-  --uc-autohide-sidebar-delay: 400ms; /* Wait 0.4s before hiding sidebar */
+  --uc-autohide-sidebar-delay: 100ms; /* Wait 0.1s before hiding sidebar */
   --uc-autohide-transition-duration: 115ms;
   --uc-autohide-transition-type: linear;
   position: relative;
@@ -20,103 +26,130 @@
   width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
   background-color: var(--lwt-accent-color) !important;
-  z-index:1;
+  z-index: 1;
+  transition: opacity var(--uc-autohide-transition-duration)
+    var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
   opacity: 1%;
-  }
+}
 
 /* if this preference is activated in about:config, sidebar width will be increased */
 @media (-moz-bool-pref: "uc.tweak.longer-sidebar") {
-  :root #sidebar-box{
+  :root #sidebar-box {
     --uc-sidebar-hover-width: 250px !important;
   }
 }
 
-#sidebar-box[positionend]{ direction: rtl }
-#sidebar-box[positionend] > *{ direction: ltr }
+#sidebar-box[positionend] {
+  direction: rtl;
+}
+#sidebar-box[positionend] > * {
+  direction: ltr;
+}
 
-#sidebar-box[positionend]:-moz-locale-dir(rtl){ direction: ltr }
-#sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
+#sidebar-box[positionend]:-moz-locale-dir(rtl) {
+  direction: ltr;
+}
+#sidebar-box[positionend]:-moz-locale-dir(rtl) > * {
+  direction: rtl;
+}
 
-#main-window[sizemode="maximized"] #sidebar-box{--uc-sidebar-width: 0.6rem;}
-#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 0.6rem;}
+#main-window[sizemode="maximized"] #sidebar-box {
+  --uc-sidebar-width: 0.3rem;
+}
+#main-window[sizemode="fullscreen"] #sidebar-box {
+  --uc-sidebar-width: 0.3rem;
+}
 
-#sidebar-header{
+#sidebar-header {
   overflow: hidden;
   color: var(--chrome-color, inherit) !important;
   padding: 2px 0 2px 0 !important;
   font-size: 1em !important;
   font-weight: bold !important;
-  margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
+  margin-inline-start: calc(
+    var(--uc-tweak-rounded-corners-padding) - 10px
+  ) !important;
   border-bottom: 0 !important;
-  border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important; 
+  border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important;
 }
 
-#sidebar-header #sidebar-switcher-target #sidebar-icon, #sidebar-switcher-arrow, #sidebar-close.close-icon, #sidebar-splitter {
+#sidebar-header #sidebar-switcher-target #sidebar-icon,
+#sidebar-switcher-arrow,
+#sidebar-close.close-icon,
+#sidebar-splitter {
   visibility: collapse !important;
 }
 
-@media (-moz-bool-pref: "uc.tweak.hide-sidebar-header") {#sidebar-header {visibility: collapse !important;}}
+@media (-moz-bool-pref: "uc.tweak.hide-sidebar-header") {
+  #sidebar-header {
+    visibility: collapse !important;
+  }
+}
 
 #sidebar-header::before,
-#sidebar-header::after{
+#sidebar-header::after {
   content: "";
   display: flex;
   padding-left: 8px;
 }
 
 #sidebar-header,
-#sidebar{
-  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
+#sidebar {
+  transition: min-width var(--uc-autohide-transition-duration)
+    var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
   min-width: var(--uc-sidebar-width) !important;
   will-change: min-width;
   background-color: var(--lwt-accent-color) !important;
 }
 
 #sidebar-box:hover > #sidebar-header,
-#sidebar-box:hover > #sidebar{
-  margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
+#sidebar-box:hover > #sidebar {
+  margin-inline-start: calc(
+    var(--uc-tweak-rounded-corners-padding) - 10px
+  ) !important;
   min-width: var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
+  opacity: 100% !important;
 }
 #sidebar-box:hover {
   opacity: 100% !important;
-  }
+}
 
-.sidebar-panel{
+.sidebar-panel {
   background-color: var(--lwt-accent-color) !important;
   color: var(--newtab-text-primary-color) !important;
 }
 
-.sidebar-panel #search-box{
+.sidebar-panel #search-box {
   -moz-appearance: none !important;
-  background-color: var(--lwt-accent-color) !important; 
+  background-color: var(--lwt-accent-color) !important;
   color: inherit !important;
 }
 
 /* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
 
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel{
+#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel {
   inset-inline: auto 0px !important;
 }
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label{
+#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label {
   margin-inline: 0px !important;
-  border-left-style: solid !important; 
+  border-left-style: solid !important;
 }
 
 #main-window[titlepreface*="|| "] {
   --ovrl-wdt: var(--ovrl-max-wdt);
-  
+
   & :is(#sidebar-box) {
-  --uc-sidebar-width: var(--uc-sidebar-hover-width);
+    --uc-sidebar-width: var(--uc-sidebar-hover-width);
     opacity: 100%;
     background-color: transparent !important;
-    margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;    
+    margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;
     margin-block-end: 0 !important;
     overflow: visible !important;
     &[positionend] {
       margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important;
       margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;
-      }
+    }
 
     /* & > * { opacity: 100%; } */
   }
@@ -124,21 +157,27 @@
   & .browserContainer::after {
     margin-left: calc(var(--sdbr-real-wdt) * -1);
   }
-  
+
   & #browser > #appcontent {
     margin-left: var(--sdbr-real-wdt);
   }
   & #appcontent browser {
     margin-left: 0px;
   }
-  & #statuspanel { margin-left: 2px }
+  & #statuspanel {
+    margin-left: 2px;
+  }
 
-  & #sidebar{margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;}
-#sidebar-box:hover > #sidebar{
-  margin-inline-start: calc(var(--uc-tweak-rounded-corners-padding) - 3px) !important;
-  min-width: var(--uc-sidebar-hover-width) !important;
-  transition-delay: 0ms !important;
-}
-
- }
+  & #sidebar {
+    margin-inline-start: calc(
+      var(--uc-tweak-rounded-corners-padding) - 3px
+    ) !important;
+  }
+  #sidebar-box:hover > #sidebar {
+    margin-inline-start: calc(
+      var(--uc-tweak-rounded-corners-padding) - 3px
+    ) !important;
+    min-width: var(--uc-sidebar-hover-width) !important;
+    transition-delay: 0ms !important;
+  }
 }
