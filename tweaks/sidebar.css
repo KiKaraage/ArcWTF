@@ -4,6 +4,7 @@
 #sidebar {
   margin-bottom: var(--uc-tweak-rounded-corners-padding) !important;
   border-bottom-right-radius: var(--uc-tweak-rounded-corners-radius) !important;
+  border-bottom-left-radius: var(--uc-tweak-rounded-corners-radius) !important;
 }
 
 #sidebar-title {
@@ -173,7 +174,14 @@
       var(--uc-tweak-rounded-corners-padding) - 3px
     ) !important;
   }
-  #sidebar-box:hover > #sidebar {
+  
+  & #sidebar-header {
+    margin-inline-start: calc(
+      var(--uc-tweak-rounded-corners-padding) - 3px
+    ) !important;
+  }
+  
+  & #sidebar-box:hover > #sidebar {
     margin-inline-start: calc(
       var(--uc-tweak-rounded-corners-padding) - 3px
     ) !important;
