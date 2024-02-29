@@ -22,3 +22,6 @@
 
 /* Replacing Userchrome Toggle icon with Arc sidebar icon */
 :is(.webextension-browser-action, .eom-addon-button)[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon { list-style-image: url(./icons/userchrome-toggle.svg); }
+
+/* Using Segoe UI Variable font (uncomment below to apply) */
+/* * {font-family: "Segoe UI Variable Display" !important;} */
