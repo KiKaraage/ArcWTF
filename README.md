@@ -78,9 +78,9 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
 | Tweaks | Screenshot |
 | --- | --- |
 | Replace Firefox icon on Start Menu and Taskbar | ![gambar](https://github.com/KiKaraage/ArcWTF/assets/10529881/3f67829e-91b2-4496-a31c-0d6326478eb4) <br> Download [Arc.ico](https://github.com/KiKaraage/ArcWTF/blob/main/Arc.ico), open `C:\ProgramData\Microsoft\Windows\Start Menu\Programs` directory, right click Firefox shorcut, click 'Properties', click 'Change Icon...' and use the ICO file for maximum Arc feel. Pin to taskbar too. |
-| Activate popup search/URL bar launchpad | ![gambar](https://github.com/KiKaraage/ArcWTF/assets/10529881/29bea83d-231a-45d2-8118-769885d87d88) <br> Go to `about:config` and add new Boolean entry: `uc.tweaks.popup-search` |
-| Hide header sidebar, containing space/tab panel name | Go to `about:config` and add new Boolean entry: `uc.tweaks.hide-sidebar-header` |
-| Extend sidebar length to 250px (original: 200px) | Go to `about:config` and add new Boolean entry: `uc.tweaks.longer-sidebar` |
+| Activate popup search/URL bar launchpad | ![gambar](https://github.com/KiKaraage/ArcWTF/assets/10529881/29bea83d-231a-45d2-8118-769885d87d88) <br> Go to `about:config` and add new Boolean entry: `uc.tweak.popup-search` |
+| Hide header sidebar, containing space/tab panel name | Go to `about:config` and add new Boolean entry: `uc.tweak.hide-sidebar-header` |
+| Extend sidebar length to 250px (original: 200px) | Go to `about:config` and add new Boolean entry: `uc.tweak.longer-sidebar` |
 | Other tweaks (some might've already preapplied here) | Check [bmFtZQ/edge-frfox theme page](https://github.com/bmFtZQ/edge-frfox?tab=readme-ov-file#tweaks) and add to `about:config` |
 | Use Segoe UI Variable (Windows 11 default font) as Firefox UI font, as shown on preview screenshots | Download from [CufonFonts](https://www.cufonfonts.com/font/segoe-ui-variable), install and uncomment the related settings on userchrome.css and Sidebery style configurations (sidebery-css-style) |
 | Additional addons for theming  | [Adaptive Tab Bar Colour](https://addons.mozilla.org/id/firefox/addon/adaptive-tab-bar-colour/) & [Firefox Color](https://color.firefox.com) [extension](https://addons.mozilla.org/id/firefox/addon/firefox-color) |
@@ -91,7 +91,7 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
   <summary><b>v1.2-firefox</b> (Feb 29, 2024)</summary>
 
   * IMPORTANT: Fix missing window controls in FF123+ *credit to bmFtZQ/edge-frfox*
-  * NEW: Option to make URL bar popped up like command bar in Arc. Add "uc.tweaks-popup-search" in about:config! *credit to Naezr/ShyFox*
+  * NEW: Option to make URL bar popped up like command bar in Arc. Add "uc.tweak-popup-search" in about:config! *credit to Naezr/ShyFox*
   * Improving inactive window behaviour - instead of lighter navbar color, opacity of navbar icons, URL bar and window controls would be decreased. *credit to MrOtherGuy*
   * Improving Sidebery look: Now icons for Sidebery settings, history, and new tab panels are replaced with Fluent icons as used in Arc on Windows
   * Improving Sidebery look: Inactive tab panels would be rendered on smaller size with monochrome colors (depend on theme) to mimic Arc.
