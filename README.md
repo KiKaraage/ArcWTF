@@ -91,7 +91,7 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
   <summary><b>v1.2-firefox</b> (Feb 29, 2024)</summary>
 
   * IMPORTANT: Fix missing window controls in FF123+ *credit to bmFtZQ/edge-frfox*
-  * NEW: Option to make URL bar popped up like command bar in Arc. Add "uc.tweak-popup-search" in about:config! *credit to Naezr/ShyFox*
+  * NEW: Option to make URL bar popped up like command bar in Arc. Add "uc.tweak.popup-search" in about:config! *credit to Naezr/ShyFox*
   * Improving inactive window behaviour - instead of lighter navbar color, opacity of navbar icons, URL bar and window controls would be decreased. *credit to MrOtherGuy*
   * Improving Sidebery look: Now icons for Sidebery settings, history, and new tab panels are replaced with Fluent icons as used in Arc on Windows
   * Improving Sidebery look: Inactive tab panels would be rendered on smaller size with monochrome colors (depend on theme) to mimic Arc.
