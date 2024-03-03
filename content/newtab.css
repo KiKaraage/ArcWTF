@@ -2,8 +2,7 @@
 
 /* colours */
 @-moz-document url-prefix("about:newtab"),
-url-prefix("about:home"),
-url-prefix("about:firefoxview") {
+url-prefix("about:home") {
   :root:not([lwt-newtab], [lwt-newtab-brighttext]) {
     --newtab-background-color: #F7F7F7 !important;
     --newtab-background-color-secondary: #fff !important;
@@ -48,6 +47,15 @@ url-prefix("about:firefoxview") {
     --newtab-status-success: #50B080 !important;
   }
 
+@-moz-document url(about:newtab), url(about:home){
+  .logo-and-wordmark > .logo{
+   background-image: url("Arc.svg") !important;
+   scale: 1.5;
+  }
+  .logo-and-wordmark > .wordmark{
+    visibility: collapse !important;
+  }
+
   /* Custom GTK colours. */
   @media (-moz-gtk-csd-available) {
     :root:not([lwt-newtab]):not([style*="color"]) {
@@ -89,11 +97,6 @@ url-prefix("about:firefoxview") {
 
 @-moz-document url-prefix("about:newtab"),
 url-prefix("about:home") {
-  /* Enforce system font selection. */
-  :where(body) {
-    font-family: system-ui !important;
-  }
-
   /* hide pin */
   .icon.icon-pin-small {
     display: none !important;
