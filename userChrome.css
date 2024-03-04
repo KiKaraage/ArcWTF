@@ -16,6 +16,7 @@
 @import url("tweaks/extensions.css");
 @import url("tweaks/sidebar.css");
 @import url("tweaks/popup-search.css");
+@import url("tweaks/mac-blur-transparent.css;)
 
 /* Import custom stylesheet instead of modifying the theme files. */
 @import url("custom.css");
