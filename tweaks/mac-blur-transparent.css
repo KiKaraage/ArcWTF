@@ -1,0 +1,75 @@
+/* Mac OS blur transparent window
+ * derived from artsyfriedchicken/EdgyArc-fr */
+
+/* Create blur on browser toolbars. */
+@media (-moz-platform: macos)(-moz-bool-pref: "uc.tweak.mac-blur-transparent") {
+:root #TabsToolbar,
+:root #titlebar,
+:root #tabbrowser-tabs,
+:root #nav-bar,
+:root:not(:-moz-window-inactive) #browser {
+  -moz-default-appearance: menupopup !important;
+  appearance: auto !important;
+  background-color: transparent !important;
+}
+
+/* Added back the browser window. */
+#main-window::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0 0 0.4px 1px light-dark(rgba(255, 255, 255, 0.9), rgba(220, 220, 220, 0.3)) !important;
+  border-radius: 10px !important;
+  z-index: 700;
+  pointer-events: none;
+} 
+
+/* Applied transparent background to certain elements so the blur behind them on #main-window shows through. */
+:root[windowtype="navigator:browser"], :root[windowtype="navigator:browser"]:not(:-moz-lwtheme) {
+   
+  background-color: transparent !important;
+  --sidebery-bg-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+      
+       @media 
+     (prefers-color-scheme:light) {
+      --sidebery-bg-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+   
+      } 
+}
+
+:root[windowtype="navigator:browser"]:not(:-moz-lwtheme) {
+  --lwt-accent-color:light-dark(rgb(255,255,255),rgb(30,30,30)) !important;
+}
+
+:root[windowtype="navigator:browser"]:not(:-moz-lwtheme) #navigator-toolbox {
+
+  --toolbar-bg: transparent !important;
+  --toolbar-bgcolor: transparent !important;
+}
+:root[windowtype="navigator:browser"]#main-window {
+  background-color: transparent !important;
+  transition: background-color 300ms ease-in !important;
+  border-radius: 10px !important;
+  position: relative;
+}
+
+:root #navigator-toolbox {
+  background-color: var(--sidebery-bg-color) !important;
+}
+
+/* Making sure inactive windows dont have any blurring. */
+#browser:-moz-window-inactive,
+#navigator-toolbox:-moz-window-inactive,
+#navigator-toolbox:not(:-moz-lwtheme) {
+  &:-moz-window-inactive { background-color: var(--lwt-accent-color) !important; }
+}
+
+/* Setting sidebar opacity. */
+#sidebar, #sidebar-box {
+ opacity: 0.7! important;
+}
+}
