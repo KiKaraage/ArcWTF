@@ -16,7 +16,9 @@
 @import url("tweaks/extensions.css");
 @import url("tweaks/sidebar.css");
 @import url("tweaks/popup-search.css");
-@import url("tweaks/mac-blur-transparent.css;)
+
+/* Enable translucency on browser toolbars. (MacOS only) */
+/**/@import url("tweaks/mac-translucent.css") (-moz-bool-pref: "uc.tweak.mac-translucent");/**/
 
 /* Import custom stylesheet instead of modifying the theme files. */
 @import url("custom.css");
