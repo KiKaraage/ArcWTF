@@ -45,7 +45,10 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
 * Click extension button (puzzle icon), right click on Userchrome Toggle icon, click 'Pin to Toolbar'.
 
   ![Pin to Toolbar](https://github.com/KiKaraage/ArcWTF/assets/10529881/8a72dc0c-7f40-4d34-a3d3-ca9e8820b127)
-* Open Sidebery settings, go to the Style Editor and paste the [CSS config](./sidebery-css-style), or go to Help section and click import [my backup JSON file](./sidebery.json).
+* Open Sidebery settings, go to the Style Editor and paste the [CSS config](./sidebery-css-style), or go to Help section and click import [my backup JSON file](./sidebery.json). Go to Navigation Bar settings and add tab panels to use as Spaces to your liking. _Personally I use History panel as the first item to mimic 'Recently closed' button on Arc so applying custom icon on the CSS config would be easier._
+  
+![Sidebery navigation bar setting](https://github.com/KiKaraage/ArcWTF/assets/10529881/0471a443-8bff-46f3-9108-41ba6657b2a2)
+
 * <details>
   <summary>Some of my favourites Firefox themes to apply with ArcWTF:</summary>
   
@@ -125,6 +128,8 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
 ### Current Issues/Things to Improve
 
 * Improving Floorp compability.
+* Recently added support for translucency in Mac, still on early trial mode. (thanks to artsyfriedchicken)
+* Add support to apply MacOS default icons (optional), replacing Fluent icons used on ArcWTF.
 * Window controls not working in Private Browsing Mode when tab bar are hidden. Current solution: Don't enable Sidebery and Userchrome Toggle on Private Browsing; the script will automatically show tab bar when you go on Private Browsing Mode. _credit to bmFtZQ/edge-frfox_ _(low priority)_
 * Bookmarks bar not showing bookmarks even when enabled. Current solution: Click Menu (Arc logo) > Bookmarks, or use Sidebery bookmarks panel to access bookmarks. _(low priority)_
 * Firefox alternative window controls are shown overlapping GTK window controls when using Adaptive Tab Bar Color addon in Linux. Current solution: Install [Browser Adaptation Dynamic Theme](https://github.com/linonetwo/browser-adaptation-dynamic-theme) addon. _credit to LuanderFarias & Enigma1309_
