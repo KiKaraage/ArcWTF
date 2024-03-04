@@ -1,0 +1,146 @@
+/* Mac OS translucent window
+ * derived from https://github.com/artsyfriedchicken/EdgyArc-fr/blob/main/chrome/EdgyArc-fr/translucent-arcy.css */
+
+:root[windowtype="navigator:browser"], :root[windowtype="navigator:browser"]:not(:-moz-lwtheme) {
+   
+  background-color: transparent !important;
+  --sidebery-bg-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+      @media (prefers-color-scheme:light) {
+      --sidebery-bg-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+   
+      } 
+}
+
+:root[windowtype="navigator:browser"]:not(:-moz-lwtheme) {
+  --lwt-accent-color:light-dark(rgb(255,255,255),rgb(30,30,30)) !important;
+}
+
+:root[windowtype="navigator:browser"]:not(:-moz-lwtheme) #navigator-toolbox {
+
+  --toolbar-bg: transparent !important;
+  --toolbar-bgcolor: transparent !important;
+}
+:root[windowtype="navigator:browser"]#main-window {
+  background-color: transparent !important;
+  transition: background-color 300ms ease-in !important;
+  border-radius: 10px !important;
+  position: relative;
+}
+
+#main-window::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0 0 0.4px 1px light-dark(rgba(255, 255, 255, 0.9), rgba(220, 220, 220, 0.3)) !important;
+  border-radius: 10px !important;
+  z-index: 700;
+  pointer-events: none;
+}
+
+:root #navigator-toolbox {
+  background-color: var(--sidebery-bg-color) !important;
+}
+
+:root #TabsToolbar,
+:root #titlebar,
+:root #tabbrowser-tabs,
+:root #nav-bar,
+:root:not(:-moz-window-inactive) #browser {
+  -moz-default-appearance: menupopup !important;
+  appearance: auto !important;
+  background-color: transparent !important;
+}
+
+#browser:-moz-window-inactive,
+#navigator-toolbox:-moz-window-inactive,
+#navigator-toolbox:not(:-moz-lwtheme) {
+  &:-moz-window-inactive { background-color: var(--lwt-accent-color) !important; }
+}
+
+:root:-moz-window-inactive .tab-content { opacity: 0.6; }
+
+:root {
+  --toolbarbutton-hover-background: color-mix(in srgb, currentColor 11%, transparent) !important;
+  --toolbarbutton-active-background: color-mix(in srgb, currentColor 21%, transparent) !important;
+}
+
+.tab-background:is([selected], [multiselected]):-moz-lwtheme { border: none !important; }
+
+#tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+  box-shadow: 0 0 0 var(--tabs-navbar-shadow-size) rgba(0, 0, 0, .1), 0 1px 5px rgba(0, 0, 0, .1) !important;
+}
+
+:root:-moz-window-inactive #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+  box-shadow: 0 0 0 var(--tabs-navbar-shadow-size) rgba(0, 0, 0, .05) !important;
+}
+
+@media (-moz-content-prefers-color-scheme: dark) {
+  :root #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+      box-shadow:
+          0 0 0 var(--tabs-navbar-shadow-size) hsla(280, 6%, 60%, 0.5) inset,
+          0 0 0 var(--tabs-navbar-shadow-size) rgba(0, 0, 0, .6),
+          0 1px 5px rgba(0, 0, 0, .1) !important;
+  }
+
+  :root:-moz-window-inactive #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+      box-shadow: 0 0 0 var(--tabs-navbar-shadow-size) rgba(0, 0, 0, .4) !important;
+  }
+}
+
+#appcontent .browserStack { overflow: hidden !important; padding-left: 0 !important; margin-left: 0 !important; }
+
+#appcontent { background-color: var(--sidebery-bg-color) !important;    }
+
+/*Sidebar Expanded*/
+#sidebar-box, #sidebar {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  border-radius:0px 0px 0px 0px !important;
+  box-shadow:none !important;
+  opacity:0.7;
+  }
+
+  :root[titlepreface="᠎"] {
+/*Sidebar Autohide*/
+
+  /*-sidebar expand on hover*/
+
+
+   #sidebar-box:hover {
+    padding-left: 5px !important;
+    margin-right: 0 !important;
+ padding-bottom: 5px !important;
+    
+ background-color: var(--sidebery-bg-color) !important; 
+    opacity:0.7;
+    }
+
+  #sidebar:hover {
+    box-shadow: 
+    inset 0 0 1px 2px light-dark(rgba(0, 0, 0, 1), rgba(220, 220, 220, 1)),
+    0 0 3px 4px light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.2)) !important;
+    border-radius:10px 10px 10px 10px !important;
+    border: 1px solid light-dark(rgba(0,0,0,0.4), rgba(240,240,240,0.2)) !important;
+  }
+  }
+
+#urlbar-background, #searchbar {
+  border: 1px solid light-dark(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1)) !important;
+  opacity: 0.6 !important;
+  min-height: 28px !important;
+  padding-top: 4px;
+}
+
+#urlbar[breakout][breakout-extend] #urlbar-background {
+  opacity: 1 !important;
+}
+
+#urlbar[breakout][breakout-extend] #urlbar-background {
+  background-color: rgba(0, 0, 0, .4);
+  opacity:0.7;
+}
