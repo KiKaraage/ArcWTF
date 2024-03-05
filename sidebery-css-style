@@ -100,6 +100,11 @@
   opacity: 40%;
   scale: 0.75;
 }
+.NavigationBar .nav-item[data-type="bookmarks"][data-active="false"] .icon {
+  fill: var(--nav-btn-fg);
+  opacity: 40%;
+  scale: 0.75;
+}
 
 /* Settings related to Hidden Panels icon and popup layer, adapting to the flipped navbar orientation. */
 #hidden_panels_btn.nav-item .icon {
