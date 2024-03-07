@@ -45,7 +45,7 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
 * Click extension button (puzzle icon), right click on Userchrome Toggle icon, click 'Pin to Toolbar'.
 
   ![Pin to Toolbar](https://github.com/KiKaraage/ArcWTF/assets/10529881/8a72dc0c-7f40-4d34-a3d3-ca9e8820b127)
-* Open Sidebery settings, go to the Style Editor and paste the [CSS config](./sidebery-css-style), or go to Help section and click import [my backup JSON file](./sidebery.json). Go to Navigation Bar settings and add tab panels to use as Spaces to your liking. _Personally I use History panel as the first item to mimic 'Recently closed' button on Arc so applying custom icon on the CSS config would be easier._
+* Open Sidebery settings, go to the Style Editor and paste the [CSS config](./sidebery-css-style), or go to Help section and click import [my backup JSON file](./sidebery-ArcWTF.json). Go to Navigation Bar settings and add tab panels to use as Spaces to your liking. _Personally I use History panel as the first item to mimic 'Recently closed' button on Arc so applying custom icon on the CSS config would be easier._
   
 ![Sidebery navigation bar setting](https://github.com/KiKaraage/ArcWTF/assets/10529881/0471a443-8bff-46f3-9108-41ba6657b2a2)
 
