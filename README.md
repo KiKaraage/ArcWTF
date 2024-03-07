@@ -37,7 +37,7 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
 
 ## Applying the theme
 <b>(1/3) Installing addons and choosing theme</b>
-* Install [Sidebery](https://github.com/mbnuqw/sidebery) and [Userchrome Toggle](https://addons.mozilla.org/id/firefox/addon/userchrome-toggle/).
+* Install [Sidebery](https://github.com/mbnuqw/sidebery) and [Userchrome Toggle](https://addons.mozilla.org/firefox/addon/userchrome-toggle/).
 * Open `about:addons`, click 'Userchrome Toggle', go to 'Options' tab.
 * Disable 'Display a notification', Go to 'Style Toggle 1', put `|| ` in prefix (should also have the ending space) and apply changes.
 
