@@ -37,7 +37,7 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
 
 ## Applying the theme
 <b>(1/3) Installing addons and choosing theme</b>
-* Install [Sidebery](https://github.com/mbnuqw/sidebery) and [Userchrome Toggle](https://addons.mozilla.org/id/firefox/addon/userchrome-toggle/).
+* Install [Sidebery](https://github.com/mbnuqw/sidebery) and [Userchrome Toggle](https://addons.mozilla.org/firefox/addon/userchrome-toggle/).
 * Open `about:addons`, click 'Userchrome Toggle', go to 'Options' tab.
 * Disable 'Display a notification', Go to 'Style Toggle 1', put `|| ` in prefix (should also have the ending space) and apply changes.
 
@@ -45,7 +45,7 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
 * Click extension button (puzzle icon), right click on Userchrome Toggle icon, click 'Pin to Toolbar'.
 
   ![Pin to Toolbar](https://github.com/KiKaraage/ArcWTF/assets/10529881/8a72dc0c-7f40-4d34-a3d3-ca9e8820b127)
-* Open Sidebery settings, go to the Style Editor and paste the [CSS config](./sidebery-css-style), or go to Help section and click import [my backup JSON file](./sidebery.json). Go to Navigation Bar settings and add tab panels to use as Spaces to your liking. _Personally I use History panel as the first item to mimic 'Recently closed' button on Arc so applying custom icon on the CSS config would be easier._
+* Open Sidebery settings, go to the Style Editor and paste the [CSS config](./sidebery-css-style), or go to Help section and click import [my backup JSON file](./sidebery-ArcWTF.json). Go to Navigation Bar settings and add tab panels to use as Spaces to your liking. _Personally I use History panel as the first item to mimic 'Recently closed' button on Arc so applying custom icon on the CSS config would be easier._
   
 ![Sidebery navigation bar setting](https://github.com/KiKaraage/ArcWTF/assets/10529881/0471a443-8bff-46f3-9108-41ba6657b2a2)
 
