@@ -1,5 +1,5 @@
 /* search */
-@media (-moz-bool-pref: "uc.tweak.popup-search") {
+@media (-moz-bool-pref: "uc.tweaks.popup-search") {
 #urlbar:is([breakout][breakout-extend]){
   #urlbar-input {
     font-size: 16px !important;
