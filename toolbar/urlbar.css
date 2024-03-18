@@ -73,7 +73,7 @@
   width: 100% !important;
   border-inline: 0 !important;
   padding-block: 0 !important;
-  background: var(--toolbar-bgcolor) !important;
+  background: var(--arrowpanel-background) !important;
   border-radius: 0 0 8px 8px !important;
 
 
