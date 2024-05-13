@@ -38,7 +38,7 @@
 #sidebar-box::before {
   content: '';
   position: absolute;
-  width: 25px;
+  width: 16px;
   height: 100%;
   z-index:-1;
 }
