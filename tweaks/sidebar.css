@@ -111,7 +111,39 @@
   min-width: var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
   opacity: 100% !important;
+  border-radius: 0 !important;
 }
+
+/* Show bottom right rounded corner when hovering sidebar */
+#sidebar-box:hover::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+
+  bottom: 10px;
+  left: var(--uc-sidebar-hover-width);
+
+  height: 15px;
+  width: 65px;
+  border-bottom-left-radius: var(--uc-tweak-rounded-corners-radius);
+  box-shadow: -5px 0 0 0 var(--lwt-accent-color);
+}
+
+/* Show top right rounded corner when hovering sidebar */
+#sidebar-box:hover::after {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+
+  top: 0px;
+  left: var(--uc-sidebar-hover-width);
+
+  height: 15px;
+  width: 65px;
+  border-top-left-radius: var(--uc-tweak-rounded-corners-radius);
+  box-shadow: -5px 0 0 0 var(--lwt-accent-color);
+}
+
 #sidebar-box:hover {
   opacity: 100% !important;
 }

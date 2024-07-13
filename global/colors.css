@@ -3,13 +3,14 @@
 
 /* default colours (light & dark) */
 :root:not(:-moz-lwtheme),
+:root:not([lwtheme]),
 /* `--newtab-background-color-secondary used` to differentiate between a dark
  * private window and private window with the 'Dark' theme enabled.
  * May not be the most reliable method, but works for now up to FF 123. */
 :root[privatebrowsingmode="temporary"]:where([style*="--lwt-accent-color: rgb(28, 27, 34)"]:not([style*="--newtab-background-color-secondary: rgb(66, 65, 77)"])) {
   /* Toolbars */
-  --lwt-accent-color: light-dark(#cecece, #1C1C1C) !important;
-  --lwt-accent-color-inactive: light-dark(#e8e8e8, #2e2e2e) !important;
+  --lwt-accent-color: light-dark(rgb(240, 240, 244), rgb(28, 27, 34)) !important;
+  --lwt-accent-color-inactive: light-dark(rgb(235, 235, 239), rgb(31, 30, 37)) !important;
   --lwt-text-color: light-dark(#000, #FFF) !important;
   --lwt-text-color-inactive: light-dark(#3A3A3A, #CBCBCB) !important;
   --tab-selected-textcolor: light-dark(#000, #fff) !important;
