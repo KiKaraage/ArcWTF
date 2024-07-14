@@ -111,6 +111,11 @@
     }
   }
 
+  /* Apply rounded corners to the browser content. */
+  #appcontent .browserStack browser {
+    border-radius: var(--uc-tweak-rounded-corners-radius) !important;
+  }
+
   /* Prevent status panel corners and shadow from appearing outside the browser. */
   #statuspanel {
     overflow: hidden;
