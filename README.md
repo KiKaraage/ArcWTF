@@ -3,6 +3,8 @@ For you who want to try new, shiny Arc Browser on Windows! No registration neede
 
 Based on [edge-frfox theme by bmFtZQ](https://github.com/bmFtZQ/edge-frfox) | Vertical tab sidebar setup derived from [arcticfox-theme by Sirlan-ff00ff](https://github.com/sirlan-ff00ff/arcticfox-theme).
 
+<b>July 14</b>: Sorry for not updating this theme and for ignoring messages/concerns. I don't think I'm able to maintain this at least until September/October. I just merged previous pull requests -- please make one if you find a bug/clash with new FF update and I will apply it here. Also, I don't think I will update the Floorp theme for now.
+
 Any suggestions or concerns? [Submit new issues](https://github.com/KiKaraage/ArcWTF/issues/new/choose) or [contact me on Reddit](https://www.reddit.com/r/FirefoxCSS/comments/1acgx8c/arcftw_attempt_to_replicate_arc_browser_sleek/).
 
 ## Previews
