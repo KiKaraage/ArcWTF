@@ -33,6 +33,16 @@
   opacity: 1%;
 }
 
+/* Add a pseudoelement to increase the hover area for the sidebar */
+
+#sidebar-box::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 100%;
+  z-index:-1;
+}
+
 /* if this preference is activated in about:config, sidebar width will be increased */
 @media (-moz-bool-pref: "uc.tweak.longer-sidebar") {
   :root #sidebar-box {
