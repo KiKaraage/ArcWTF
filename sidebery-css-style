@@ -1,5 +1,5 @@
 #root.root {
-  --tabs-height: 32px;
+  --tabs-height: 26px;
   --tabs-pinned-height: 44px;
   --tabs-margin: 8px;
   --tabs-indent: 18px;
@@ -51,7 +51,7 @@
 .AnimatedTabList {
   flex-direction: column;
   display: flex;
-  gap: calc(var(--tabs-margin) * 0.25);
+  gap: calc(var(--tabs-margin) * 0.8);
 }
 
 .AnimatedTabList .Tab {
