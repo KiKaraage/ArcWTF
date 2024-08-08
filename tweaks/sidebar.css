@@ -36,11 +36,11 @@
 /* Add a pseudoelement to increase the hover area for the sidebar */
 
 #sidebar-box::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 16px;
   height: 100%;
-  z-index:-1;
+  z-index: -1;
 }
 
 /* if this preference is activated in about:config, sidebar width will be increased */
@@ -124,36 +124,6 @@
   border-radius: 0 !important;
 }
 
-/* Show bottom right rounded corner when hovering sidebar */
-#sidebar-box:hover::before {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-
-  bottom: 10px;
-  left: var(--uc-sidebar-hover-width);
-
-  height: 15px;
-  width: 65px;
-  border-bottom-left-radius: var(--uc-tweak-rounded-corners-radius);
-  box-shadow: -5px 0 0 0 var(--lwt-accent-color);
-}
-
-/* Show top right rounded corner when hovering sidebar */
-#sidebar-box:hover::after {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-
-  top: 0px;
-  left: var(--uc-sidebar-hover-width);
-
-  height: 15px;
-  width: 65px;
-  border-top-left-radius: var(--uc-tweak-rounded-corners-radius);
-  box-shadow: -5px 0 0 0 var(--lwt-accent-color);
-}
-
 #sidebar-box:hover {
   opacity: 100% !important;
 }
@@ -216,13 +186,13 @@
       var(--uc-tweak-rounded-corners-padding) - 3px
     ) !important;
   }
-  
+
   & #sidebar-header {
     margin-inline-start: calc(
       var(--uc-tweak-rounded-corners-padding) - 3px
     ) !important;
   }
-  
+
   & #sidebar-box:hover > #sidebar {
     margin-inline-start: calc(
       var(--uc-tweak-rounded-corners-padding) - 3px
