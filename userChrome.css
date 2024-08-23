@@ -25,6 +25,7 @@
 
 /* Replacing Userchrome Toggle icon with Arc sidebar icon */
 :is(.webextension-browser-action, .eom-addon-button)[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon { list-style-image: url(./icons/userchrome-toggle.svg); }
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="copy-frame-url@jeffersonscher.com"] .toolbarbutton-icon { list-style-image: url(./icons/link.svg); }
 
 /* Using Segoe UI Variable font (uncomment below to apply) */
 /* * {font-family: "Segoe UI Variable Display" !important;} */
