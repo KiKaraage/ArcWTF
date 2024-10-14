@@ -147,4 +147,5 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
  * [DatGuyPiko - compact extensions menu](https://github.com/datguypiko/Firefox-Mod-Blur/tree/master/EXTRA%20MODS/Compact%20extensions%20menu)
  * [mbnuqw - support on Sidebery customizations](https://github.com/mbnuqw/sidebery/issues/1481)
 
-<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://star-history.com/embed?secret=Z2hwX0hvT3NZTzZ1TnowWW84RGl1bkNCTUM1STFYTnJUNzNUa3JubQ==#kikaraage/arcwtf&Date" frameBorder="0"></iframe>
+## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=kikaraage/arcwtf&type=Date)](https://star-history.com/#kikaraage/arcwtf&Date)
