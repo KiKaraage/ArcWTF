@@ -148,4 +148,5 @@ Vertical tabs are currently disabled in Private Browsing Mode due to behaviour c
  * [mbnuqw - support on Sidebery customizations](https://github.com/mbnuqw/sidebery/issues/1481)
 
 ## Star History
+
 [![Star History Chart](https://api.star-history.com/svg?repos=kikaraage/arcwtf&type=Date)](https://star-history.com/#kikaraage/arcwtf&Date)
