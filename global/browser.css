@@ -84,7 +84,7 @@
   }
   
   /* Apply rounded corners to the browser container. */
-  #appcontent .browserStack {
+  #tabbrowser-tabbox .browserStack {
     margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important;
     margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;
     margin-block-start: 0px !important;
@@ -112,7 +112,7 @@
   }
 
   /* Apply rounded corners to the browser content. */
-  #appcontent .browserStack browser {
+  #tabbrowser-tabbox .browserStack browser {
     border-radius: var(--uc-tweak-rounded-corners-radius) !important;
   }
 
@@ -159,7 +159,7 @@
     border-inline-width: 0 !important;
   }
 
-  :root[sizemode="normal"] #appcontent .browserStack) {
+  :root[sizemode="normal"] #tabbrowser-tabbox .browserStack) {
     margin-inline-end: 25px !important;
     margin-block-end: 25px !important;
 }

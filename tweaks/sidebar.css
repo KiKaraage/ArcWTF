@@ -141,10 +141,10 @@
 
 /* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
 
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel {
+#sidebar-box:not([positionend]):hover ~ #tabbrowser-tabbox #statuspanel {
   inset-inline: auto 0px !important;
 }
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label {
+#sidebar-box:not([positionend]):hover ~ #tabbrowser-tabbox #statuspanel-label {
   margin-inline: 0px !important;
   border-left-style: solid !important;
 }
@@ -171,10 +171,10 @@
     margin-left: calc(var(--sdbr-real-wdt) * -1);
   }
 
-  & #browser > #appcontent {
+  & #browser > #tabbrowser-tabbox {
     margin-left: var(--sdbr-real-wdt);
   }
-  & #appcontent browser {
+  & #tabbrowser-tabbox browser {
     margin-left: 0px;
   }
   & #statuspanel {

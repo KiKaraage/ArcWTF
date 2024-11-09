@@ -91,9 +91,9 @@
   }
 }
 
-#appcontent .browserStack { overflow: hidden !important; padding-left: 0 !important; margin-left: 0 !important; }
+#tabbrowser-tabbox .browserStack { overflow: hidden !important; padding-left: 0 !important; margin-left: 0 !important; }
 
-#appcontent { background-color: var(--sidebery-bg-color) !important;    }
+#tabbrowser-tabbox { background-color: var(--sidebery-bg-color) !important;    }
 
 /*Sidebar Expanded*/
 #sidebar-box, #sidebar {
