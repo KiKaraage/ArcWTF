@@ -27,7 +27,7 @@
   width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
   background-color: var(--lwt-accent-color) !important;
-  z-index: 1;
+  z-index: 4;
   transition: opacity var(--uc-autohide-transition-duration)
     var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
   opacity: 1%;
