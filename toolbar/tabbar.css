@@ -186,12 +186,12 @@
 }
 
 /* Hide pre-tabs spacer as it isn't needed. */
-.titlebar-spacer[type="pre-tabs"] {
+#TabsToolbar .titlebar-spacer[type="pre-tabs"] {
   display: none !important;
 }
 
 /* Make sure that the post-tabs spacer appears. */
-.titlebar-spacer[type="post-tabs"] {
+#TabsToolbar .titlebar-spacer[type="post-tabs"] {
   display: flex !important;
 }
 
