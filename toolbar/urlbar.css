@@ -13,7 +13,8 @@
   --uc-urlbar-inline-padding: 6px;
   --uc-urlbar-block-padding: 6px;
   --uc-urlbar-shadow: 0 0 0px rgb(0 0 0 / .1);
-   --urlbarView-rich-suggestion-default-icon-size: 32px !important;
+  --urlbarView-rich-suggestion-default-icon-size: 32px !important;
+  --uc-urlbar-open-border-radius: 8px !important;
 
   /* urlbar height */
   & #urlbar-container {
@@ -46,8 +47,8 @@
   }
 
   /* Appearance when the URL bar is expanded. */
-  #urlbar:is([open], [usertyping][focused]) & {
-    border-radius: 8px !important;
+  #urlbar[open] & {
+    border-radius: var(--uc-urlbar-open-border-radius) !important;
     border-color: transparent !important;
     outline: 0px solid var(--arrowpanel-border-color) !important;
 
@@ -107,8 +108,16 @@
 
 /* Keep URL bar in place when expanding. */
 #urlbar[breakout][breakout-extend] {
-  left: 0 !important;
-  width: 100% !important;
+  /* Firefox < v133 */
+  &:not([style*="--urlbar-width"]) {
+    left: 0 !important;
+    width: 100% !important;
+  }
+  /* Firefox >= v133 */
+  &[style*="--urlbar-width"] {
+    margin-left: 0 !important;
+    width: var(--urlbar-width) !important;
+  }
 }
 
 /* Search engine selector */
