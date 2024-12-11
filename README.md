@@ -5,7 +5,7 @@ Based on [edge-frfox theme by bmFtZQ](https://github.com/bmFtZQ/edge-frfox) | Ve
 
 <b>July 14</b>: Sorry for not updating this theme and for ignoring messages/concerns. I don't think I'm able to maintain this at least until September/October. I just merged previous pull requests -- please make one if you find a bug/clash with new FF update and I will apply it here. Also, I don't think I will update the Floorp theme for now.
 
-Any suggestions or concerns? [Submit new issues](https://github.com/KiKaraage/ArcWTF/issues/new/choose) or [contact me on Reddit](https://www.reddit.com/r/FirefoxCSS/comments/1acgx8c/arcftw_attempt_to_replicate_arc_browser_sleek/).
+Any suggestions or concerns? [Submit new issues](https://github.com/KiKaraage/ArcWTF/issues/new/choose) or [contact me on Reddit](https://www.reddit.com/u/KiKaraage).
 
 ## Previews
 ![Screenshot 1 with tab sidebar pinned](https://github.com/KiKaraage/ArcWTF/assets/10529881/0f280fd2-2049-4ed2-8bf2-41e25f381f65)
