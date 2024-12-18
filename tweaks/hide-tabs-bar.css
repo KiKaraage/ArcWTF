@@ -157,20 +157,6 @@
     }
   }
 
-  /* Sidebar positioned on the left. */
-  &:not([positionend]) {
-    border-inline-end: 1px solid var(--sidebar-border-color);
-    /* Use less padding on the side with the border. */
-    padding-inline: 4px 3px;
-  }
-
-  /* Sidebar positioned on the right. */
-  &[positionend] {
-    border-inline-start: 1px solid var(--sidebar-border-color);
-    /* Use less padding on the side with the border. */
-    padding-inline: 3px 4px;
-  }
-
   /* Rounded corners tweak optimisations. */
   @media (-moz-bool-pref: "uc.tweak.rounded-corners") {
     /* Remove padding and border from sidebar. */
