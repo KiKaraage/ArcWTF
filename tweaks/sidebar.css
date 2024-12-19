@@ -95,6 +95,11 @@
   #sidebar-header {
     visibility: collapse !important;
   }
+
+  #main-window:not([titlepreface*="|| "]) :is(#sidebar, #sidebar:hover) {
+    border-top: 1px solid var(--sidebar-border-color) !important;
+    border-radius: var(--uc-tweak-rounded-corners-radius) !important;
+  }
 }
 
 #sidebar-header::before,
