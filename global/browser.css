@@ -85,7 +85,8 @@
   
   /* Apply rounded corners to the browser container. */
   #tabbrowser-tabbox .browserStack {
-    margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important;
+    margin-inline-start: max(calc(var(--uc-tweak-rounded-corners-padding) - var(--uc-sidebar-collapsed)), 0px) !important;
+/*     margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important; */
     margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;
     margin-block-start: 0px !important;
     margin-block-end: var(--uc-tweak-rounded-corners-padding) !important;
