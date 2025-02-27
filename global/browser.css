@@ -94,22 +94,6 @@
     box-shadow: var(--uc-tweak-rounded-corners-shadow) !important;
     background-color: var(--tabpanel-background-color) !important;
     position: relative !important;
-
-    /* Use pseudo element overlay to simulate rounded corners, similar to the
-     * tab corners, fixes bug with backdrop-filter. */
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      /* Draw toolbar background on the negative corner space, then draw the
-       * same from the browser window shadow on top. */
-      box-shadow:
-        var(--uc-tweak-rounded-corners-shadow, 0 0 transparent),
-        0 0 0 16px var(--browser-frame-bgcolor) !important;
-      clip-path: inset(0);
-      pointer-events: none;
-    }
   }
 
   /* Apply rounded corners to the browser content. */
