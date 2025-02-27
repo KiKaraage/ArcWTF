@@ -71,6 +71,10 @@
   --uc-sidebar-width: 0.3rem;
 }
 
+#main-window[sizemode="fullscreen"][titlepreface*="|| "] #sidebar {
+  margin-inline-start: 0px;
+}
+
 #sidebar-header {
   overflow: hidden;
   color: var(--chrome-color, inherit) !important;
