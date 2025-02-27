@@ -78,7 +78,7 @@
   font-size: 1em !important;
   font-weight: bold !important;
   margin-inline-start: calc(
-    var(--uc-tweak-rounded-corners-padding) - 10px
+    var(--uc-tweak-rounded-corners-padding) - 3px
   ) !important;
   border-bottom: 0 !important;
   border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important;
@@ -121,12 +121,12 @@
 #sidebar-box:hover > #sidebar-header,
 #sidebar-box:hover > #sidebar {
   margin-inline-start: calc(
-    var(--uc-tweak-rounded-corners-padding) - 10px
+    var(--uc-tweak-rounded-corners-padding) - 3px
   ) !important;
   min-width: var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
   opacity: 100% !important;
-  border-radius: 0 !important;
+/*   border-radius: 0 !important; */
 }
 
 #sidebar-box:hover {
