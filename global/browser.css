@@ -94,11 +94,22 @@
     box-shadow: var(--uc-tweak-rounded-corners-shadow) !important;
     background-color: var(--tabpanel-background-color) !important;
     position: relative !important;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0px 0px 2px rgb(0 0 0 / 0.4);
+      pointer-events: none;
+    }
   }
 
   /* Apply rounded corners to the browser content. */
   #tabbrowser-tabbox .browserStack browser {
     border-radius: var(--uc-tweak-rounded-corners-radius) !important;
+    background-color:var(--tabpanel-background-color) !important;
+    border: 1px solid transparent;
   }
 
   /* Prevent status panel corners and shadow from appearing outside the browser. */
