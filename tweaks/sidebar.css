@@ -92,7 +92,8 @@
   visibility: collapse !important;
 }
 
-@media (-moz-bool-pref: "uc.tweak.hide-sidebar-header") {
+@media (-moz-bool-pref: "uc.tweak.hide-sidebar-header"),
+  -moz-pref("uc.tweak.hide-sidebar-header") {
   #sidebar-header {
     visibility: collapse !important;
   }
