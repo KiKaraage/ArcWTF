@@ -31,7 +31,8 @@
     }
 
     /* Set background colour of the menu bar to maintain consistency with the navbar */
-    @media not (-moz-bool-pref: "uc.tweak.floating-tabs") {
+    @media not (-moz-bool-pref: "uc.tweak.floating-tabs"),
+      not (-moz-pref("uc.tweak.rounded-corners")) {
       #toolbar-menubar {
         background-color: var(--toolbar-bgcolor) !important;
         color: var(--toolbar-color) !important;
