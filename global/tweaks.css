@@ -2,7 +2,8 @@
 
 /* force tabs to toolbar bg (useful for proton themes) (might experience some
 bugs with certain themes eg. dark text on dark background.) */
-@media (-moz-bool-pref: "uc.tweak.force-tab-colour") {
+@media (-moz-bool-pref: "uc.tweak.force-tab-colour"),
+  -moz-pref("uc.tweak.force-tab-colour") {
   :root:-moz-lwtheme {
     --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
     --tab-selected-textcolor: var(--toolbar-color) !important;
@@ -10,7 +11,8 @@ bugs with certain themes eg. dark text on dark background.) */
 }
 
 /* remove tab separators */
-@media (-moz-bool-pref: "uc.tweak.remove-tab-separators") {
+@media (-moz-bool-pref: "uc.tweak.remove-tab-separators"),
+  -moz-pref("uc.tweak.remove-tab-separators") {
   .tabbrowser-tab .tab-stack {
     &::before,
     &::after {

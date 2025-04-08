@@ -197,7 +197,8 @@ url-prefix("about:home") {
     padding: 30px !important;
   }
 
-  @media (-moz-bool-pref: "uc.tweak.hide-newtab-logo") {
+  @media (-moz-bool-pref: "uc.tweak.hide-newtab-logo"),
+    -moz-pref("uc.tweak.hide-newtab-logo") {
     .logo-and-wordmark {
       display: none !important;
     }
@@ -214,7 +215,8 @@ url-prefix("about:home") {
     --uc-wordmark-color: light-dark(#737373, #fff);
     --uc-background-color-secondary: light-dark(#fff, #4a4a4a);
 
-    @media (-moz-bool-pref: "browser.theme.dark-private-windows") {
+    @media (-moz-bool-pref: "browser.theme.dark-private-windows"),
+      -moz-pref("browser.theme.dark-private-windows") {
       color-scheme: dark !important;
     }
   }

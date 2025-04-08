@@ -564,7 +564,8 @@
 }
 
 /* disable context menu icons when this tweak is applied */
-@media not (-moz-bool-pref: "uc.tweak.revert-context-menu") {
+@media not (-moz-bool-pref: "uc.tweak.revert-context-menu"),
+  not (-moz-pref("uc.tweak.revert-context-menu")) {
 
   /* Context Menu Icons */
   menupopup>menuitem:is([checked="true"], [selected="true"]) .menu-iconic-icon {

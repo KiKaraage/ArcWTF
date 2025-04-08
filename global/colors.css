@@ -112,7 +112,8 @@
 }
 
 /* Ensure that dark mode is enabled completely in private browsing mode. */
-@media (-moz-bool-pref: "browser.theme.dark-private-windows") {
+@media (-moz-bool-pref: "browser.theme.dark-private-windows"),
+  -moz-pref("browser.theme.dark-private-windows") {
   :root[privatebrowsingmode="temporary"],
   :root[privatebrowsingmode="temporary"] #nav-bar,
   :root[privatebrowsingmode="temporary"] #PersonalToolbar {
@@ -154,7 +155,8 @@
   }
 
   /* Use accent colour in titlebar when Windows option is enabled. */
-  @media (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "browser.theme.windows.accent-color-in-tabs.enabled") {
+  @media (-moz-windows-accent-color-in-titlebar) and (-moz-bool-pref: "browser.theme.windows.accent-color-in-tabs.enabled"),
+    (-moz-windows-accent-color-in-titlebar) and (-moz-pref("browser.theme.windows.accent-color-in-tabs.enabled")) {
     :root:not(:-moz-lwtheme) {
       --lwt-accent-color: ActiveCaption !important;
       --lwt-text-color: CaptionText !important;

@@ -428,7 +428,8 @@
       background-color: rgb(255 255 255 / .3) !important;
       --uc-tab-corner-bg: rgb(255 255 255 / .3) !important;
 
-      @media (-moz-bool-pref: "uc.tweak.floating-tabs") {
+      @media (-moz-bool-pref: "uc.tweak.floating-tabs"),
+        -moz-pref("uc.tweak.floating-tabs") {
         background-color: var(--toolbar-bgcolor) !important;
         --uc-tab-corner-bg: var(--toolbar-bgcolor) !important;
       }
