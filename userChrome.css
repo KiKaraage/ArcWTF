@@ -1,31 +1,440 @@
-/* ArcWTF main files */
+/* ArcWTF 2.0
+/* github.com/KiKaraage/ArcWTF
+/* CSS includes: navbar - tab-sidebar - ff-sidebar - browser - urlbar - popup - extension
+
+/* CREDITS
+/* Specific icons from The Browser Company
+/* Fluent icons from Microsoft
+/* Fluent icons implementation and menu spacing from github.com/bmFtZQ/edge-frfox
+/* Folder icons from github.com/ferrocyante/Arc-H
+/* Better unloaded tabs from github.com/Felkazz
+
+Import external files */
 @import url("icons/icons.css");
-@import url("toolbar/tabbar.css");
-@import url("toolbar/navbar.css");
-@import url("toolbar/personalbar.css");
-@import url("toolbar/findbar.css");
-@import url("toolbar/urlbar.css");
-@import url("global/colors.css");
-@import url("global/popup.css");
-@import url("global/browser.css");
-@import url("global/tree.css");
+@import "tabgroups.css";
+@import "popup.css";
 
-/* Tweaks */
-@import url("global/tweaks.css");
-@import url("tweaks/hide-tabs-bar.css");
-@import url("tweaks/extensions.css");
-@import url("tweaks/sidebar.css");
-@import url("tweaks/popup-search.css");
+/* navbar.css ============================================= */
 
-/* Enable translucency on browser toolbars. (MacOS only) */
-/**/@import url("tweaks/mac-translucent.css") (-moz-bool-pref: "uc.tweak.mac-translucent");/**/
+/* Moving main menu button */
+#PanelUI-button {
+  order: -1 !important;
+}
+#PanelUI-menu-button {
+  padding: 0 var(--toolbarbutton-outer-padding) 0 var(--toolbar-start-end-padding) !important;
+  /* padding: 0 var(--toolbar-start-end-padding) 0 calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) + 3px) !important; */
+  /* padding-inline-start: var(--toolbar-start-end-padding); */
+}
 
-/* Import custom stylesheet instead of modifying the theme files. */
-@import url("custom.css");
+/* Reducing the padding-inline-start of navbar */
+#nav-bar-customization-target {
+  & > :is(toolbarbutton, toolbaritem):first-child, & > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem) {
+    padding-inline-start: 0 !important;
+  }
+}
 
-/* Replacing Userchrome Toggle icon with Arc sidebar icon */
-:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon { list-style-image: url(./icons/userchrome-toggle.svg); }
+/* Scale down toolbar buttons in navbar, except the main menu */
+#nav-bar-customization-target .toolbarbutton-1, .urlbar-revert-button, .urlbar-go-button, .search-go-button {
+  scale: 0.9 !important;
+  border-radius: 10px !important;
+}
+
+/* Round toolbar button border radius more */
+toolbar .toolbarbutton-1 {
+  & > .toolbarbutton-icon, & > .toolbarbutton-text, & > .toolbarbutton-badge-stack {
+    border-radius: 10px !important;
+  }
+}
+
+/* Sidebar button tweaks: Remove background when sidebar is activated */
+#sidebar-button:not(:hover){
+  &[checked] {
+    .toolbarbutton-icon {
+        background-color: transparent !important;
+    }
+  }
+}
+
+/* Hide Extension & Download button unless navbar is hovered */
+#nav-bar:not([customizing]) {
+  #unified-extensions-button, #downloads-button {
+    opacity: 0 !important;
+    transition: 0.2s ease !important;
+  }
+
+  #unified-extensions-button:hover, #downloads-button:hover {
+    opacity: 1 !important;
+  }
+}
+
+/* Hide "Private browsing" label, keep icon only */
+..private-browsing-indicator-label {
+  display: none !important;
+}
+
+/* Move the non-removeable vertical spacer beside back, forward, and stop/reload button when sidebar is not expanded */
+#nav-bar-customization-target:has(#sidebar-button:not([expanded=""])) {
+  #back-button, #forward-button, #stop-reload-button {
+    order: 0 !important;
+  }
+  #vertical-spacer {
+    order: 1 !important;
+  }
+  #urlbar-container, #unified-extensions-button, toolbarspring, .toolbaritem-combined-buttons, #downloads-button {
+    order: 2 !important;
+  }
+}
+
+/* Replacing extension icons */
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="pagesidebar@stefanvd.net"] .toolbarbutton-icon { list-style-image: url(./icons/split.svg); }
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="side-browser@filewo.net"] .toolbarbutton-icon { list-style-image: url(./icons/split.svg); }
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="sidebar-tab@shailendra.xyz"] .toolbarbutton-icon { list-style-image: url(./icons/split.svg); }
 :is(.webextension-browser-action, .eom-addon-button)[data-extensionid="copy-frame-url@jeffersonscher.com"] .toolbarbutton-icon { list-style-image: url(./icons/link.svg); }
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="{4f2a7aa8-cbe9-49cd-9cf9-5a3ec0c48476}"] .toolbarbutton-icon { list-style-image: url(./icons/link.svg); }
+#pageAction-urlbar-_4f2a7aa8-cbe9-49cd-9cf9-5a3ec0c48476_ .urlbar-icon { 
+  list-style-image: url(./icons/link.svg) !important;
+  --pageAction-image: image-set(url(./icons/link.svg)) !important;
+}
 
-/* Using Segoe UI Variable font (uncomment below to apply) */
-/* * {font-family: "Segoe UI Variable Display" !important;} */
+
+/* tab-sidebar.css ============================================= */
+
+/* Move new tab button above regular tabs */
+@media -moz-pref("browser.tabs.insertAfterCurrent") {
+  #vertical-pinned-tabs-container {
+    order: -2 !important;
+  }
+  #vertical-tabs-newtab-button {
+    order: -1 !important;
+  }
+} 
+
+/* Better indicator of unloaded tabs */
+.tabbrowser-tab[pending="true"] {
+  .tab-icon-stack {
+    opacity: 0.4;
+  }
+  .tab-label-container {
+    opacity: 0.7;
+  }
+}
+
+/* Remove outline in tabs */
+.tab-background {
+  outline: none !important;
+}
+
+/* Adjust vertical tabs margins (regular) */
+#tabbrowser-tabs[orient="vertical"]:not([collapsed]) {
+ & :not[pinned="true"] {
+  & .tab-background {
+      margin-inline: calc(var(--tab-inner-inline-margin) - 2px) !important;
+      margin-block: calc(var(--tab-block-margin) - 2px) !important;
+      min-height: calc(var(--tab-min-height) + 3px) !important;
+    }
+  }
+}
+#tabbrowser-tabs[orient="vertical"]:not([collapsed]) {
+  grid-gap: var(--space-xsmall) !important;
+  & .tabbrowser-tab {
+    padding-block: 3px 3px !important;
+    &:nth-child(1 of :not([hidden], [pinned])) {
+      padding-block-start: 3px !important;
+    }
+  }
+}
+
+/* Adjust height, margin & padding for pinned tabs when sidebar is NOT expanded */
+#vertical-pinned-tabs-container {
+  #tabbrowser-tabs[expanded] > & {
+    padding-inline: calc(var(--tab-pinned-container-margin-inline-expanded) - 1px) !important;
+  }
+  .tab-background {
+    min-height: calc(var(--tab-min-height) + 10px) !important;
+  }
+}
+#vertical-pinned-tabs-container {
+  #tabbrowser-tabs[expanded] > & {
+    & .tab-background {
+      margin-inline: calc(var(--space-xsmall) * 1.1) !important;
+    }
+  }
+}
+#tabbrowser-tabs[orient="vertical"] {
+  &:not([expanded]) {
+    & .tab-background {
+      min-height: var(--tab-min-height) !important;
+    }
+  }
+}
+
+/* Adjust right padding of tab close button, only show the button if tab is hovered */
+#tabbrowser-tabs[orient="vertical"] {
+  & .tab-close-button {
+    margin-inline-end: calc(-1 * var(--tab-close-button-padding) + 3px) !important;
+    scale: 0.8;
+    border-radius: 10px !important;
+    /* display: none !important; */
+    transition: 0.2s ease !important;
+  }
+}
+
+/* Pausing this particular code block until I can exclude pinned tab from this command */
+/* #tabbrowser-tabs[orient="vertical"] {
+  .tabbrowser-tab:hover {
+  & .tab-close-button {
+    display: initial !important;
+  }
+  }
+} */
+
+
+/* Hide sidebar tools & extensions when the sidebar is not hovered */
+@media -moz-pref("sidebar.verticalTabs") {
+  .tools-and-extensions {
+    display: none !important;
+    opacity: 0 !important;
+    transition: 0.2s ease;
+  }
+  /* Hide the New Tab separator too */
+  #tabbrowser-tabs[orient="vertical"] {
+  &[overflow]::after {
+    border-bottom: none !important;
+    padding-bottom: calc(var(--toolbarbutton-border-radius) - 1px) !important;
+    }
+  }
+} 
+
+/* Show the sidebar tools & extensions only when sidebar is hovered */
+.wrapper:hover {
+  @media -moz-pref("sidebar.verticalTabs") {
+    .tools-and-extensions {
+      display: grid !important;
+      opacity: 1 !important;
+      margin-top: -12px !important;
+    }
+  }
+}
+
+/* TODO: Try to change icon of Page Sidebar icon in sidebar button */
+.expanded-button[extensionId="pagesidebar@stefanvd.net"] {
+  .button-background {
+  & img {
+    width: 0 !important;
+    height: 0 !important;
+    & ::before {
+      content: "" !important;
+      list-style-image: url(./icons/link.svg) !important;
+    }
+    }
+  }
+}
+
+/* browser.css ============================================== */
+
+/* #tabbrowser-tabbox {
+  @media -moz-pref("sidebar.revamp") {
+    {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+} */
+
+:root {
+  {
+    --content-area-shadow: 0 0 0 0 light-dark(rgba(0,0,0,0), rgba(0,0,0,0)) !important;
+  }
+}
+
+#tabbrowser-tabbox, #tabbrowser-tabpanels {
+  border-radius: 5px !important;
+}
+
+#tabbrowser-tabbox {
+  margin: 0 8px 9px 8px !important;
+}
+
+.browserContainer {
+  clip-path: inset(0 round 5px);
+}
+
+#sidebar-box {
+  @media -moz-pref("sidebar.revamp") {
+    {
+      padding-inline-end: 0 !important;
+    }
+  }
+}
+
+/* TODO: The Main Sidebar */
+/* #sidebar {
+  @media -moz-pref("sidebar.revamp") {
+    {
+      border-radius: var(--border-radius-small) !important;
+      box-shadow: none !important;
+      border: 0.5px solid var(--sidebar-border-color);
+      background-color: var(--sidebar-background-color);
+      color: var(--sidebar-text-color);
+    }
+  }
+} */
+
+/* urlbar.css ============================================== */
+
+/* Reduce URL bar height */
+#urlbar-container {
+  --urlbar-container-height: 35.00px !important;
+}
+
+/* Hide stuff: Extension or site label,  */
+#identity-icon-label {
+ display: none !important; 
+}
+
+/* Hide urlbar buttons unless hovered */
+#identity-box, #tracking-protection-icon-container, #page-action-buttons {
+  opacity: 0 !important;
+  scale: 0.85 !important;
+  transition: 0.2s ease !important;
+}
+#urlbar:hover {
+  #identity-box, #tracking-protection-icon-container, #page-action-buttons, #urlbar-searchmode-switcher, #urlbar-revert-button-container {
+    opacity: 1 !important;
+  }
+}
+
+/* Remove bookmark button in URL bar */
+#star-button-box, #searchmode-switcher-dropmarker {
+  display: none !important;
+}
+
+/* Remove background for URL bar and site information buttons */
+#identity-box[pageproxystate="valid"]:is(.notSecureText, .chromeUI, .extensionPage) > .identity-box-button, #urlbar-label-box, #urlbar-background {
+  background-color: transparent !important;
+}
+
+/* Adjust styling for search mode switcher when URL bar is not expanded  */
+@media -moz-pref("browser.urlbar.searchModeSwitcher.featureGate") or -moz-pref("browser.urlbar.scotchBonnet.enableOverride") {
+  @media not -moz-pref("browser.urlbar.unifiedSearchButton.always") {
+    #urlbar-searchmode-switcher {
+      background-color: transparent !important;
+      transition: 0.2s ease !important;
+    }
+    #urlbar-searchmode-switcher:hover {
+      background-color: var(--urlbar-box-bgcolor) !important;
+    }
+    #searchmode-switcher-chicklet {
+      padding-inline-start: calc(var(--urlbar-searchmodeswitcher-margin-inline-end) + 3px);
+      border-radius: 10px !important;
+      font-size: 80% !important;
+      height: 80% !important;
+      margin-block-start: calc(var(--urlbar-searchmodeswitcher-margin-inline-end) / 2);
+    }
+  }
+}
+
+/* Set rounder border radius for URL bar and the search switcher button */
+#urlbar-background, #searchbar, #urlbar-searchmode-switcher, #urlbar-revert-button-container, #notification-popup-box,
+.identity-box-button, #tracking-protection-icon-container, #tracking-protection-icon, #reader-mode-button-icon, .urlbar-page-action {
+  border-radius: 10px !important;
+}
+
+/* Center the URL text and when it is not expanded */
+#urlbar {
+  &:not([breakout][breakout-extend]) {
+    .urlbar-input {
+      text-align: center !important;
+      /* max-width: 220px; */
+    }
+    /* Hide all icons inside it except site security & addons page action buttons when it is not expanded */
+    #star-button-box, #reader-mode-button, 
+    #urlbar-zoom-button, #shopping-sidebar-button, #picture-in-picture-button {
+      display: none !important;
+    }
+    #urlbar-background, #searchbar {
+      border: none !important;
+    }
+  }
+}
+
+/* Comment the line with attr(label) and uncomment the other line to change "Firefox Suggest" text in urlbar to "Arc Suggest" */
+/* < though it also changed "Recent Searches" and "Shortcut" too, I'm still searching how to make it only affect "Firefox Suggest" > */
+.urlbarView-row[label] {
+  &::before {
+    content: attr(label) !important;
+    /* content: "Arc Suggest" !important; */
+  }
+}
+
+/* URL bar stylings when it is popped up */
+#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+  /* Move its position to center of the screen */
+  top: 25% !important;
+  left: 20% !important;
+  right: 20% !important;
+  width: 60% !important;
+  
+  /* Adjust padding inside the URL bar background */
+  padding-block-start: 8px !important;
+  padding-block-end: 9px !important;
+  padding-inline: 6px !important;
+  
+  /* Tweaks for current URL text */
+  #urlbar-input {
+    font-size: 20px !important;
+    margin-left: 3px !important;
+    padding-right: 6px !important;
+  }
+  
+  /* Move separator below the current URL a bit */
+  .urlbarView-body-inner {
+    margin-top: 6px !important;
+  }
+  
+  /* Then, move the search/history results below the separator */
+  .urlbarView-results {
+    padding-top: 9px !important;
+  }
+  
+  /* Increase border radius of the URL float panel, and set distinguishable background-color */
+  #urlbar-background {
+    background-color: var(--toolbar-bgcolor) !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Reveal the search switcher & address bar revert button */
+  #urlbar-searchmode-switcher, #urlbar-revert-button-container {
+    opacity: 1 !important;
+    background-color: var(--toolbarbutton-hover-background) !important;
+  }
+  
+  /* Reveal other icons */
+  #identity-box, #tracking-protection-icon-container, #page-action-buttons {
+    opacity: 1 !important;
+  }
+  
+  /* Scale up again all buttons inside URL bar when popping up */
+  #star-button-box, #tracking-protection-icon-container, #reader-mode-button, #page-action-buttons,
+  #identity-box, #urlbar-zoom-button, #shopping-sidebar-button, #translations-button, 
+  #picture-in-picture-button {
+      scale: 1 !important;
+  }
+  
+  /* Add paddings to search engine switcher chicklet */
+  #searchmode-switcher-chicklet {
+    background-color: var(--lwt-accent-color) !important;
+    padding-inline-start: var(--urlbar-searchmodeswitcher-margin-inline-end);
+    margin-inline-start: calc(var(--urlbar-searchmodeswitcher-margin-inline-end) / 1.25);
+    margin-inline-end: var(--urlbar-searchmodeswitcher-margin-inline-end);
+    border-radius: 10px !important; 
+    height: 105% !important;
+  }
+  
+  /* Adjust position of search entry categories */
+  .urlbarView-row[label] {
+    &::before {
+      top: calc(var(--urlbarView-labeled-row-label-top) - 2px) !important;
+    }
+  }
+}
