@@ -1,0 +1,214 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* ::::: menupopup ::::: */
+
+menupopup,
+panel {
+  /* We can always render in the preferred color scheme (unless otherwise
+   * overridden). */
+  color-scheme: light dark;
+
+  min-width: 1px;
+  --panel-background: Menu;
+  --panel-color: MenuText;
+  --panel-padding-block: 4px;
+  --panel-padding: var(--panel-padding-block) 0;
+  --panel-border-radius: 4px;
+  --panel-border-color: ThreeDShadow;
+  --panel-width: initial;
+
+  --panel-shadow-margin: 0px;
+  --panel-shadow: 0 0 var(--panel-shadow-margin) hsla(0,0%,0%,.2);
+  -moz-window-input-region-margin: var(--panel-shadow-margin);
+  margin: calc(-1 * var(--panel-shadow-margin));
+
+  /* Panel design token theming */
+  --background-color-canvas: var(--panel-background);
+
+  @media (-moz-platform: linux) {
+    --panel-border-radius: 8px;
+    --panel-padding-block: 3px;
+
+    @media (prefers-contrast) {
+      --panel-border-color: color-mix(in srgb, currentColor 60%, transparent);
+    }
+  }
+
+  @media (-moz-platform: linux) or (-moz-platform: windows) {
+    /* To account for the box-shadow below */
+    --panel-shadow-margin: 4px;
+  }
+
+  /* On some linux WMs we need to draw square menus because alpha is not available */
+  @media (-moz-platform: linux) and (not (-moz-gtk-csd-transparency-available)) {
+    --panel-shadow-margin: 0px !important;
+    --panel-border-radius: 0px !important;
+  }
+
+  @media (-moz-windows-mica-popups) {
+    appearance: auto;
+    -moz-default-appearance: menupopup;
+    /* The blur behind doesn't blur all that much, add a semi-transparent
+     * background to improve contrast */
+    --panel-background: light-dark(rgba(255, 255, 255, .5), rgba(0, 0, 0, .5));
+    --panel-border-color: transparent;
+    --panel-shadow-margin: 0px;
+  }
+
+  @media (-moz-platform: macos) {
+    appearance: auto;
+    -moz-default-appearance: menupopup;
+    /* We set the default background here, rather than on ::part(content),
+     * because otherwise it'd interfere with the native look. Non-native-looking
+     * popups should get their background via --panel-background */
+    background-color: Menu;
+    --panel-background: none;
+    --panel-border-color: transparent;
+    /* This should be kept in sync with GetMenuMaskImage() */
+    --panel-border-radius: 6px;
+  }
+
+  &::part(content) {
+    display: flex;
+    box-sizing: border-box;
+
+    padding: var(--panel-padding);
+    color: var(--panel-color);
+    background: var(--panel-background);
+    border-radius: var(--panel-border-radius);
+    border: 1px solid var(--panel-border-color);
+    width: var(--panel-width);
+    box-shadow: var(--panel-shadow);
+    margin: var(--panel-shadow-margin);
+
+    min-width: 0;
+    min-height: 0;
+
+    /* Makes popup constraints work. Round up to avoid subpixel rounding
+     * causing overflow, see bug 1846050 */
+    max-height: round(up, 100% - 2 * var(--panel-shadow-margin), 1px);
+    max-width: round(up, 100% - 2 * var(--panel-shadow-margin), 1px);
+
+    overflow: clip; /* Don't let panel content overflow the border */
+  }
+
+  &[orient=vertical]::part(content) {
+    flex-direction: column;
+  }
+}
+
+menupopup {
+  /* Also apply the padding in the inline axis for menus */
+  --panel-padding: var(--panel-padding-block);
+
+  @media (-moz-platform: windows) {
+    > menu,
+    > menuitem {
+      padding-block: 0.5em;
+      padding-inline-start: 1em;
+    }
+  }
+
+  > menu > menupopup {
+    /* Vertically align nested menupopups: the shadow plus the top padding plus top border */
+    margin-top: calc(-1 * (var(--panel-shadow-margin) + var(--panel-padding-block) + 1px));
+  }
+}
+
+/* Rules for popups associated with menulists */
+menulist > menupopup {
+  min-width: 0;
+
+  @media (-moz-platform: windows) {
+    font: inherit;
+  }
+
+  @media (-moz-platform: macos) {
+    &:not([position]) {
+      margin-inline-start: -13px;
+      margin-top: -1px;
+    }
+  }
+}
+
+/* ::::: arrow panel ::::: */
+
+panel:where([type="arrow"]) {
+  appearance: none;
+  background-color: transparent;
+
+  &.panel-no-padding::part(content) {
+    padding: 0;
+  }
+}
+
+/* ::::: panel animations ::::: */
+
+@media (-moz-panel-animations) and (prefers-reduced-motion: no-preference) {
+  .animatable-menupopup,
+  panel[type="arrow"] {
+    transition-timing-function: var(--animation-easing-function), ease-out;
+
+    &:not([animate="false"]) {
+      transition-duration: 0.18s;
+    }
+
+    @media not (-moz-platform: macos) {
+      transition-property: transform, opacity;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: translateY(-70px);
+
+      &[side="bottom"] {
+        transform: translateY(70px);
+      }
+    }
+
+    /* On Mac, use the properties "-moz-window-transform" and "-moz-window-opacity"
+     * instead of "transform" and "opacity" for these animations.
+     * The -moz-window* properties apply to the whole window including the
+     * window's shadow, and they don't affect the window's "shape", so the
+     * system doesn't have to recompute the shadow shape during the animation.
+     * This makes them a lot faster. These properties are not implemented on
+     * other platforms.
+     */
+    @media (-moz-platform: macos) {
+      transition-property: -moz-window-transform, -moz-window-opacity;
+      /* Only do the fade-in animation on pre-Big Sur to avoid missing shadows on
+       * Big Sur, see bug 1672091. */
+      @media not (-moz-mac-big-sur-theme) {
+        -moz-window-opacity: 0;
+        -moz-window-transform: translateY(-70px);
+
+        &[side="bottom"] {
+          -moz-window-transform: translateY(70px);
+        }
+      }
+      /* If the @media rule above is removed, then we can also remove this */
+      &[animate="cancel"] {
+        -moz-window-opacity: 0;
+      }
+    }
+
+    &[animate="cancel"] {
+      -moz-window-transform: none;
+      transform: none;
+    }
+
+    &:is([animate="false"], [animate="open"]) {
+      opacity: 1;
+      transform: none;
+      -moz-window-opacity: 1;
+      -moz-window-transform: none;
+      transition-timing-function: var(--animation-easing-function), ease-in-out;
+    }
+
+    &[animating] {
+      pointer-events: none;
+    }
+  }
+}
