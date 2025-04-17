@@ -23,9 +23,15 @@
   
 ![9 folder icon options](https://github.com/user-attachments/assets/fbddae3a-53c4-4b8c-ad41-8e6c553498a8)
 
+### Theme components to download (for now)
+- "icons", "folder-icons", and "content" folder
+- userChrome.css, popup.css, tabgroups.css, and userContent.css
+- Background-0.png and Background-1.png for new tab background
+- Arc.ico if you want to apply the icon in your Windows taskbar
+
 ## Applying the theme
 - Install latest Firefox, enable Vertical Tabs via right click menu or in Settings
-- Download the repo and extract it on your Firefox profile directory (Get the path in `about:profile`. Create the "chrome" folder if you haven't)
+- Download the repo () and extract it on your Firefox profile directory (Get the path in `about:profile`. Create the "chrome" folder if you haven't)
 - Make sure these **boolean** prefs in `about:config` are enabled/"true":
   - `toolkit.legacyUserProfileCustomizations.stylesheets` to enable user custom styling
   - `svg.context-properties.content.enabled` to enable SVG coloring based on theme.
