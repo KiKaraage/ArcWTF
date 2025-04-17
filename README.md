@@ -1,6 +1,6 @@
-# Arc Windows to Firefox / Floorp
+# Arc Windows to Firefox
 
-### Reworked for Firefox 137+
+### Reworked and streamlined for Firefox 137+
 - Still working on every platform! Windows, Linux and macOS
 - Based on current Firefox vertical tabs & sidebar system. (Plus Firefox is working on locally-processed Link Preview and sidebar show on hover!)
 - Refined layout compared to past ArcWTF version. Popup URL bar is enabled by default.
