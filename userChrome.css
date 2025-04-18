@@ -55,14 +55,14 @@ toolbar .toolbarbutton-1 {
   }
 }
 
-/* Hide Extension & Download button unless navbar is hovered */
+/* Hide Extension button unless navbar is hovered */
 #nav-bar:not([customizing]) {
-  #unified-extensions-button, #downloads-button {
+  #unified-extensions-button {
     opacity: 0 !important;
     transition: 0.2s ease !important;
   }
 
-  #unified-extensions-button:hover, #downloads-button:hover {
+  #unified-extensions-button:hover {
     opacity: 1 !important;
   }
 }
@@ -72,18 +72,20 @@ toolbar .toolbarbutton-1 {
   display: none !important;
 }
 
-/* Move the non-removeable vertical spacer beside back, forward, and stop/reload button when sidebar is not expanded */
+/* Hide the first, persistent vertical spacer if sidebar is not expanded
+ * and add transition to it so the remaining buttons will have transitions too when moving */
+#vertical-spacer {
+  transition: 0.2s ease !important;
+}
+
 #nav-bar-customization-target:has(#sidebar-button:not([expanded=""])) {
-  #back-button, #forward-button, #stop-reload-button {
-    order: 0 !important;
-  }
   #vertical-spacer {
-    order: 1 !important;
-  }
-  #urlbar-container, #unified-extensions-button, toolbarspring, .toolbaritem-combined-buttons, #downloads-button {
-    order: 2 !important;
+    min-width: 0 !important;
+    width: 0 !important;
+    flex: 0 0 !important;
   }
 }
+
 
 /* Replacing extension icons */
 :is(.webextension-browser-action, .eom-addon-button)[data-extensionid="pagesidebar@stefanvd.net"] .toolbarbutton-icon { list-style-image: url(./icons/split.svg); }
@@ -209,7 +211,7 @@ toolbar .toolbarbutton-1 {
 .wrapper:hover {
   @media -moz-pref("sidebar.verticalTabs") {
     .tools-and-extensions {
-      display: grid !important;
+      display: flex !important;
       opacity: 1 !important;
       margin-top: -12px !important;
     }
@@ -232,53 +234,51 @@ toolbar .toolbarbutton-1 {
 
 /* browser.css ============================================== */
 
-/* #tabbrowser-tabbox {
-  @media -moz-pref("sidebar.revamp") {
-    {
-      outline: none !important;
-      box-shadow: none !important;
+/* Use border radius variable for webviews */
+#tabbrowser-tabbox, #tabbrowser-tabpanels {
+  border-radius: var(--border-radius-medium) !important;
+}
+
+/* When sidebar is expanded, left margin MUST be 0 */
+#main-window:not([inFullscreen="true"]) {
+  #tabbrowser-tabbox {
+      margin: 0 8px 9px 0px !important;
+    }
+}
+/* When sidebar is NOT expanded, left margin should be 8px */
+#main-window:not([inFullscreen="true"]) {
+  .browserContainer {
+    clip-path: inset(0 round var(--border-radius-medium));
+  }
+  &:has(#sidebar-main[hidden="true"]) {
+    #tabbrowser-tabbox {
+      margin: 0 8px 9px 8px !important;
     }
   }
-} */
+}
 
-:root {
-  {
-    --content-area-shadow: 0 0 0 0 light-dark(rgba(0,0,0,0), rgba(0,0,0,0)) !important;
+
+/* Blend sidebar styling with current theme */
+#sidebar {
+  @media -moz-pref("sidebar.revamp") {
+      border-radius: var(--border-radius-medium) !important;
+      border: 0px solid var(--chrome-content-separator-color) !important;
+      outline: 0.01px solid var(--toolbar-bgcolor);
+      box-shadow: var(--content-area-shadow) !important;
+      background-color: var(--toolbar-bgcolor) !important;
+      color: transparent !important;
   }
 }
 
-#tabbrowser-tabbox, #tabbrowser-tabpanels {
-  border-radius: 5px !important;
-}
-
-#tabbrowser-tabbox {
-  margin: 0 8px 9px 8px !important;
-}
-
-.browserContainer {
-  clip-path: inset(0 round 5px);
-}
-
+/* Set similar right padding as the main browser container for sidebar-box */
 #sidebar-box {
   @media -moz-pref("sidebar.revamp") {
-    {
-      padding-inline-end: 0 !important;
-    }
+    padding-inline-end: 10px !important;
   }
 }
 
-/* TODO: The Main Sidebar */
-/* #sidebar {
-  @media -moz-pref("sidebar.revamp") {
-    {
-      border-radius: var(--border-radius-small) !important;
-      box-shadow: none !important;
-      border: 0.5px solid var(--sidebar-border-color);
-      background-color: var(--sidebar-background-color);
-      color: var(--sidebar-text-color);
-    }
-  }
-} */
+
+
 
 /* urlbar.css ============================================== */
 
@@ -293,13 +293,14 @@ toolbar .toolbarbutton-1 {
 }
 
 /* Hide urlbar buttons unless hovered */
-#identity-box, #tracking-protection-icon-container, #page-action-buttons {
+#identity-box, #tracking-protection-icon-container, #page-action-buttons, #translations-button, #reader-mode-button {
   opacity: 0 !important;
   scale: 0.85 !important;
   transition: 0.2s ease !important;
 }
 #urlbar:hover {
-  #identity-box, #tracking-protection-icon-container, #page-action-buttons, #urlbar-searchmode-switcher, #urlbar-revert-button-container {
+  #identity-box, #tracking-protection-icon-container, #page-action-buttons, #urlbar-searchmode-switcher, 
+  #urlbar-revert-button-container, #translations-button, #reader-mode-button {
     opacity: 1 !important;
   }
 }
@@ -348,8 +349,7 @@ toolbar .toolbarbutton-1 {
       /* max-width: 220px; */
     }
     /* Hide all icons inside it except site security & addons page action buttons when it is not expanded */
-    #star-button-box, #reader-mode-button, 
-    #urlbar-zoom-button, #shopping-sidebar-button, #picture-in-picture-button {
+    #star-button-box, #urlbar-zoom-button, #shopping-sidebar-button, #picture-in-picture-button {
       display: none !important;
     }
     #urlbar-background, #searchbar {
@@ -358,7 +358,7 @@ toolbar .toolbarbutton-1 {
   }
 }
 
-/* Comment the line with attr(label) and uncomment the other line to change "Firefox Suggest" text in urlbar to "Arc Suggest" */
+/* Add the comment sign to the first line (attr(label)) and uncomment the other line below, to change "Firefox Suggest" text in urlbar to "Arc Suggest" */
 /* < though it also changed "Recent Searches" and "Shortcut" too, I'm still searching how to make it only affect "Firefox Suggest" > */
 .urlbarView-row[label] {
   &::before {
@@ -370,7 +370,7 @@ toolbar .toolbarbutton-1 {
 /* URL bar stylings when it is popped up */
 #urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
   /* Move its position to center of the screen */
-  top: 25% !important;
+  top: 30% !important;
   left: 20% !important;
   right: 20% !important;
   width: 60% !important;
@@ -410,7 +410,7 @@ toolbar .toolbarbutton-1 {
   }
   
   /* Reveal other icons */
-  #identity-box, #tracking-protection-icon-container, #page-action-buttons {
+  #identity-box, #tracking-protection-icon-container, #page-action-buttons, #translations-button, #reader-mode-button {
     opacity: 1 !important;
   }
   
@@ -436,5 +436,15 @@ toolbar .toolbarbutton-1 {
     &::before {
       top: calc(var(--urlbarView-labeled-row-label-top) - 2px) !important;
     }
+  }
+}
+
+/* Change focus outline colors from blue to --toolbar-bgcolor for more cohesive look */
+#urlbar[focused]:not([suppress-focus-border]) > #urlbar-background, #searchbar:focus-within {
+  outline-color: color-mix(in srgb, var(--toolbar-bgcolor) 85%, var(--lwt-text-color)) !important;
+}
+.urlbarView-action-btn {
+  &[selected], &:hover:active {
+    outline-color: color-mix(in srgb, var(--toolbar-bgcolor) 50%, var(--lwt-text-color)) !important;
   }
 }
