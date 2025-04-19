@@ -6,8 +6,9 @@
 /* Specific icons from The Browser Company
 /* Fluent icons from Microsoft
 /* Fluent icons implementation and menu spacing from github.com/bmFtZQ/edge-frfox
+/* Tab group implementations from github.com/Anoms12/Advanced-Tab-Groups
 /* Folder icons from github.com/ferrocyante/Arc-H
-/* Better unloaded tabs from github.com/Felkazz
+/* Better unloaded tabs styling from github.com/Felkazz/zen-browser-better-unloaded-tabs
 
 Import external files */
 @import url("icons/icons.css");
@@ -72,17 +73,28 @@ toolbar .toolbarbutton-1 {
   display: none !important;
 }
 
-/* Hide the first, persistent vertical spacer if sidebar is not expanded
- * and add transition to it so the remaining buttons will have transitions too when moving */
-#vertical-spacer {
-  transition: 0.2s ease !important;
-}
-
-#nav-bar-customization-target:has(#sidebar-button:not([expanded=""])) {
+/* Hide the persistent vertical spacer if sidebar is not expanded */
+#nav-bar-customization-target:has(#sidebar-button:not([expanded=""])), #main-window[sizemode="normal"] {
   #vertical-spacer {
     min-width: 0 !important;
     width: 0 !important;
     flex: 0 0 !important;
+  }
+}
+
+/* And add transition to the remaining buttons when expanding/collapsing sidebar */
+#vertical-spacer {
+  transition: 0.2s ease;
+} 
+
+/* Hide the persistent vertical spacer when 'Sidebar expand on hover' is enabled */
+@media -moz-pref("sidebar.visibility","expand-on-hover") {
+  #nav-bar-customization-target {
+    #vertical-spacer {
+      min-width: 0 !important;
+      width: 0 !important;
+      flex: 0 0 !important;
+    }
   }
 }
 
@@ -99,10 +111,11 @@ toolbar .toolbarbutton-1 {
 }
 
 
-/* tab-sidebar.css ============================================= */
+/* sidebar.css ============================================= */
 
+/* [TAB SIDEBAR ZONE] */
 /* Move new tab button above regular tabs */
-@media -moz-pref("browser.tabs.insertAfterCurrent") {
+@media -moz-pref("uc.tweak.top-newtab-button") {
   #vertical-pinned-tabs-container {
     order: -2 !important;
   }
@@ -143,6 +156,9 @@ toolbar .toolbarbutton-1 {
     &:nth-child(1 of :not([hidden], [pinned])) {
       padding-block-start: 3px !important;
     }
+    &[pinned] {
+      padding-block-start: 1px !important;
+    }
   }
 }
 
@@ -170,6 +186,15 @@ toolbar .toolbarbutton-1 {
   }
 }
 
+/* Add top padding to pinned tabs in fullscreen mode */
+#main-window[inFullscreen="true"] {
+  #vertical-pinned-tabs-container {
+    #tabbrowser-tabs[expanded] > & {
+      padding-block-start: 8px;
+    }
+  }
+}
+
 /* Adjust right padding of tab close button, only show the button if tab is hovered */
 #tabbrowser-tabs[orient="vertical"] {
   & .tab-close-button {
@@ -181,24 +206,8 @@ toolbar .toolbarbutton-1 {
   }
 }
 
-/* Pausing this particular code block until I can exclude pinned tab from this command */
-/* #tabbrowser-tabs[orient="vertical"] {
-  .tabbrowser-tab:hover {
-  & .tab-close-button {
-    display: initial !important;
-  }
-  }
-} */
-
-
-/* Hide sidebar tools & extensions when the sidebar is not hovered */
+/* Hide separator below New Tab button */
 @media -moz-pref("sidebar.verticalTabs") {
-  .tools-and-extensions {
-    display: none !important;
-    opacity: 0 !important;
-    transition: 0.2s ease;
-  }
-  /* Hide the New Tab separator too */
   #tabbrowser-tabs[orient="vertical"] {
   &[overflow]::after {
     border-bottom: none !important;
@@ -207,16 +216,93 @@ toolbar .toolbarbutton-1 {
   }
 } 
 
-/* Show the sidebar tools & extensions only when sidebar is hovered */
+/* PART 1: without 'Sidebar expand in hover'
+/* 1A - When sidebar is collapsed, or when < 5 sidebar enabled (vertical bottom buttons) */
 .wrapper:hover {
   @media -moz-pref("sidebar.verticalTabs") {
-    .tools-and-extensions {
+    .tools-and-extensions[orientation="vertical"] {
+      transition: 0.2s ease !important;
       display: flex !important;
+      visibility: inherit !important;
+      opacity: 0.4 !important;
+      margin-top: -12px !important;
+    }
+    .tools-and-extensions:hover {
       opacity: 1 !important;
+    }
+  }
+}
+/* Show sidebar tools & extensions only when sidebar is hovered */
+.wrapper {
+  @media -moz-pref("sidebar.verticalTabs") {
+    .tools-and-extensions[orientation="vertical"] {
+      visibility: collapse;
+      opacity: 0 !important;
       margin-top: -12px !important;
     }
   }
 }
+
+/* 1B - When at least 5 tools & extensions are enabled (horizontal bottom buttons) */
+/* Show sidebar tools & extensions as a scrollable horizontal list */
+.wrapper {
+  @media -moz-pref("sidebar.verticalTabs") {
+    .tools-and-extensions[orientation="horizontal"] {
+      display: flex !important;
+      flex-wrap: initial !important;
+      flex-direction: row !important;
+      opacity: 0.4 !important;
+      overflow: scroll !important;
+      scrollbar-width: thin;
+      scrollbar-color: var(--lwt-accent-color) #00000000;
+      transition: 0.2s ease !important;
+      margin-top: 0px !important;
+      & > moz-button:not(.tools-overflow) {
+        &:first-of-type {
+          --button-outer-padding-block-start: var(--space-xxsmall) !important;
+        }
+      }
+      &:hover {
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+
+
+/* PART 2: with 'Sidebar expand on hover' enabled
+ * Hide the collapsed sidebar when it's not hovered */
+@media -moz-pref("sidebar.expandOnHover") {
+  #sidebar-wrapper {
+    &.expandOnHover {
+      width: 8px !important;
+      opacity: 0 !important;
+      transition: 0.2s ease !important;
+    }
+    &:hover {
+      width: initial !important;
+      opacity: 1 !important;
+      padding-block-start: 6px !important;
+      margin-block-start: -4px !important;
+      box-shadow: var(--content-area-shadow) !important;
+      border-radius: var(--border-radius-medium) !important;
+      #vertical-tabs {
+        padding-block-start: 3px !important;
+        margin-block-start: -3px !important;
+      }
+    }
+  }
+  #sidebar-wrapper {
+    &.expandOnHover {
+      & #sidebar-main {
+        &:hover {
+          box-shadow: none !important;
+        }
+      }
+    }
+  }
+}
+
 
 /* TODO: Try to change icon of Page Sidebar icon in sidebar button */
 .expanded-button[extensionId="pagesidebar@stefanvd.net"] {
@@ -232,32 +318,7 @@ toolbar .toolbarbutton-1 {
   }
 }
 
-/* browser.css ============================================== */
-
-/* Use border radius variable for webviews */
-#tabbrowser-tabbox, #tabbrowser-tabpanels {
-  border-radius: var(--border-radius-medium) !important;
-}
-
-/* When sidebar is expanded, left margin MUST be 0 */
-#main-window:not([inFullscreen="true"]) {
-  #tabbrowser-tabbox {
-      margin: 0 8px 9px 0px !important;
-    }
-}
-/* When sidebar is NOT expanded, left margin should be 8px */
-#main-window:not([inFullscreen="true"]) {
-  .browserContainer {
-    clip-path: inset(0 round var(--border-radius-medium));
-  }
-  &:has(#sidebar-main[hidden="true"]) {
-    #tabbrowser-tabbox {
-      margin: 0 8px 9px 8px !important;
-    }
-  }
-}
-
-
+/* [FIREFOX SIDEBAR ZONE] */
 /* Blend sidebar styling with current theme */
 #sidebar {
   @media -moz-pref("sidebar.revamp") {
@@ -277,8 +338,73 @@ toolbar .toolbarbutton-1 {
   }
 }
 
+/* Remove sidebar padding and rounded corner in fullscreen mode */
+#main-window[inFullscreen="true"] {
+  #sidebar-box {
+    @media -moz-pref("sidebar.revamp") {
+      padding: 0px !important;
+    }
+  }
+  #sidebar {
+    @media -moz-pref("sidebar.revamp") {
+      border-radius: 0px !important;
+    }
+  }
+}
 
+/* browser.css ============================================== */
 
+/* Use border radius variable for webviews */
+#tabbrowser-tabbox, #tabbrowser-tabpanels {
+  border-radius: var(--border-radius-medium) !important;
+}
+
+/* When sidebar is expanded, left margin MUST be 0 */
+#main-window:not([inFullscreen="true"]) {
+  #tabbrowser-tabbox {
+      margin: 0 8px 8px 0px !important;
+    }
+}
+/* When sidebar is NOT expanded, left margin should be 8px */
+#main-window:not([inFullscreen="true"]) {
+  .browserContainer {
+    clip-path: inset(0 round var(--border-radius-medium));
+  }
+  &:has(#sidebar-main[hidden="true"]) {
+    #tabbrowser-tabbox {
+      margin: 0 8px 8px 8px !important;
+    }
+  }
+}
+
+/* Tweaks for Sidebar Expand on Hover, Firefox upcoming feature */
+/* When sidebar is expanded, left margin MUST be 0 */
+@media -moz-pref("sidebar.expandOnHover") {
+  /* When sidebar is expanded, left margin MUST be 0 */
+  #main-window:not([inFullscreen="true"]) {
+    &:has(#sidebar-wrapper:not([class="expandOnHover"])) {
+      #tabbrowser-tabbox {
+        margin: 0 8px 9px 0px !important;
+      }
+    }
+  }
+  /* When sidebar is NOT expanded, left margin should be 8px */
+  #main-window:not([inFullscreen="true"]) {
+    .browserContainer {
+      clip-path: inset(0 round var(--border-radius-medium));
+    }
+    &:has(#sidebar-main[hidden="true"]) {
+      #tabbrowser-tabbox {
+        margin: 0 8px 9px 8px !important;
+      }
+    }
+    &:has(#sidebar-wrapper[class="expandOnHover"]) {
+      #tabbrowser-tabbox {
+        margin: 0 8px 9px 8px !important;
+      }
+    }
+  }
+}
 
 /* urlbar.css ============================================== */
 
