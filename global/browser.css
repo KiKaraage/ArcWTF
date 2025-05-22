@@ -15,6 +15,101 @@
   box-shadow: 0 -3px 5px 3px light-dark(rgb(0 0 0 / .3), rgb(0 0 0 / .6)) !important;
 }
 
+/* Firefox界面滚动条样式 - 苹果风格现代毛玻璃质感 */
+
+/* 全局滚动条设置 - 超细视觉效果（极致透明） */
+* {
+  scrollbar-width: thin !important;
+  /* 极致透明：让滚动条在视觉上看起来更细 */
+  scrollbar-color: rgba(180, 180, 180, 0.25) transparent !important;
+}
+
+/* 浏览器内容区域滚动条 - 超细视觉效果 */
+browser,
+#browser,
+.browserContainer,
+.browserStack,
+tabbrowser,
+#tabbrowser-tabpanels {
+  scrollbar-width: thin !important;
+  /* 极致透明的超细效果 */
+  scrollbar-color: rgba(170, 170, 170, 0.3) transparent !important;
+}
+
+/* 网页内容滚动条 - 超细视觉效果 */
+browser[type="content"] {
+  scrollbar-width: thin !important;
+  /* 模拟超细滚动条的视觉效果 */
+  scrollbar-color: rgba(175, 175, 175, 0.28) transparent !important;
+}
+
+/* 为浏览器内容区域设置超细滚动条 */
+#tabbrowser-tabpanels,
+.browserContainer,
+.browserStack,
+browser[type="content"] {
+  /* 超细视觉效果：极致透明 */
+  scrollbar-color: rgba(185, 185, 185, 0.35) transparent !important;
+}
+
+/* 深色主题下的超细滚动条 */
+@media (prefers-color-scheme: dark) {
+  * {
+    /* 深色模式超细效果：极致透明 */
+    scrollbar-color: rgba(200, 200, 200, 0.3) transparent !important;
+  }
+
+  browser,
+  #browser,
+  .browserContainer,
+  .browserStack,
+  tabbrowser,
+  #tabbrowser-tabpanels {
+    /* 深色模式超细效果 */
+    scrollbar-color: rgba(210, 210, 210, 0.35) transparent !important;
+  }
+
+  #tabbrowser-tabpanels,
+  .browserContainer,
+  .browserStack,
+  browser[type="content"] {
+    /* 深色模式最细效果 */
+    scrollbar-color: rgba(220, 220, 220, 0.4) transparent !important;
+  }
+}
+
+/* 悬停时超细滚动条增强 - 模拟触控反馈 */
+#tabbrowser-tabpanels:hover,
+.browserContainer:hover,
+.browserStack:hover,
+browser[type="content"]:hover {
+  /* 悬停时的超细效果：轻微增强 */
+  scrollbar-color: rgba(150, 150, 150, 0.5) transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  #tabbrowser-tabpanels:hover,
+  .browserContainer:hover,
+  .browserStack:hover,
+  browser[type="content"]:hover {
+    /* 深色模式悬停：轻微增强 */
+    scrollbar-color: rgba(230, 230, 230, 0.55) transparent !important;
+  }
+}
+
+/* 苹果风格焦点效果 - 模拟系统级反馈 */
+browser[type="content"]:focus-within {
+  /* 焦点时的苹果蓝色调 */
+  scrollbar-color: rgba(0, 122, 255, 0.7) rgba(230, 245, 255, 0.4) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  browser[type="content"]:focus-within {
+    /* 深色模式的苹果蓝色调 */
+    scrollbar-color: rgba(10, 132, 255, 0.8) rgba(0, 20, 40, 0.5) !important;
+  }
+}
+
 /* Rounded Corners Tweak */
 @media {
   /* Since Firefox 120, when the bookmarks bar is set to only open on new tabs,
@@ -82,7 +177,7 @@
     --uc-tweak-rounded-corners-radius: 0;
     --uc-tweak-rounded-corners-shadow: unset;
   }
-  
+
   /* Apply rounded corners to the browser container. */
   #tabbrowser-tabbox .browserStack {
     margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important;
@@ -120,7 +215,7 @@
   #statuspanel {
     overflow: hidden;
   }
-    
+
  /* Devtools window when docked to the left or right. */
   .devtools-toolbox-side-iframe {
     margin-block-end: var(--uc-tweak-rounded-corners-padding) !important;
