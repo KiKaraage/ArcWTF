@@ -85,7 +85,8 @@
   
   /* Apply rounded corners to the browser container. */
   #tabbrowser-tabbox .browserStack {
-    margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important;
+    margin-inline-start: max(calc(var(--uc-tweak-rounded-corners-padding) - var(--uc-sidebar-collapsed)), 0px) !important;
+/*     margin-inline-start: var(--uc-tweak-rounded-corners-padding) !important; */
     margin-inline-end: var(--uc-tweak-rounded-corners-padding) !important;
     margin-block-start: 0px !important;
     margin-block-end: var(--uc-tweak-rounded-corners-padding) !important;
@@ -93,20 +94,13 @@
     box-shadow: var(--uc-tweak-rounded-corners-shadow) !important;
     background-color: var(--tabpanel-background-color) !important;
     position: relative !important;
-
-    /* Use pseudo element overlay to simulate rounded corners, similar to the
-     * tab corners, fixes bug with backdrop-filter. */
+    
     &::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      /* Draw toolbar background on the negative corner space, then draw the
-       * same from the browser window shadow on top. */
-      box-shadow:
-        var(--uc-tweak-rounded-corners-shadow, 0 0 transparent),
-        0 0 0 16px var(--browser-frame-bgcolor) !important;
-      clip-path: inset(0);
+      box-shadow: inset 0px 0px 2px rgb(0 0 0 / 0.4);
       pointer-events: none;
     }
   }
@@ -114,6 +108,8 @@
   /* Apply rounded corners to the browser content. */
   #tabbrowser-tabbox .browserStack browser {
     border-radius: var(--uc-tweak-rounded-corners-radius) !important;
+    background-color:var(--tabpanel-background-color) !important;
+    border: 1px solid transparent;
   }
 
   /* Prevent status panel corners and shadow from appearing outside the browser. */

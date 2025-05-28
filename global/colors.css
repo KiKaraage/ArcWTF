@@ -134,11 +134,7 @@
   color: var(--toolbar-field-focus-color) !important;
   border-color: transparent !important;
   box-shadow: 0 2px 5px #0002, 0 0 0 1px light-dark(#0001, #0002) !important;
-  border-radius: 0 4px 0 0 !important;
-
-  #statuspanel[mirror] & {
-    border-radius: 4px 0 0 0 !important;
-  }
+  border-radius: 4px !important;
 }
 
 @media (-moz-platform: windows) {

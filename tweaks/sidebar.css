@@ -16,8 +16,12 @@
   padding: 0px 0px 2px 0px !important;
 }
 
+#browser {
+  --uc-sidebar-collapsed: 6px;
+}
+
 #sidebar-box {
-  --uc-sidebar-width: 6px;
+  --uc-sidebar-width: var(--uc-sidebar-collapsed);
   --uc-sidebar-hover-width: 200px;
   --uc-autohide-sidebar-delay: 100ms; /* Wait 0.1s before hiding sidebar */
   --uc-autohide-transition-duration: 115ms;
@@ -65,11 +69,19 @@
   direction: rtl;
 }
 
-#main-window[sizemode="maximized"] #sidebar-box {
-  --uc-sidebar-width: 0.3rem;
+#main-window[sizemode="maximized"] #browser {
+  --uc-sidebar-collapsed: 0.3rem;
 }
-#main-window[sizemode="fullscreen"] #sidebar-box {
-  --uc-sidebar-width: 0.3rem;
+#main-window[sizemode="fullscreen"] #browser {
+  --uc-sidebar-collapsed: 0.3rem;
+}
+
+#main-window[titlepreface*="|| "] #browser {
+  --uc-sidebar-collapsed: 0px !important;
+}
+
+#main-window[sizemode="fullscreen"][titlepreface*="|| "] #sidebar {
+  margin-inline-start: 0px;
 }
 
 #sidebar-header {
@@ -79,10 +91,10 @@
   font-size: 1em !important;
   font-weight: bold !important;
   margin-inline-start: calc(
-    var(--uc-tweak-rounded-corners-padding) - 10px
+    var(--uc-tweak-rounded-corners-padding) - 3px
   ) !important;
   border-bottom: 0 !important;
-  border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important;
+/*   border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important; */
 }
 
 #sidebar-header #sidebar-switcher-target #sidebar-icon,
@@ -96,6 +108,11 @@
   -moz-pref("uc.tweak.hide-sidebar-header") {
   #sidebar-header {
     visibility: collapse !important;
+  }
+
+  #main-window:not([titlepreface*="|| "]) :is(#sidebar, #sidebar:hover) {
+    border-top: 1px solid var(--sidebar-border-color) !important;
+    border-radius: var(--uc-tweak-rounded-corners-radius) !important;
   }
 }
 
@@ -118,12 +135,12 @@
 #sidebar-box:hover > #sidebar-header,
 #sidebar-box:hover > #sidebar {
   margin-inline-start: calc(
-    var(--uc-tweak-rounded-corners-padding) - 10px
+    var(--uc-tweak-rounded-corners-padding) - 3px
   ) !important;
   min-width: var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
   opacity: 100% !important;
-  border-radius: 0 !important;
+/*   border-radius: 0 !important; */
 }
 
 #sidebar-box:hover {
@@ -149,6 +166,12 @@
 #sidebar-box:not([positionend]):hover ~ #tabbrowser-tabbox #statuspanel-label {
   margin-inline: 0px !important;
   border-left-style: solid !important;
+}
+
+#main-window {
+  --uc-tweak-sidebar-margin-offset: calc(
+      var(--uc-tweak-rounded-corners-padding) - 3px
+    ) !important;
 }
 
 #main-window[titlepreface*="|| "] {
@@ -179,20 +202,14 @@
   & #tabbrowser-tabbox browser {
     margin-left: 0px;
   }
+  
   & #statuspanel {
-    margin-left: 2px;
+    margin: auto 4px 4px !important;
   }
 
+  & #sidebar-header,
   & #sidebar {
-    margin-inline-start: calc(
-      var(--uc-tweak-rounded-corners-padding) - 3px
-    ) !important;
-  }
-
-  & #sidebar-header {
-    margin-inline-start: calc(
-      var(--uc-tweak-rounded-corners-padding) - 3px
-    ) !important;
+    margin-inline-start: var(--uc-tweak-sidebar-margin-offset)
   }
 
   & #sidebar-box:hover > #sidebar {
@@ -201,5 +218,51 @@
     ) !important;
     min-width: var(--uc-sidebar-hover-width) !important;
     transition-delay: 0ms !important;
+  }
+}
+
+#statuspanel {
+  &:not([hidden]) {
+    bottom: 4px !important;
+    left: 4px !important;
+  }
+
+  &[mirror]:-moz-locale-dir(ltr) {
+    left: auto !important;
+    right: 4px !important;
+  }
+}
+
+#main-window:not([titlepreface*="|| "]) {
+  & #sidebar-box {
+    & #sidebar-header,
+    & #sidebar {
+      margin-inline-start: var(--uc-tweak-sidebar-margin-offset) !important;
+    }
+  }
+
+  & #sidebar-box[positionend] {
+    & #sidebar-header,
+    & #sidebar {
+      margin-inline-end: var(--uc-tweak-sidebar-margin-offset) !important;
+    }
+  }
+
+  & #sidebar-header,
+  & #sidebar {
+    padding-inline: 4px !important;
+    border: 1px solid var(--sidebar-border-color);
+  }
+
+  & #sidebar-header {
+    border-bottom: none;
+    border-top-left-radius: var(--uc-tweak-rounded-corners-radius) !important;
+    border-top-right-radius: var(--uc-tweak-rounded-corners-radius) !important;
+  }
+
+  & #sidebar {
+    border-top: none;
+    border-bottom-left-radius: var(--uc-tweak-rounded-corners-radius) !important;
+    border-bottom-right-radius: var(--uc-tweak-rounded-corners-radius) !important;
   }
 }
