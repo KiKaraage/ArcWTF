@@ -45,9 +45,9 @@
     --in-content-table-background: light-dark(#f7f7f7, #252525) !important;
     --in-content-text-color: var(--in-content-page-color) !important;
     --border-interactive-color: light-dark(#929292, #858585) !important;
-    scrollbar-color:
-      light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
-      light-dark(#f7f7f7, #252525) !important;
+    /* 网页内容滚动条样式 - 苹果风格现代玻璃质感 */
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(180, 180, 180, 0.25) transparent !important;
   }
 
   ::selection {
@@ -97,6 +97,78 @@ url-prefix(about:addons) {
     --toggle-dot-background-color: var(--in-content-page-color) !important;
     --toggle-dot-background-color-on-pressed: #fff !important;
     --toggle-dot-transform-x: calc(var(--toggle-width) - 2 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width) - var(--toggle-dot-width)) !important;
+  }
+}
+
+/* 网页内容滚动条样式扩展 - 苹果风格现代玻璃质感 */
+
+/* 全局网页滚动条设置 - 超细视觉效果（极致透明） */
+html, body, * {
+  scrollbar-width: thin !important;
+  /* 超细效果：极致透明让滚动条看起来更细 */
+  scrollbar-color: rgba(180, 180, 180, 0.25) transparent !important;
+}
+
+/* 深色主题下的超细滚动条 */
+@media (prefers-color-scheme: dark) {
+  html, body, * {
+    /* 深色模式：超细透明效果 */
+    scrollbar-color: rgba(200, 200, 200, 0.3) transparent !important;
+  }
+}
+
+/* 针对特定网站的滚动条优化 - 超细效果 */
+:root {
+  scrollbar-width: thin !important;
+  /* 极致超细透明效果 */
+  scrollbar-color: rgba(170, 170, 170, 0.28) transparent !important;
+}
+
+/* 悬停时超细滚动条增强 - 模拟触控反馈 */
+html:hover, body:hover {
+  /* 悬停时的超细效果：轻微增强 */
+  scrollbar-color: rgba(150, 150, 150, 0.45) transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:hover, body:hover {
+    scrollbar-color: rgba(220, 220, 220, 0.5) transparent !important;
+  }
+}
+
+/* 超细滚动条边缘效果 */
+html {
+  /* 模拟超细滚动条材质 */
+  scrollbar-color: rgba(175, 175, 175, 0.3) transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    /* 深色模式的超细滚动条 */
+    scrollbar-color: rgba(205, 205, 205, 0.35) transparent !important;
+  }
+}
+
+/* 针对特定元素的超细效果 */
+div, section, article, main {
+  /* 超细效果：极致透明 */
+  scrollbar-color: rgba(185, 185, 185, 0.28) transparent !important;
+}
+
+div:hover, section:hover, article:hover, main:hover {
+  /* 悬停时的超细反馈 */
+  scrollbar-color: rgba(155, 155, 155, 0.4) transparent !important;
+}
+
+/* 超细滚动条特殊状态 */
+body {
+  /* 页面主体的超细效果 */
+  scrollbar-color: rgba(190, 190, 190, 0.32) transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    scrollbar-color: rgba(210, 210, 210, 0.38) transparent !important;
   }
 }
 
