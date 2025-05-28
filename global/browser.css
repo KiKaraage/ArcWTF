@@ -43,7 +43,7 @@
 
   /* Variables used for the rounded corners. */
   #main-window:not([chromehidden~="toolbar"]) {
-    --uc-tweak-rounded-corners-padding: 10px;
+    --uc-tweak-rounded-corners-padding: 0px;
     --uc-tweak-rounded-corners-radius: 8px;
     --uc-tweak-rounded-corners-shadow:
       0 -.8px 0 0 rgb(0 0 0 / 0.02),
