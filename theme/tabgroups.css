@@ -36,6 +36,12 @@ tab-group[style="--tab-group-color: var(--tab-group-color-yellow); --tab-group-c
   --folder-icon-open: url("icons/folder/folder-open-yellow.svg");
 }
 
+
+:root {
+  --transition-duration: 0.38s; /* Easily adjust timing here */
+  --translate-distance: 75px; /* Control vertical translation amount */
+}
+
 /* Strip default Firefox tab group stylings */
 
 /* Remove outline from tab group labels */
@@ -57,36 +63,31 @@ tab-group[style="--tab-group-color: var(--tab-group-color-yellow); --tab-group-c
 tab-group {
   & .tab-group-label-container {
     & > label {
-    /* Unify tab group label background and text color */
+      /* Unify tab group label background and text color */
       background: transparent !important;
       color: var(--lwt-text-color) !important;
-      padding-left: 38px !important;
-      padding-right: 10px !important;
-      transition: 0.3s ease !important;
     }
 
     /* Add EXPANDED tab folder icon from Arc */
     /* TODO: Applied 9 different icons for each tab group color options */
-		& > label::before {
-				content: "" !important;
-				position: absolute !important;
-        margin-left: 5.5px !important;
-				left: 0px !important;
-        scale:  1.13 !important;
-        margin-top: 3px !important;
-				width: 23px !important;
-				height: 23px !important;
-        content: var(--folder-icon-open) !important;
-        transition: 0.2s ease !important;
+    & > label::before {
+      content: var(--folder-icon-open) !important;
     }
   }
 
   /* Add colors to tab group label background when hovered */
   & .tab-group-label-container {
     & > label:hover {
-				background: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 20%, transparent) !important;
-        color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
-        border-radius: 9px !important;
+      background: color-mix(
+        in srgb,
+        light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 20%,
+        transparent
+      ) !important;
+      color: light-dark(
+        var(--tab-group-color),
+        var(--tab-group-color-invert)
+      ) !important;
+      border-radius: 9px !important;
     }
   }
 }
@@ -95,46 +96,56 @@ tab-group {
 tab-group[collapsed] {
   & .tab-group-label-container {
     /* TODO: Applied 9 different icons for each tab group color options */
-			& > label::before {
-				content: "" !important;
-				position: absolute !important;
-        margin-left: 5.5px !important;
-				left: 0px !important;
-        scale:  1.13 !important;
-        margin-top: 3px !important;
-				width: 23px !important;
-				height: 23px !important;
-  			  content: var(--folder-icon-closed) !important;
+    & > label::before {
+      content: var(--folder-icon-closed) !important;
     }
   }
 }
 
-/* Tweaks for COLLAPSED FF sidebar */
+/* EXPANDED FF Sidebar */
+sidebar-main:has([expanded]) {
+  tab-group {
+  & .tab-group-label-container {
+    & > label {
+      padding-left: 38px !important;
+      padding-right: 10px !important;
+      transition: 0.3s ease !important;
+    }
+
+    & > label::before {
+				position: absolute !important;
+        margin-left: 4px !important;
+				left: 0px !important;
+				width: 23px !important;
+				height: 23px !important;
+    }
+  }
+}
+
+/* COLLAPSED FF sidebar */
 sidebar-main:not([expanded]) {
   /* Adjust paddings, margins, add ease transitions */
   tab-group {
-    padding-block: calc(var(--tab-inline-padding)/2) !important;
+    padding-block: calc(var(--tab-inline-padding) / 2) !important;
     margin-block: 0 !important;
     transition: 0.3s ease !important;
   }
 
   /* Add colors to tab group label background when hovered */
   tab-group:hover {
-    background: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 20%, transparent) !important;
-    color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
+    background: color-mix(
+      in srgb,
+      light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 20%,
+      transparent
+    ) !important;
+    color: light-dark(
+      var(--tab-group-color),
+      var(--tab-group-color-invert)
+    ) !important;
   }
-
 }
 
 /*-------------------original og--------------------------------*/
-
-
-
-:root {
-  --transition-duration: 0.38s; /* Easily adjust timing here */
-  --translate-distance: 75px; /* Control vertical translation amount */
-}
-
 
 /* ==== Tab groups ==== */
 /* https://github.com/Anoms12/Advanced-Tab-Groups */
@@ -151,8 +162,7 @@ sidebar-main:not([expanded]) {
 /* across multiple workspaces due to how zen currently implements tab groups */
 
 tab-group[style="--tab-group-color: var(--tab-group-colorr); --tab-group-color-invert: var(--tab-group-colorr); --tab-group-color-pale: var(--tab-group-colorr);"] {
-
-/*---------------------------asli imp margins------------------------*/
+  /*---------------------------asli imp margins------------------------*/
 
   border-radius: calc(var(--border-radius-medium) + 2px) !important;
   padding: 0px !important;
@@ -169,17 +179,15 @@ tab-group[style="--tab-group-color: var(--tab-group-colorr); --tab-group-color-i
     --tab-group-color-pale: transparent !important;
     --tab-group-color: transparent !important;
     margin: 0 !important;
-		/*---------------folder ki height----------------------------------*/
+    /*---------------folder ki height----------------------------------*/
     height: 35px !important;
-		margin-top: 0px !important;
-		margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     border-radius: calc(var(--border-radius-medium) + 2px) !important;
-
 
     /*------------------------kaam ka h--------------------------*/
     &:hover {
       background-color: var(--tab-hover-background-color) !important;
-
     }
 
     &:after {
@@ -191,40 +199,40 @@ tab-group[style="--tab-group-color: var(--tab-group-colorr); --tab-group-color-i
         transparent
       ) !important;
     }
-/*-----------------------------------------kam ki modification -------------------------------------------*/
-   	&>label {
-				max-width: 100% !important;
-				padding-top: 6px !important;
-        margin-left:  18px !important;
-				padding-bottom: 0px !important;
-        margin-top: 0px !important;
-				padding-inline: 0.9em !important;
-				background: transparent !important;
-				border: unset !important;
-				font-weight: 501 !important;
-        font-size: 16px !important;
-				text-align: unset !important;
-				color: var(--sidebar-text-color) !important;
-				padding-left: 27px !important;
-			}
+    /*-----------------------------------------kam ki modification -------------------------------------------*/
+    & > label {
+      max-width: 100% !important;
+      padding-top: 6px !important;
+      margin-left: 18px !important;
+      padding-bottom: 0px !important;
+      margin-top: 0px !important;
+      padding-inline: 0.9em !important;
+      background: transparent !important;
+      border: unset !important;
+      font-weight: 501 !important;
+      font-size: 16px !important;
+      text-align: unset !important;
+      color: var(--sidebar-text-color) !important;
+      padding-left: 27px !important;
+    }
 
-			&>label::before {
-				content: "" !important;
-				position: absolute !important;
-        margin-left: 5px !important;
+    & > label::before {
+      content: "" !important;
+      position: absolute !important;
+      margin-left: 5px !important;
 
-				left: 8.5px !important;
-        scale:  1.13 !important;
+      left: 8.5px !important;
+      scale: 1.13 !important;
 
-				margin-top: 9px !important;
+      margin-top: 9px !important;
       top: 1% !important;
-				width: 35px !important;
-				height: 23px !important;
+      width: 35px !important;
+      height: 23px !important;
 
-			content:  url("data:image/svg+xml,%3Csvg width='23' height='18' viewBox='0 0 23 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='%233139FB'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='url(%23paint0_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='white'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='url(%23paint1_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_204_3644' x1='13.5' y1='5.3125' x2='13.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-opacity='0'/%3E%3Cstop offset='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_204_3644' x1='12.5' y1='4.99404' x2='12.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%233139FB' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%233139FB'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E ") !important;
+      content: url("data:image/svg+xml,%3Csvg width='23' height='18' viewBox='0 0 23 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='%233139FB'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='url(%23paint0_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='white'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='url(%23paint1_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_204_3644' x1='13.5' y1='5.3125' x2='13.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-opacity='0'/%3E%3Cstop offset='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_204_3644' x1='12.5' y1='4.99404' x2='12.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%233139FB' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%233139FB'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E ") !important;
     }
   }
-/*-----------------------------------------------------------------end here ---------------------------------*/
+  /*-----------------------------------------------------------------end here ---------------------------------*/
 
   & tab:not([zen-glance-tab]) {
     width: calc(var(--zen-sidebar-width)-18px) !important;
@@ -233,16 +241,14 @@ tab-group[style="--tab-group-color: var(--tab-group-colorr); --tab-group-color-i
 
     overflow: visible !important;
 
-
     .tab-group-line {
       --tab-group-color-invert: transparent !important;
       --tab-group-color: transparent !important;
     }
 
     .tab-background:active {
-      backdrop-filter: blur(10px)  !important;
+      backdrop-filter: blur(10px) !important;
     }
-
   }
 
   @media not (-moz-bool-pref: "tab.groups.display-tab-range") {
@@ -252,19 +258,16 @@ tab-group[style="--tab-group-color: var(--tab-group-colorr); --tab-group-color-i
   }
 
   &[collapsed] {
-/*-----------------------collapsed form hi heigh le liye--------------------------*/
+    /*-----------------------collapsed form hi heigh le liye--------------------------*/
     max-height: 42px !important;
- margin-top: 6px !important;
+    margin-top: 6px !important;
     margin-bottom: -2px !important;
 
-
-
     & tab {
-
       z-index: 999 !important;
       display: flex !important;
 
-      filter: blur( 38px) opacity(1) brightness(75%) !important;
+      filter: blur(38px) opacity(1) brightness(75%) !important;
       opacity: 0.1 !important;
       padding: 0 !important;
       margin: 0 !important;
@@ -275,267 +278,240 @@ tab-group[style="--tab-group-color: var(--tab-group-colorr); --tab-group-color-i
       position: absolute !important;
       left: 10px !important;
 
-
-    margin-top: 1px !important;
+      margin-top: 1px !important;
       top: 18% !important;
       width: 20px !important;
       height: 20px !important;
       scale: 1.13 !important;
 
-
       /*---------------------important--------------------------*/
-      	content:  url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='%233139FB'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M1 8C1 6.89543 1.89543 6 3 6H15C16.1046 6 17 6.89543 17 8V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V8Z' fill='white' stroke='%233139FB' stroke-width='1.5'/%3E%3C/svg%3E ") !important;
+      content: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='%233139FB'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M1 8C1 6.89543 1.89543 6 3 6H15C16.1046 6 17 6.89543 17 8V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V8Z' fill='white' stroke='%233139FB' stroke-width='1.5'/%3E%3C/svg%3E ") !important;
     }
   }
 
-
-
-#tabbrowser-tabs {
-  & .tabbrowser-tab {
-    &:active {
-      transition: scale 0.03s !important;
-      scale: 1;
+  #tabbrowser-tabs {
+    & .tabbrowser-tab {
+      &:active {
+        transition: scale 0.03s !important;
+        scale: 1;
+      }
     }
   }
-}
 
+  /*-------------------original og--------------------------------*/
 
+  #alltabs-button {
+    display: block !important;
+  }
 
-
-
-
-
-
-
-
-/*-------------------original og--------------------------------*/
-
-
-#alltabs-button {
-  display: block !important;
-}
-
-
-
-:root {
-  --transition-duration: 0.38s; /* Easily adjust timing here */
-  --translate-distance: 75px; /* Control vertical translation amount */
-}
-
-tab-group {
-  display: flex !important;
-  flex-direction: column !important;
-  border-radius: calc(var(--border-radius-medium) + 2px) !important;
-  margin: 0.8px 0px 0px 0px !important;
-
-  transition:
-    max-height var(--transition-duration) cubic-bezier(0.22, 0.61, 0.36, 1),
-    margin var(--transition-duration) ease !important;
-  overflow: hidden !important;
-  max-height: 900px;
-  will-change: max-height;
-
-  & .tab-group-label-container {
-    flex: 0 0 auto !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1000 !important;
-    --tab-group-color-pale: transparent !important;
-    --tab-group-color: transparent !important;
-    margin: 0 !important;
-    height: 35px !important;
+  tab-group {
+    display: flex !important;
+    flex-direction: column !important;
     border-radius: calc(var(--border-radius-medium) + 2px) !important;
-    transition: background-color var(--transition-duration) ease !important;
+    margin: 0.8px 0px 0px 0px !important;
 
-    &:hover {
+    transition: max-height var(--transition-duration)
+        cubic-bezier(0.22, 0.61, 0.36, 1),
+      margin var(--transition-duration) ease !important;
+    overflow: hidden !important;
+    max-height: 900px;
+    will-change: max-height;
 
-      background-color: var(--tab-hover-background-color) !important;
+    & .tab-group-label-container {
+      flex: 0 0 auto !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+      --tab-group-color-pale: transparent !important;
+      --tab-group-color: transparent !important;
+      margin: 0 !important;
+      height: 35px !important;
+      border-radius: calc(var(--border-radius-medium) + 2px) !important;
+      transition: background-color var(--transition-duration) ease !important;
+
+      &:hover {
+        background-color: var(--tab-hover-background-color) !important;
+      }
+
+      & > label {
+        max-width: 100% !important;
+        padding: 6px 0.9em 0 27px !important;
+        margin: -2px 0 0 17px !important;
+        font-weight: 501 !important;
+        font-size: 17px !important;
+        color: var(--sidebar-text-color) !important;
+        transition: color var(--transition-duration) ease !important;
+      }
+
+      & > label::before {
+        content: "" !important;
+        position: absolute !important;
+        left: 8.5px !important;
+        margin: 5.3px 0 0 5px !important;
+        width: 35px !important;
+        height: 23px !important;
+
+        transition: transform var(--transition-duration)
+          cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+      }
     }
-
-    &>label {
-      max-width: 100% !important;
-      padding: 6px 0.9em 0 27px !important;
-      margin: -2px 0 0 17px !important;
-      font-weight: 501 !important;
-      font-size: 17px !important;
-      color: var(--sidebar-text-color) !important;
-      transition: color var(--transition-duration) ease !important;
-    }
-
-    &>label::before {
-      content: "" !important;
-      position: absolute !important;
-      left: 8.5px !important;
-      margin: 5.3px 0 0 5px !important;
-      width: 35px !important;
-      height: 23px !important;
-
-      transition: transform var(--transition-duration) cubic-bezier(0.22, 0.61, 0.36, 1) !important;
-    }
-  }
-
-  & tab {
-    width: calc(var(--zen-sidebar-width)-18px) !important;
-    opacity: 1 !important;
-    margin-left: 10px !important;
-    transform: translateY(0);
-
-    transition:
-      transform var(--transition-duration) cubic-bezier(0.22, 0.61, 0.36, 1);
-      opacity calc(var(--transition-duration) * 0.6) ease !important;
-    will-change: transform, opacity;
-
-    .tab-background:active {
-      backdrop-filter: blur(0px) !important;
-    }
-  }
-
-  &[collapsed] {
-    max-height: 40px !important;
-    margin: 0px !important;
 
     & tab {
-      opacity: 0 !important;
-      filter: blur(1px) !important;
-      transform: translateY(calc(-5 * var(--translate-distance))) !important;
-      transition:
-        transform var(--transition-duration) cubic-bezier(0.22, 0.61, 0.36, 1),
-        opacity calc(var(--transition-duration) * 0.4) ease !important;
+      width: calc(var(--zen-sidebar-width)-18px) !important;
+      opacity: 1 !important;
+      margin-left: 10px !important;
+      transform: translateY(0);
+
+      transition: transform var(--transition-duration)
+        cubic-bezier(0.22, 0.61, 0.36, 1) opacity
+        calc(var(--transition-duration) * 0.6) ease !important;
+      will-change: transform, opacity;
+
+      .tab-background:active {
+        backdrop-filter: blur(0px) !important;
+      }
     }
 
-    & .tab-group-label-container > label::before {
-      transform: translateY(0px);
-    }
-  }
-}
+    &[collapsed] {
+      max-height: 40px !important;
+      margin: 0px !important;
 
-/* ==== Tab groups ==== */
-/* https://github.com/Anoms12/Advanced-Tab-Groups */
-/* ====== V1.5.3 ====== */
-/* Make groups workspace specific */
+      & tab {
+        opacity: 0 !important;
+        filter: blur(1px) !important;
+        transform: translateY(calc(-5 * var(--translate-distance))) !important;
+        transition: transform var(--transition-duration)
+            cubic-bezier(0.22, 0.61, 0.36, 1),
+          opacity calc(var(--transition-duration) * 0.4) ease !important;
+      }
 
-/* Cursed CSS Explanation */
-/* Hides the tab group only if it does not have any visible tabs */
-
-tab-group {
-  /* Visual Hierarchy Improvements */
-  display: flex !important;
-  flex-direction: column !important;
-
-
-  @media (-moz-bool-pref: "tab.groups.background") {
-    background: color-mix(
-      in srgb,
-      var(--tab-group-color-invert) 12%,
-      transparent
-    ) !important;
-
-    @media (-moz-bool-pref: "tab.groups.borders") {
-      border-top: 1px solid #f2f2f21f !important;
-      border-bottom: 1px solid #4442441f !important;
+      & .tab-group-label-container > label::before {
+        transform: translateY(0px);
+      }
     }
   }
-/*---------------------------asli imp margins------------------------*/
 
-  border-radius: calc(var(--border-radius-medium) + 2px) !important;
-  padding: 0px !important;
+  /* ==== Tab groups ==== */
+  /* https://github.com/Anoms12/Advanced-Tab-Groups */
+  /* ====== V1.5.3 ====== */
+  /* Make groups workspace specific */
 
-  margin: 4px 0px 4px 0px !important;
+  /* Cursed CSS Explanation */
+  /* Hides the tab group only if it does not have any visible tabs */
 
-  & .tab-group-label-container {
-    /*----------------uper niche ki spacing ke liye---------------------------------*/
-    flex: 0 0 auto !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1000 !important;
-    padding: 0px !important;
-    --tab-group-color-pale: transparent !important;
-    --tab-group-color: transparent !important;
-    margin: 0 !important;
-		/*---------------folder ki height----------------------------------*/
-    height: 35px !important;
-		margin-top: 0px !important;
-		margin-bottom: 0px !important;
-    border-radius: calc(var(--border-radius-medium) + 2px) !important;
+  tab-group {
+    /* Visual Hierarchy Improvements */
+    display: flex !important;
+    flex-direction: column !important;
 
-
-    /*------------------------kaam ka h--------------------------*/
-    &:hover {
-      background-color: var(--tab-hover-background-color) !important;
-
-    }
-
-    &:after {
-      display: none;
-      padding: 0px !important;
-      background-color: color-mix(
+    @media (-moz-bool-pref: "tab.groups.background") {
+      background: color-mix(
         in srgb,
-        var(--tab-group-color) 50%,
+        var(--tab-group-color-invert) 12%,
         transparent
       ) !important;
+
+      @media (-moz-bool-pref: "tab.groups.borders") {
+        border-top: 1px solid #f2f2f21f !important;
+        border-bottom: 1px solid #4442441f !important;
+      }
     }
-/*-----------------------------------------kam ki modification -------------------------------------------*/
-   	&>label {
-				max-width: 100% !important;
-				padding-top: 6px !important;
-        margin-left:  18px !important;
-				padding-bottom: 0px !important;
+    /*---------------------------asli imp margins------------------------*/
+
+    border-radius: calc(var(--border-radius-medium) + 2px) !important;
+    padding: 0px !important;
+
+    margin: 4px 0px 4px 0px !important;
+
+    & .tab-group-label-container {
+      /*----------------uper niche ki spacing ke liye---------------------------------*/
+      flex: 0 0 auto !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+      padding: 0px !important;
+      --tab-group-color-pale: transparent !important;
+      --tab-group-color: transparent !important;
+      margin: 0 !important;
+      /*---------------folder ki height----------------------------------*/
+      height: 35px !important;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+      border-radius: calc(var(--border-radius-medium) + 2px) !important;
+
+      /*------------------------kaam ka h--------------------------*/
+      &:hover {
+        background-color: var(--tab-hover-background-color) !important;
+      }
+
+      &:after {
+        display: none;
+        padding: 0px !important;
+        background-color: color-mix(
+          in srgb,
+          var(--tab-group-color) 50%,
+          transparent
+        ) !important;
+      }
+      /*-----------------------------------------kam ki modification -------------------------------------------*/
+      & > label {
+        max-width: 100% !important;
+        padding-top: 6px !important;
+        margin-left: 18px !important;
+        padding-bottom: 0px !important;
         margin-top: -2px !important;
-				padding-inline: 0.9em !important;
-				background: transparent !important;
-				border: unset !important;
-				font-weight: 501 !important;
+        padding-inline: 0.9em !important;
+        background: transparent !important;
+        border: unset !important;
+        font-weight: 501 !important;
         font-size: 16px !important;
-				text-align: unset !important;
-				color: var(--sidebar-text-color) !important;
-				padding-left: 27px !important;
+        text-align: unset !important;
+        color: var(--sidebar-text-color) !important;
+        padding-left: 27px !important;
 
-				@media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
-					color: transparent !important;
-				}
-			}
+        @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+          color: transparent !important;
+        }
+      }
 
-			&>label::before {
-				content: "" !important;
-				position: absolute !important;
+      & > label::before {
+        content: "" !important;
+        position: absolute !important;
         margin-left: 5px !important;
 
-				left: 8.5px !important;
-        scale:  1.13 !important;
+        left: 8.5px !important;
+        scale: 1.13 !important;
 
-				margin-top: 5px !important;
-      top: 1% !important;
-				width: 35px !important;
-				height: 23px !important;
+        margin-top: 5px !important;
+        top: 1% !important;
+        width: 35px !important;
+        height: 23px !important;
 
-			content:  url("data:image/svg+xml,%3Csvg width='23' height='18' viewBox='0 0 23 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='%233139FB'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='url(%23paint0_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='white'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='url(%23paint1_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_204_3644' x1='13.5' y1='5.3125' x2='13.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-opacity='0'/%3E%3Cstop offset='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_204_3644' x1='12.5' y1='4.99404' x2='12.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%233139FB' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%233139FB'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E ") !important;
+        content: url("data:image/svg+xml,%3Csvg width='23' height='18' viewBox='0 0 23 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='%233139FB'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' fill='url(%23paint0_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M1.44411 3.36858C1.21333 2.13775 2.15758 1 3.40985 1H7.81325C8.40681 1 8.96971 1.26365 9.34969 1.71963L9.40031 1.78037C9.7803 2.23635 10.3432 2.5 10.9367 2.5H15.3153C16.2888 2.5 17.1208 3.20088 17.2862 4.16019L19.0966 14.6602C19.3073 15.8826 18.3661 17 17.1257 17H5.65985C4.69742 17 3.87147 16.3145 3.69411 15.3686L1.44411 3.36858Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='white'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' fill='url(%23paint1_linear_204_3644)' fill-opacity='0.15'/%3E%3Cpath d='M5.59806 7.47376C5.83537 6.60364 6.62569 6 7.52759 6H19.3815C20.7002 6 21.658 7.25396 21.311 8.52623L19.4019 15.5262C19.1646 16.3964 18.3743 17 17.4724 17H5.6185C4.29975 17 3.34199 15.746 3.68897 14.4738L5.59806 7.47376Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_204_3644' x1='13.5' y1='5.3125' x2='13.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-opacity='0'/%3E%3Cstop offset='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_204_3644' x1='12.5' y1='4.99404' x2='12.5' y2='17' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%233139FB' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%233139FB'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E ") !important;
+      }
     }
-  }
-/*-----------------------------------------------------------------end here ---------------------------------*/
+    /*-----------------------------------------------------------------end here ---------------------------------*/
 
-  & tab:not([zen-glance-tab]) {
-    width: calc(var(--zen-sidebar-width)-18px) !important;
-    opacity: 1 !important;
-    margin-left: 10px !important;
+    & tab:not([zen-glance-tab]) {
+      width: calc(var(--zen-sidebar-width)-18px) !important;
+      opacity: 1 !important;
+      margin-left: 10px !important;
 
-    overflow: visible !important;
+      overflow: visible !important;
 
+      .tab-group-line {
+        --tab-group-color-invert: transparent !important;
+        --tab-group-color: transparent !important;
+      }
 
-    .tab-group-line {
-      --tab-group-color-invert: transparent !important;
-      --tab-group-color: transparent !important;
+      .tab-background:active {
+        backdrop-filter: blur(10px) !important;
+      }
     }
-
-    .tab-background:active {
-      backdrop-filter: blur(10px)  !important;
-    }
-
-  }
-
 
     tab::before {
       content: "";
-      position: absolute ;
+      position: absolute;
       top: 50%;
       width: 2px;
       height: 40px !important;
@@ -545,52 +521,44 @@ tab-group {
       );
       border-radius: 360px !important;
       z-index: 999 !important;
-
     }
 
-  @media not (-moz-bool-pref: "tab.groups.display-tab-range") {
-    tab::before {
-      background: none !important;
-    }
-  }
-
-  &[collapsed] {
-/*-----------------------collapsed form hi heigh le liye--------------------------*/
-    max-height: 42px !important;
- margin-top: 6px !important;
-    margin-bottom: -2px !important;
-
-
-
-    & tab {
-
-      z-index: 999 !important;
-      display: flex !important;
-
-      filter: blur( 38px) opacity(1) brightness(75%) !important;
-      opacity: 0.1 !important;
-      padding: 0 !important;
-      margin: 0 !important;
+    @media not (-moz-bool-pref: "tab.groups.display-tab-range") {
+      tab::before {
+        background: none !important;
+      }
     }
 
-    & .tab-group-label-container > label::before {
-      content: "" !important;
-      position: absolute !important;
-      left: 10px !important;
+    &[collapsed] {
+      /*-----------------------collapsed form hi heigh le liye--------------------------*/
+      max-height: 42px !important;
+      margin-top: 6px !important;
+      margin-bottom: -2px !important;
 
+      & tab {
+        z-index: 999 !important;
+        display: flex !important;
 
-    margin-top: 1px !important;
-      top: 18% !important;
-      width: 20px !important;
-      height: 20px !important;
-      scale: 1.13 !important;
+        filter: blur(38px) opacity(1) brightness(75%) !important;
+        opacity: 0.1 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
 
+      & .tab-group-label-container > label::before {
+        content: "" !important;
+        position: absolute !important;
+        left: 10px !important;
 
-      /*---------------------important--------------------------*/
-      	content:  url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='%233139FB'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M1 8C1 6.89543 1.89543 6 3 6H15C16.1046 6 17 6.89543 17 8V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V8Z' fill='white' stroke='%233139FB' stroke-width='1.5'/%3E%3C/svg%3E ") !important;
+        margin-top: 1px !important;
+        top: 18% !important;
+        width: 20px !important;
+        height: 20px !important;
+        scale: 1.13 !important;
+
+        /*---------------------important--------------------------*/
+        content: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='%233139FB'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' fill='white' fill-opacity='0.7'/%3E%3Cpath d='M1 3C1 1.89543 1.89543 1 3 1H8L10 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V3Z' stroke='%233139FB' stroke-width='1.5'/%3E%3Cpath d='M1 8C1 6.89543 1.89543 6 3 6H15C16.1046 6 17 6.89543 17 8V15C17 16.1046 16.1046 17 15 17H3C1.89543 17 1 16.1046 1 15V8Z' fill='white' stroke='%233139FB' stroke-width='1.5'/%3E%3C/svg%3E ") !important;
+      }
     }
   }
-
-
-
-  }
+}

@@ -14,5 +14,10 @@ Better unloaded tabs styling from github.com/Felkazz/zen-browser-better-unloaded
 
 @import url("theme/icons.css");
 @import url("theme/tabgroups.css");
+@import url("theme/theme-sidebar.css");
 
-@import url("theme/general.css"); /* All the previous userChrome.css' content */
+/* @import url("theme/global-popup.css"); */
+/* @import url("theme/global-colors.css"); */
+
+/* All the previous userChrome.css' content */
+@import url("theme/general.css");

@@ -1,0 +1,199 @@
+/* ArcWTF theme-sidebar.css */
+
+/*#region Sidebar Tweaks */
+@media (-moz-pref: ("sidebar.visibility","hide-sidebar")),
+  (-moz-pref: ("sidebar.visibility","always-show")) {
+  #nav-bar:has(#sidebar-button:not([checked="true"])) {
+    #vertical-spacer {
+      min-width: 0 !important;
+      width: 0 !important;
+      flex: 0 0 !important;
+      max-width: 0 !important;
+    }
+  }
+}
+
+@media not (-moz-pref: ("sidebar.position_start")) {
+  #vertical-spacer {
+    min-width: 0 !important;
+    width: 0 !important;
+    flex: 0 0 !important;
+    max-width: 0 !important;
+  }
+}
+
+/* Hide the persistent vertical spacer when 'Sidebar expand on hover' is enabled */
+@media not (-moz-pref: ("uc.tweak.alt-expanded-spacer")) {
+  @media (-moz-pref: ("sidebar.visibility","expand-on-hover")) {
+    #vertical-spacer {
+      min-width: 0 !important;
+      width: 0 !important;
+      flex: 0 0 !important;
+      max-width: 0 !important;
+    }
+  }
+}
+
+/* [BUGGY] Alt version: With this tweak, when enabling 'Sidebar expand on hover',
+ * vertical spacer can still be shown when sidebar is expanded. */
+@media (-moz-pref: ("sidebar.visibility","expand-on-hover")) and (-moz-pref: ("uc.tweak.alt-expanded-spacer")) {
+  :root:has(#sidebar-wrapper[class="expandOnHover"]) {
+    #nav-bar:has(#sidebar-button:not([checked="true"])) {
+      #vertical-spacer {
+        min-width: 0 !important;
+        width: 0 !important;
+        flex: 0 0 !important;
+        max-width: 0 !important;
+      }
+    }
+  }
+}
+
+/* If Sidebery is enabled and 'Sidebar expand on hover' is enabled, hide Sidebery button
+ * Make sure you already pin Sidebery button and put it beside main menu button */
+@media (-moz-pref: ("sidebar.visibility","expand-on-hover")) {
+  #nav-bar:has(#_3c078156-979c-498b-8990-85f7987dd929_-BAP) {
+    #_3c078156-979c-498b-8990-85f7987dd929_-BAP {
+      display: none !important;
+    }
+  }
+}
+
+/* If Sidebery is enabled and 'Sidebar expand on hover' is disabled, hide FF sidebar button
+ * Make sure you already pin Sidebery button and put it beside main menu button */
+@media not (-moz-pref: ("sidebar.visibility","expand-on-hover")) {
+  #nav-bar:has(#_3c078156-979c-498b-8990-85f7987dd929_-BAP) {
+    #sidebar-button {
+      display: none !important;
+    }
+    /* Increase right padding beside Sidebery button,
+     * so the buttons beside vertical spacer can be aligned with the webview
+     * Done since there's a different specified minimum width for FF sidebar */
+    #_3c078156-979c-498b-8990-85f7987dd929_-BAP {
+      padding-inline-end: 25px !important;
+    }
+  }
+}
+
+/* Adjust right padding of tab close button, only show the button if tab is hovered */
+#tabbrowser-tabs[orient="vertical"] {
+  & .tab-close-button {
+    margin-inline-end: calc(
+      -1 * var(--tab-close-button-padding) + 3px
+    ) !important;
+    scale: 0.8;
+    border-radius: 10px !important;
+    /* display: none !important; */
+    transition: 0.2s ease !important;
+  }
+}
+
+/*#endregion Sidebar Tweaks */
+
+/* FF Sidebar header */
+@media (-moz-pref: "sidebar.verticalTabs") {
+  /* Hide separator below New Tab button */
+  #tabbrowser-tabs[orient="vertical"] {
+    &[overflow]::after {
+      border-bottom: none !important;
+      padding-bottom: calc(var(--toolbarbutton-border-radius) - 1px) !important;
+    }
+  }
+
+  /* Styling for sidebar tools & extensions (bottom buttons) */
+  .wrapper:hover {
+    /* Only show them fully when sidebar is hovered */
+    .tools-and-extensions:hover {
+      opacity: 1 !important;
+    }
+    /* When < 5 tools enabled, set default opacity to 40%,
+     * and completely hide bottom buttons when sidebar is collapsed */
+    .tools-and-extensions[orientation="vertical"] {
+      transition: 0.2s ease !important;
+      display: flex !important;
+      visibility: inherit !important;
+      opacity: 0.4 !important;
+      margin-top: -12px !important;
+    }
+    /* And then, when > 4 tools are enabled, show them as a scrollable horizontal list */
+    .tools-and-extensions[orientation="horizontal"] {
+      overflow: scroll !important;
+      scrollbar-width: thin;
+      scrollbar-color: var(--lwt-accent-color) #00000000;
+      transition: 0.2s ease !important;
+      margin-top: 0px !important;
+      & > moz-button:not(.tools-overflow) {
+        &:first-of-type {
+          --button-outer-padding-block-start: var(--space-xxsmall) !important;
+        }
+      }
+      &:hover {
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  /* Show sidebar tools & extensions only when sidebar is hovered */
+  .wrapper {
+    .tools-and-extensions[orientation="vertical"] {
+      visibility: collapse;
+      opacity: 0 !important;
+      margin-top: -12px !important;
+    }
+  }
+}
+
+/* Sidebery(?) */
+@media not (-moz-pref: "sidebar.verticalTabs") {
+  /* Hide the persistent vertical spacer when Sidebery is not expanded */
+  :root:not([customizing]):has(
+      #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"][hidden]
+    ) {
+    @media not (-moz-pref: "sidebar.position_start") {
+      #nav-bar:has(#_3c078156-979c-498b-8990-85f7987dd929_-BAP) {
+        #vertical-spacer {
+          min-width: 0 !important;
+          width: 0 !important;
+          flex: 0 0 !important;
+        }
+      }
+      #nav-bar:not(:has(#_3c078156-979c-498b-8990-85f7987dd929_-BAP)) {
+        #vertical-spacer {
+          min-width: initial !important;
+          width: initial !important;
+          flex: initial !important;
+        }
+      }
+    }
+  }
+
+  /* And add transition to the remaining buttons when expanding/collapsing sidebar */
+  #vertical-spacer {
+    transition: 0.2s ease;
+  }
+
+  /* Sidebar button tweaks: Remove background when sidebar is activated */
+  #sidebar-button:not(:hover) {
+    &[checked] {
+      .toolbarbutton-icon {
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  /* Adjust inline paddings when Sidebery button is shown */
+  #main-window:has(#sidebar-main[hidden="true"]) {
+    #nav-bar:has(#_3c078156-979c-498b-8990-85f7987dd929_-BAP) {
+      #PanelUI-menu-button,
+      #_3c078156-979c-498b-8990-85f7987dd929_-BAP {
+        padding-inline-end: 0 !important;
+      }
+      #_3c078156-979c-498b-8990-85f7987dd929_-BAP {
+        padding-inline-start: 3px !important;
+      }
+      toolbar .toolbaritem-combined-buttons {
+        margin-inline: 3px !important;
+      }
+    }
+  }
+}

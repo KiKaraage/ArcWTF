@@ -3,5 +3,5 @@ ArcWTF 2.0
 github.com/KiKaraage/ArcWTF
 */
 
-@import url("theme/common.css");
-@import url("theme/newtab.css");
+@import url("theme/website-common.css");
+@import url("theme/website-newtab.css");

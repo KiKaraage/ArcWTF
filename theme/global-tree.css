@@ -71,15 +71,15 @@ treechildren::-moz-tree-twisty {
   padding-top: 0 !important;
   padding-inline: 4px !important;
   width: 16px !important;
-  list-style-image: url("../icons/arrow-filled-right.svg") !important;
+  list-style-image: url("./icons/arrow-filled-right.svg") !important;
 }
 
 treechildren:-moz-locale-dir(rtl)::-moz-tree-twisty(closed) {
-  list-style-image: url("../icons/arrow-filled-left.svg") !important;
+  list-style-image: url("./icons/arrow-filled-left.svg") !important;
 }
 
 treechildren::-moz-tree-twisty(open) {
-  list-style-image: url("../icons/arrow-filled-down.svg") !important;
+  list-style-image: url("./icons/arrow-filled-down.svg") !important;
 }
 
 /* Change the identation of child items */
