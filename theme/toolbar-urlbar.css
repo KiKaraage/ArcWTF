@@ -98,7 +98,7 @@
   border: none !important;
   border-radius: 8px !important;
   margin-inline: 2px !important;
-  
+
   /* Vertically align search suggestion thumbnail images. */
   &[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
     margin-inline-start: calc(var(--urlbarView-icon-margin-start) + (16px - var(--urlbarView-rich-suggestion-default-icon-size)) / 2) !important;

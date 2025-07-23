@@ -1,3 +1,7 @@
-/* ArcWTF */
-@import url("content/common.css");
-@import url("content/newtab.css");
+/*
+ArcWTF 2.0
+github.com/KiKaraage/ArcWTF
+*/
+
+@import url("theme/website-common.css");
+@import url("theme/website-newtab.css");

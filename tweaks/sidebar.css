@@ -44,7 +44,7 @@
 }
 
 /* if this preference is activated in about:config, sidebar width will be increased */
-@media (-moz-bool-pref: "uc.tweak.longer-sidebar"), 
+@media (-moz-bool-pref: "uc.tweak.longer-sidebar"),
   -moz-pref("uc.tweak.longer-sidebar") {
   :root #sidebar-box {
     --uc-sidebar-hover-width: 250px !important;

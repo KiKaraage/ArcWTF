@@ -10,7 +10,7 @@
   --message-bar-border-radius: var(--border-radius-medium);
 }
 
-#nav-bar .toolbarbutton-icon {scale: 0.85;}
+#nav-bar .toolbarbutton-icon {scale: 5.85;}
 
 /* move reload/stop icon to middle of button */
 #reload-button>.toolbarbutton-animatable-box,

@@ -49,7 +49,7 @@ url-prefix("about:home") {
 
 @-moz-document url(about:newtab), url(about:home){
   .logo-and-wordmark > .logo{
-   background-image: url("Arc.svg") !important;
+   background-image: url("icons/arc.svg") !important;
    scale: 1.5;
   }
   .logo-and-wordmark > .wordmark{
@@ -142,7 +142,7 @@ url-prefix("about:home") {
   }
 
   .icon-settings {
-    background-image: url("../icons/settings.svg") !important;
+    background-image: url("icons/settings.svg") !important;
   }
 
   /* top sites */
@@ -288,7 +288,7 @@ url-prefix("about:home") {
     top: 20px;
     height: 32px;
     aspect-ratio: 1 / 1;
-    background: center / contain url("../icons/account-private.svg");
+    background: center / contain url("icons/account-private.svg");
     border-radius: 99px;
   }
 }
@@ -302,8 +302,8 @@ url-prefix("about:home") {
       /* Specify both jpg and png file extensions, but jpg images will always
        * have a higher priority.
        */
-      --bg-0: url(../Background-0.jpg), url(../Background-0.png);
-      --bg-1: url(../Background-1.jpg), url(../Background-1.png);
+      --bg-0: url(images/background-0.jpg), url(images/background-0.png);
+      --bg-1: url(images/background-1.jpg), url(images/background-1.png);
       --newtab-element-hover-color: rgb(239 239 239 / .3) !important;
       --newtab-element-active-color: rgb(239 239 239 / .45) !important;
       --text-shadow: 0 1px 2px #000;
